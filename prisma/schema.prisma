@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  name      String?
+  password  String
+
+  habits Habit[] // User can have multiple habits.
+
+  @@map("users")
+}
+
+model Habit {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String // Name of the habit.
+  description String? // Optional description of the habit.
+  userId    String // Foreign key to the User model.
+  user      User     @relation(fields: [userId], references: [id]) // Relation to the User model.
+  frequency Frequency @default(DAILY) // How often the user wants to perform the habit.  Defaults to daily.
+  goalQuantity Int? // The number of times to complete the habit for each frequency.  For example, run for 30 minutes daily.
+
+  habitCompletions HabitCompletion[] // Habit can have multiple completions.
+
+  @@map("habits")
+}
+
+model HabitCompletion {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  habitId String // Foreign key to the Habit model.
+  habit   Habit  @relation(fields: [habitId], references: [id]) // Relation to the Habit model.
+  completedAt DateTime @default(now()) // Timestamp of when the habit was completed.
+  notes String? // Optional notes about the completion.
+
+  @@map("habit_completions")
+}
+
+enum Frequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
