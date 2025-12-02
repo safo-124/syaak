@@ -11,4 +11,7 @@
 export type * from './models/User'
 export type * from './models/Habit'
 export type * from './models/HabitCompletion'
+export type * from './models/Course'
+export type * from './models/CourseSection'
+export type * from './models/Lead'
 export type * from './commonInputTypes'

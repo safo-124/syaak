@@ -16,3 +16,22 @@ export const Frequency = {
 } as const
 
 export type Frequency = (typeof Frequency)[keyof typeof Frequency]
+
+
+export const CourseLevel = {
+  BEGINNER: 'BEGINNER',
+  INTERMEDIATE: 'INTERMEDIATE',
+  ADVANCED: 'ADVANCED'
+} as const
+
+export type CourseLevel = (typeof CourseLevel)[keyof typeof CourseLevel]
+
+
+export const LeadStatus = {
+  NEW: 'NEW',
+  CONTACTED: 'CONTACTED',
+  ENROLLED: 'ENROLLED',
+  LOST: 'LOST'
+} as const
+
+export type LeadStatus = (typeof LeadStatus)[keyof typeof LeadStatus]

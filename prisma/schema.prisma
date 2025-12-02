@@ -56,3 +56,74 @@ enum Frequency {
   WEEKLY
   MONTHLY
 }
+
+model Course {
+  id            String        @id @default(uuid())
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  title         String
+  slug          String        @unique
+  shortSummary  String?
+  description   String?
+
+  level         CourseLevel   @default(BEGINNER)
+  format        String?       // e.g. "online", "in-person", "hybrid"
+  duration      String?       // e.g. "6 weeks", "2-day bootcamp"
+  price         Int?          // price in smallest currency unit or whole
+
+  // Tech and topic classification
+  techStack     String[]      // e.g. ["Python", "Pandas", "Excel"]
+  tools         String[]      // e.g. ["Word", "PowerPoint"]
+  tags          String[]      // e.g. ["data-science", "beginner"]
+
+  heroImageUrl  String?
+
+  isPublished   Boolean       @default(false)
+
+  sections      CourseSection[]
+  leads         Lead[]
+}
+
+model CourseSection {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id])
+
+  title     String
+  order     Int
+  content   String?  // markdown or rich text
+}
+
+model Lead {
+  id        String      @id @default(uuid())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  name      String
+  email     String
+  phone     String?
+
+  message   String?
+  source    String      // e.g. "course-page", "contact-page"
+  status    LeadStatus  @default(NEW)
+
+  courseId  String?
+  course    Course?     @relation(fields: [courseId], references: [id])
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  ENROLLED
+  LOST
+}

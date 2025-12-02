@@ -53,7 +53,10 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Habit: 'Habit',
-  HabitCompletion: 'HabitCompletion'
+  HabitCompletion: 'HabitCompletion',
+  Course: 'Course',
+  CourseSection: 'CourseSection',
+  Lead: 'Lead'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -108,6 +111,57 @@ export const HabitCompletionScalarFieldEnum = {
 } as const
 
 export type HabitCompletionScalarFieldEnum = (typeof HabitCompletionScalarFieldEnum)[keyof typeof HabitCompletionScalarFieldEnum]
+
+
+export const CourseScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  title: 'title',
+  slug: 'slug',
+  shortSummary: 'shortSummary',
+  description: 'description',
+  level: 'level',
+  format: 'format',
+  duration: 'duration',
+  price: 'price',
+  techStack: 'techStack',
+  tools: 'tools',
+  tags: 'tags',
+  heroImageUrl: 'heroImageUrl',
+  isPublished: 'isPublished'
+} as const
+
+export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
+
+
+export const CourseSectionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  courseId: 'courseId',
+  title: 'title',
+  order: 'order',
+  content: 'content'
+} as const
+
+export type CourseSectionScalarFieldEnum = (typeof CourseSectionScalarFieldEnum)[keyof typeof CourseSectionScalarFieldEnum]
+
+
+export const LeadScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  message: 'message',
+  source: 'source',
+  status: 'status',
+  courseId: 'courseId'
+} as const
+
+export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -45,24 +45,28 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* light, slightly blue background */
+  --background: oklch(0.98 0.02 240);
+  --foreground: oklch(0.2 0.04 240);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.2 0.04 240);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --popover-foreground: oklch(0.2 0.04 240);
+  /* primary: medium blue */
+  --primary: oklch(0.58 0.16 250);
+  --primary-foreground: oklch(0.99 0.02 240);
+  /* secondary: pale blue */
+  --secondary: oklch(0.95 0.04 240);
+  --secondary-foreground: oklch(0.3 0.05 240);
+  --muted: oklch(0.95 0.02 240);
+  --muted-foreground: oklch(0.5 0.03 240);
+  /* accent: warm red/orange for highlights */
+  --accent: oklch(0.7 0.2 30);
+  --accent-foreground: oklch(0.99 0.02 240);
+  --destructive: oklch(0.6 0.23 25);
+  --border: oklch(0.9 0.02 240);
+  --input: oklch(0.92 0.02 240);
+  --ring: oklch(0.65 0.12 250);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -118,5 +122,25 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(at 0% 0%, oklch(0.95 0.05 240 / 0.5) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.95 0.05 30 / 0.5) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, oklch(0.95 0.05 240 / 0.5) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, oklch(0.95 0.05 30 / 0.5) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/40 dark:bg-black/40 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-lg;
+  }
+  
+  .neumorphic {
+    @apply bg-background shadow-[-5px_-5px_10px_rgba(255,255,255,0.8),5px_5px_10px_rgba(0,0,0,0.05)] dark:shadow-[-5px_-5px_10px_rgba(255,255,255,0.05),5px_5px_10px_rgba(0,0,0,0.5)];
+  }
+
+  .neumorphic-btn {
+    @apply shadow-[-4px_-4px_8px_rgba(255,255,255,0.9),4px_4px_8px_rgba(0,0,0,0.1)] active:shadow-[inset_-4px_-4px_8px_rgba(255,255,255,0.9),inset_4px_4px_8px_rgba(0,0,0,0.1)] dark:shadow-[-4px_-4px_8px_rgba(255,255,255,0.05),4px_4px_8px_rgba(0,0,0,0.5)] dark:active:shadow-[inset_-4px_-4px_8px_rgba(255,255,255,0.05),inset_4px_4px_8px_rgba(0,0,0,0.5)];
   }
 }

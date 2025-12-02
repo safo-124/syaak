@@ -54,3 +54,18 @@ export type Habit = Prisma.HabitModel
  * 
  */
 export type HabitCompletion = Prisma.HabitCompletionModel
+/**
+ * Model Course
+ * 
+ */
+export type Course = Prisma.CourseModel
+/**
+ * Model CourseSection
+ * 
+ */
+export type CourseSection = Prisma.CourseSectionModel
+/**
+ * Model Lead
+ * 
+ */
+export type Lead = Prisma.LeadModel
