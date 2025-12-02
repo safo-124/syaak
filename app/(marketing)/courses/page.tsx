@@ -5,6 +5,12 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { BookOpen, CheckCircle2, Filter, Search } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Course Catalog - Tech4GH",
+  description: "Explore our range of data science and analytics courses. Learn Python, R, Excel, and more.",
+}
 
 export default async function CoursesPage() {
   const courses = await getPublishedCourses()

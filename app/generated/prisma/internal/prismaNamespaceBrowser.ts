@@ -128,6 +128,7 @@ export const CourseScalarFieldEnum = {
   techStack: 'techStack',
   tools: 'tools',
   tags: 'tags',
+  learningOutcomes: 'learningOutcomes',
   heroImageUrl: 'heroImageUrl',
   isPublished: 'isPublished'
 } as const

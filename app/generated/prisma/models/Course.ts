@@ -81,6 +81,7 @@ export type CourseCountAggregateOutputType = {
   techStack: number
   tools: number
   tags: number
+  learningOutcomes: number
   heroImageUrl: number
   isPublished: number
   _all: number
@@ -142,6 +143,7 @@ export type CourseCountAggregateInputType = {
   techStack?: true
   tools?: true
   tags?: true
+  learningOutcomes?: true
   heroImageUrl?: true
   isPublished?: true
   _all?: true
@@ -248,6 +250,7 @@ export type CourseGroupByOutputType = {
   techStack: string[]
   tools: string[]
   tags: string[]
+  learningOutcomes: string[]
   heroImageUrl: string | null
   isPublished: boolean
   _count: CourseCountAggregateOutputType | null
@@ -290,6 +293,7 @@ export type CourseWhereInput = {
   techStack?: Prisma.StringNullableListFilter<"Course">
   tools?: Prisma.StringNullableListFilter<"Course">
   tags?: Prisma.StringNullableListFilter<"Course">
+  learningOutcomes?: Prisma.StringNullableListFilter<"Course">
   heroImageUrl?: Prisma.StringNullableFilter<"Course"> | string | null
   isPublished?: Prisma.BoolFilter<"Course"> | boolean
   sections?: Prisma.CourseSectionListRelationFilter
@@ -311,6 +315,7 @@ export type CourseOrderByWithRelationInput = {
   techStack?: Prisma.SortOrder
   tools?: Prisma.SortOrder
   tags?: Prisma.SortOrder
+  learningOutcomes?: Prisma.SortOrder
   heroImageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   sections?: Prisma.CourseSectionOrderByRelationAggregateInput
@@ -335,6 +340,7 @@ export type CourseWhereUniqueInput = Prisma.AtLeast<{
   techStack?: Prisma.StringNullableListFilter<"Course">
   tools?: Prisma.StringNullableListFilter<"Course">
   tags?: Prisma.StringNullableListFilter<"Course">
+  learningOutcomes?: Prisma.StringNullableListFilter<"Course">
   heroImageUrl?: Prisma.StringNullableFilter<"Course"> | string | null
   isPublished?: Prisma.BoolFilter<"Course"> | boolean
   sections?: Prisma.CourseSectionListRelationFilter
@@ -356,6 +362,7 @@ export type CourseOrderByWithAggregationInput = {
   techStack?: Prisma.SortOrder
   tools?: Prisma.SortOrder
   tags?: Prisma.SortOrder
+  learningOutcomes?: Prisma.SortOrder
   heroImageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   _count?: Prisma.CourseCountOrderByAggregateInput
@@ -383,6 +390,7 @@ export type CourseScalarWhereWithAggregatesInput = {
   techStack?: Prisma.StringNullableListFilter<"Course">
   tools?: Prisma.StringNullableListFilter<"Course">
   tags?: Prisma.StringNullableListFilter<"Course">
+  learningOutcomes?: Prisma.StringNullableListFilter<"Course">
   heroImageUrl?: Prisma.StringNullableWithAggregatesFilter<"Course"> | string | null
   isPublished?: Prisma.BoolWithAggregatesFilter<"Course"> | boolean
 }
@@ -402,6 +410,7 @@ export type CourseCreateInput = {
   techStack?: Prisma.CourseCreatetechStackInput | string[]
   tools?: Prisma.CourseCreatetoolsInput | string[]
   tags?: Prisma.CourseCreatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseCreatelearningOutcomesInput | string[]
   heroImageUrl?: string | null
   isPublished?: boolean
   sections?: Prisma.CourseSectionCreateNestedManyWithoutCourseInput
@@ -423,6 +432,7 @@ export type CourseUncheckedCreateInput = {
   techStack?: Prisma.CourseCreatetechStackInput | string[]
   tools?: Prisma.CourseCreatetoolsInput | string[]
   tags?: Prisma.CourseCreatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseCreatelearningOutcomesInput | string[]
   heroImageUrl?: string | null
   isPublished?: boolean
   sections?: Prisma.CourseSectionUncheckedCreateNestedManyWithoutCourseInput
@@ -444,6 +454,7 @@ export type CourseUpdateInput = {
   techStack?: Prisma.CourseUpdatetechStackInput | string[]
   tools?: Prisma.CourseUpdatetoolsInput | string[]
   tags?: Prisma.CourseUpdatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseUpdatelearningOutcomesInput | string[]
   heroImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sections?: Prisma.CourseSectionUpdateManyWithoutCourseNestedInput
@@ -465,6 +476,7 @@ export type CourseUncheckedUpdateInput = {
   techStack?: Prisma.CourseUpdatetechStackInput | string[]
   tools?: Prisma.CourseUpdatetoolsInput | string[]
   tags?: Prisma.CourseUpdatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseUpdatelearningOutcomesInput | string[]
   heroImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sections?: Prisma.CourseSectionUncheckedUpdateManyWithoutCourseNestedInput
@@ -486,6 +498,7 @@ export type CourseCreateManyInput = {
   techStack?: Prisma.CourseCreatetechStackInput | string[]
   tools?: Prisma.CourseCreatetoolsInput | string[]
   tags?: Prisma.CourseCreatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseCreatelearningOutcomesInput | string[]
   heroImageUrl?: string | null
   isPublished?: boolean
 }
@@ -505,6 +518,7 @@ export type CourseUpdateManyMutationInput = {
   techStack?: Prisma.CourseUpdatetechStackInput | string[]
   tools?: Prisma.CourseUpdatetoolsInput | string[]
   tags?: Prisma.CourseUpdatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseUpdatelearningOutcomesInput | string[]
   heroImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -524,6 +538,7 @@ export type CourseUncheckedUpdateManyInput = {
   techStack?: Prisma.CourseUpdatetechStackInput | string[]
   tools?: Prisma.CourseUpdatetoolsInput | string[]
   tags?: Prisma.CourseUpdatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseUpdatelearningOutcomesInput | string[]
   heroImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -551,6 +566,7 @@ export type CourseCountOrderByAggregateInput = {
   techStack?: Prisma.SortOrder
   tools?: Prisma.SortOrder
   tags?: Prisma.SortOrder
+  learningOutcomes?: Prisma.SortOrder
   heroImageUrl?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
 }
@@ -617,6 +633,10 @@ export type CourseCreatetagsInput = {
   set: string[]
 }
 
+export type CourseCreatelearningOutcomesInput = {
+  set: string[]
+}
+
 export type EnumCourseLevelFieldUpdateOperationsInput = {
   set?: $Enums.CourseLevel
 }
@@ -632,6 +652,11 @@ export type CourseUpdatetoolsInput = {
 }
 
 export type CourseUpdatetagsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type CourseUpdatelearningOutcomesInput = {
   set?: string[]
   push?: string | string[]
 }
@@ -685,6 +710,7 @@ export type CourseCreateWithoutSectionsInput = {
   techStack?: Prisma.CourseCreatetechStackInput | string[]
   tools?: Prisma.CourseCreatetoolsInput | string[]
   tags?: Prisma.CourseCreatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseCreatelearningOutcomesInput | string[]
   heroImageUrl?: string | null
   isPublished?: boolean
   leads?: Prisma.LeadCreateNestedManyWithoutCourseInput
@@ -705,6 +731,7 @@ export type CourseUncheckedCreateWithoutSectionsInput = {
   techStack?: Prisma.CourseCreatetechStackInput | string[]
   tools?: Prisma.CourseCreatetoolsInput | string[]
   tags?: Prisma.CourseCreatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseCreatelearningOutcomesInput | string[]
   heroImageUrl?: string | null
   isPublished?: boolean
   leads?: Prisma.LeadUncheckedCreateNestedManyWithoutCourseInput
@@ -741,6 +768,7 @@ export type CourseUpdateWithoutSectionsInput = {
   techStack?: Prisma.CourseUpdatetechStackInput | string[]
   tools?: Prisma.CourseUpdatetoolsInput | string[]
   tags?: Prisma.CourseUpdatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseUpdatelearningOutcomesInput | string[]
   heroImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   leads?: Prisma.LeadUpdateManyWithoutCourseNestedInput
@@ -761,6 +789,7 @@ export type CourseUncheckedUpdateWithoutSectionsInput = {
   techStack?: Prisma.CourseUpdatetechStackInput | string[]
   tools?: Prisma.CourseUpdatetoolsInput | string[]
   tags?: Prisma.CourseUpdatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseUpdatelearningOutcomesInput | string[]
   heroImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   leads?: Prisma.LeadUncheckedUpdateManyWithoutCourseNestedInput
@@ -781,6 +810,7 @@ export type CourseCreateWithoutLeadsInput = {
   techStack?: Prisma.CourseCreatetechStackInput | string[]
   tools?: Prisma.CourseCreatetoolsInput | string[]
   tags?: Prisma.CourseCreatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseCreatelearningOutcomesInput | string[]
   heroImageUrl?: string | null
   isPublished?: boolean
   sections?: Prisma.CourseSectionCreateNestedManyWithoutCourseInput
@@ -801,6 +831,7 @@ export type CourseUncheckedCreateWithoutLeadsInput = {
   techStack?: Prisma.CourseCreatetechStackInput | string[]
   tools?: Prisma.CourseCreatetoolsInput | string[]
   tags?: Prisma.CourseCreatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseCreatelearningOutcomesInput | string[]
   heroImageUrl?: string | null
   isPublished?: boolean
   sections?: Prisma.CourseSectionUncheckedCreateNestedManyWithoutCourseInput
@@ -837,6 +868,7 @@ export type CourseUpdateWithoutLeadsInput = {
   techStack?: Prisma.CourseUpdatetechStackInput | string[]
   tools?: Prisma.CourseUpdatetoolsInput | string[]
   tags?: Prisma.CourseUpdatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseUpdatelearningOutcomesInput | string[]
   heroImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sections?: Prisma.CourseSectionUpdateManyWithoutCourseNestedInput
@@ -857,6 +889,7 @@ export type CourseUncheckedUpdateWithoutLeadsInput = {
   techStack?: Prisma.CourseUpdatetechStackInput | string[]
   tools?: Prisma.CourseUpdatetoolsInput | string[]
   tags?: Prisma.CourseUpdatetagsInput | string[]
+  learningOutcomes?: Prisma.CourseUpdatelearningOutcomesInput | string[]
   heroImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sections?: Prisma.CourseSectionUncheckedUpdateManyWithoutCourseNestedInput
@@ -917,6 +950,7 @@ export type CourseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   techStack?: boolean
   tools?: boolean
   tags?: boolean
+  learningOutcomes?: boolean
   heroImageUrl?: boolean
   isPublished?: boolean
   sections?: boolean | Prisma.Course$sectionsArgs<ExtArgs>
@@ -939,6 +973,7 @@ export type CourseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   techStack?: boolean
   tools?: boolean
   tags?: boolean
+  learningOutcomes?: boolean
   heroImageUrl?: boolean
   isPublished?: boolean
 }, ExtArgs["result"]["course"]>
@@ -958,6 +993,7 @@ export type CourseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   techStack?: boolean
   tools?: boolean
   tags?: boolean
+  learningOutcomes?: boolean
   heroImageUrl?: boolean
   isPublished?: boolean
 }, ExtArgs["result"]["course"]>
@@ -977,11 +1013,12 @@ export type CourseSelectScalar = {
   techStack?: boolean
   tools?: boolean
   tags?: boolean
+  learningOutcomes?: boolean
   heroImageUrl?: boolean
   isPublished?: boolean
 }
 
-export type CourseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "slug" | "shortSummary" | "description" | "level" | "format" | "duration" | "price" | "techStack" | "tools" | "tags" | "heroImageUrl" | "isPublished", ExtArgs["result"]["course"]>
+export type CourseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "slug" | "shortSummary" | "description" | "level" | "format" | "duration" | "price" | "techStack" | "tools" | "tags" | "learningOutcomes" | "heroImageUrl" | "isPublished", ExtArgs["result"]["course"]>
 export type CourseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sections?: boolean | Prisma.Course$sectionsArgs<ExtArgs>
   leads?: boolean | Prisma.Course$leadsArgs<ExtArgs>
@@ -1011,6 +1048,7 @@ export type $CoursePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     techStack: string[]
     tools: string[]
     tags: string[]
+    learningOutcomes: string[]
     heroImageUrl: string | null
     isPublished: boolean
   }, ExtArgs["result"]["course"]>
@@ -1452,6 +1490,7 @@ export interface CourseFieldRefs {
   readonly techStack: Prisma.FieldRef<"Course", 'String[]'>
   readonly tools: Prisma.FieldRef<"Course", 'String[]'>
   readonly tags: Prisma.FieldRef<"Course", 'String[]'>
+  readonly learningOutcomes: Prisma.FieldRef<"Course", 'String[]'>
   readonly heroImageUrl: Prisma.FieldRef<"Course", 'String'>
   readonly isPublished: Prisma.FieldRef<"Course", 'Boolean'>
 }

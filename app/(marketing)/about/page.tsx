@@ -1,6 +1,12 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle2, Users, Lightbulb, Rocket } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "About Us - Tech4GH",
+  description: "Learn about our mission to democratize data science education in Ghana and Africa.",
+}
 
 export default function AboutPage() {
   return (

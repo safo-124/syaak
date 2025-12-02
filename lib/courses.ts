@@ -1,5 +1,19 @@
 import prisma from "./prisma"
 
+export async function getAllCourses() {
+  return prisma.course.findMany({
+    orderBy: { createdAt: "desc" },
+    include: {
+      _count: {
+        select: {
+          leads: true,
+          sections: true,
+        }
+      }
+    }
+  })
+}
+
 export async function getPublishedCourses() {
   return prisma.course.findMany({
     where: { isPublished: true },
@@ -10,6 +24,17 @@ export async function getPublishedCourses() {
 export async function getCourseBySlug(slug: string) {
   return prisma.course.findUnique({
     where: { slug },
+    include: {
+      sections: {
+        orderBy: { order: "asc" },
+      },
+    },
+  })
+}
+
+export async function getCourseById(id: string) {
+  return prisma.course.findUnique({
+    where: { id },
     include: {
       sections: {
         orderBy: { order: "asc" },

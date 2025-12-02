@@ -2,6 +2,12 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { EnrollmentForm } from "@/components/marketing/enrollment-form"
 import { Mail, MapPin, Phone } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Contact Us - Tech4GH",
+  description: "Get in touch with our team for inquiries about courses, corporate training, or consulting.",
+}
 
 export default function ContactPage() {
   return (

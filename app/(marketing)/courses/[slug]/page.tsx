@@ -7,11 +7,28 @@ import { Separator } from "@/components/ui/separator"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { EnrollmentForm } from "@/components/marketing/enrollment-form"
 import { CheckCircle2, Clock, BarChart, Calendar, FileText, MonitorPlay } from "lucide-react"
+import { Metadata } from "next"
 
 interface CoursePageProps {
   params: Promise<{
     slug: string
   }>
+}
+
+export async function generateMetadata({ params }: CoursePageProps): Promise<Metadata> {
+  const { slug } = await params
+  const course = await getCourseBySlug(slug)
+
+  if (!course) {
+    return {
+      title: "Course Not Found - Tech4GH",
+    }
+  }
+
+  return {
+    title: `${course.title} - Tech4GH`,
+    description: course.shortSummary || `Learn ${course.title} with Tech4GH.`,
+  }
 }
 
 export default async function CoursePage({ params }: CoursePageProps) {
@@ -121,23 +138,20 @@ export default async function CoursePage({ params }: CoursePageProps) {
               </section>
             )}
 
-            {/* What you'll learn (Static placeholder for now, could be dynamic later) */}
-            <section className="space-y-6">
-              <h2 className="text-2xl font-bold tracking-tight">What you'll learn</h2>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {[
-                  "Practical application of concepts",
-                  "Real-world project experience",
-                  "Industry-standard best practices",
-                  "Problem-solving with data",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/30 p-4 dark:bg-black/10">
-                    <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" />
-                    <span className="text-sm font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
+            {/* What you'll learn */}
+            {course.learningOutcomes && course.learningOutcomes.length > 0 && (
+              <section className="space-y-6">
+                <h2 className="text-2xl font-bold tracking-tight">What you'll learn</h2>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {course.learningOutcomes.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/30 p-4 dark:bg-black/10">
+                      <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" />
+                      <span className="text-sm font-medium">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
 
           {/* Sidebar Column */}

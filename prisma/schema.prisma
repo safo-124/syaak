@@ -76,6 +76,9 @@ model Course {
   techStack     String[]      // e.g. ["Python", "Pandas", "Excel"]
   tools         String[]      // e.g. ["Word", "PowerPoint"]
   tags          String[]      // e.g. ["data-science", "beginner"]
+  
+  // Learning outcomes - what students will learn
+  learningOutcomes String[]   // e.g. ["Build web apps", "Deploy to cloud"]
 
   heroImageUrl  String?
 

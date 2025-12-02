@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, BarChart3, BookOpen, CheckCircle2, Code2, Laptop, Users } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Tech4GH - Master Data Science & Analytics",
+  description: "Practical, hands-on training in Python, R, Excel, and Microsoft tools. Designed for students and professionals in Ghana and beyond.",
+}
 
 export default async function HomePage() {
   const courses = await getPublishedCourses()
