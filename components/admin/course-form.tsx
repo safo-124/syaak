@@ -133,7 +133,7 @@ export function CourseForm({ course }: CourseFormProps) {
                     name="description" 
                     defaultValue={course?.description || ""} 
                     placeholder="Detailed course description including what students will learn..." 
-                    className="min-h-[160px] bg-background"
+                    className="min-h-40 bg-background"
                     rows={8}
                   />
                 </div>
@@ -252,7 +252,7 @@ Master Python programming fundamentals
 Work with databases and APIs
 Deploy applications to the cloud
 Collaborate using Git and GitHub" 
-                    className="min-h-[160px] bg-background font-mono text-sm"
+                    className="min-h-40 bg-background font-mono text-sm"
                     rows={6}
                   />
                   <p className="text-xs text-muted-foreground">

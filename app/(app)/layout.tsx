@@ -6,8 +6,11 @@ import {
   LayoutDashboard, 
   BookOpen, 
   Users, 
+  Settings,
   ExternalLink,
-  Menu
+  Menu,
+  FileText,
+  Mail
 } from "lucide-react"
 
 export default function AppLayout({
@@ -47,11 +50,32 @@ export default function AppLayout({
             Courses
           </Link>
           <Link 
+            href="/admin/blog" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <FileText className="size-4" />
+            Blog
+          </Link>
+          <Link 
+            href="/admin/newsletter" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <Mail className="size-4" />
+            Newsletter
+          </Link>
+          <Link 
             href="/admin/leads" 
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <Users className="size-4" />
             Leads
+          </Link>
+          <Link 
+            href="/admin/settings" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <Settings className="size-4" />
+            Settings
           </Link>
         </nav>
 
@@ -105,11 +129,32 @@ export default function AppLayout({
             Courses
           </Link>
           <Link 
+            href="/admin/blog" 
+            className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
+          >
+            <FileText className="size-4" />
+            Blog
+          </Link>
+          <Link 
+            href="/admin/newsletter" 
+            className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
+          >
+            <Mail className="size-4" />
+            Newsletter
+          </Link>
+          <Link 
             href="/admin/leads" 
             className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
           >
             <Users className="size-4" />
             Leads
+          </Link>
+          <Link 
+            href="/admin/settings" 
+            className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
+          >
+            <Settings className="size-4" />
+            Settings
           </Link>
         </nav>
 

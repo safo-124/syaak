@@ -130,3 +130,72 @@ enum LeadStatus {
   ENROLLED
   LOST
 }
+
+// Blog Post Model
+model BlogPost {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  title       String
+  slug        String      @unique
+  excerpt     String?     // Short summary for cards
+  content     String?     // Full markdown content
+  
+  coverImage  String?     // URL to cover image
+  
+  author      String?     // Author name
+  category    String?     // e.g. "Data Science", "Career Tips", "Tutorials"
+  tags        String[]    // e.g. ["python", "beginners", "tips"]
+  
+  readTime    Int?        // Estimated read time in minutes
+  
+  isPublished Boolean     @default(false)
+  publishedAt DateTime?   // When the post was published
+}
+
+// Newsletter Subscriber Model
+model NewsletterSubscriber {
+  id          String                    @id @default(uuid())
+  createdAt   DateTime                  @default(now())
+  updatedAt   DateTime                  @updatedAt
+  
+  email       String                    @unique
+  name        String?
+  
+  isActive    Boolean                   @default(true) // Can unsubscribe
+  subscribedAt DateTime                 @default(now())
+  unsubscribedAt DateTime?
+  
+  source      String?                   // Where they subscribed from (footer, popup, etc.)
+
+  @@map("newsletter_subscribers")
+}
+
+// Newsletter Campaign Model
+model Newsletter {
+  id          String                    @id @default(uuid())
+  createdAt   DateTime                  @default(now())
+  updatedAt   DateTime                  @updatedAt
+  
+  subject     String
+  content     String                    // HTML or Markdown content
+  previewText String?                   // Preview text for email clients
+  
+  status      NewsletterStatus          @default(DRAFT)
+  
+  sentAt      DateTime?
+  sentCount   Int                       @default(0)
+  openCount   Int                       @default(0)
+  clickCount  Int                       @default(0)
+
+  @@map("newsletters")
+}
+
+enum NewsletterStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  FAILED
+}

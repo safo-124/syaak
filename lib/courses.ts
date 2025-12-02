@@ -1,4 +1,5 @@
 import prisma from "./prisma"
+import { CourseLevel } from "../app/generated/prisma/client"
 
 export async function getAllCourses() {
   return prisma.course.findMany({
@@ -40,6 +41,25 @@ export async function getCourseById(id: string) {
         orderBy: { order: "asc" },
       },
     },
+  })
+}
+
+export async function getRelatedCourses(courseId: string, techStack: string[], level: CourseLevel, limit = 3) {
+  return prisma.course.findMany({
+    where: {
+      AND: [
+        { id: { not: courseId } },
+        { isPublished: true },
+        {
+          OR: [
+            { techStack: { hasSome: techStack } },
+            { level: level },
+          ],
+        },
+      ],
+    },
+    orderBy: { createdAt: "desc" },
+    take: limit,
   })
 }
 

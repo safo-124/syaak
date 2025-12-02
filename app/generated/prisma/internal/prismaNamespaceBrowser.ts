@@ -56,7 +56,10 @@ export const ModelName = {
   HabitCompletion: 'HabitCompletion',
   Course: 'Course',
   CourseSection: 'CourseSection',
-  Lead: 'Lead'
+  Lead: 'Lead',
+  BlogPost: 'BlogPost',
+  NewsletterSubscriber: 'NewsletterSubscriber',
+  Newsletter: 'Newsletter'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -163,6 +166,58 @@ export const LeadScalarFieldEnum = {
 } as const
 
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const BlogPostScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  title: 'title',
+  slug: 'slug',
+  excerpt: 'excerpt',
+  content: 'content',
+  coverImage: 'coverImage',
+  author: 'author',
+  category: 'category',
+  tags: 'tags',
+  readTime: 'readTime',
+  isPublished: 'isPublished',
+  publishedAt: 'publishedAt'
+} as const
+
+export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum]
+
+
+export const NewsletterSubscriberScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  email: 'email',
+  name: 'name',
+  isActive: 'isActive',
+  subscribedAt: 'subscribedAt',
+  unsubscribedAt: 'unsubscribedAt',
+  source: 'source'
+} as const
+
+export type NewsletterSubscriberScalarFieldEnum = (typeof NewsletterSubscriberScalarFieldEnum)[keyof typeof NewsletterSubscriberScalarFieldEnum]
+
+
+export const NewsletterScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  subject: 'subject',
+  content: 'content',
+  previewText: 'previewText',
+  status: 'status',
+  sentAt: 'sentAt',
+  sentCount: 'sentCount',
+  openCount: 'openCount',
+  clickCount: 'clickCount'
+} as const
+
+export type NewsletterScalarFieldEnum = (typeof NewsletterScalarFieldEnum)[keyof typeof NewsletterScalarFieldEnum]
 
 
 export const SortOrder = {

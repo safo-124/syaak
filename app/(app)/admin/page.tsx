@@ -1,4 +1,6 @@
 import { getAllCourses, getLeads } from "@/lib/courses"
+import { getAllBlogPosts } from "@/lib/blog"
+import { getNewsletterStats } from "@/lib/newsletter"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -9,18 +11,23 @@ import {
   Eye,
   ArrowRight,
   UserPlus,
-  Sparkles
+  Sparkles,
+  FileText,
+  Mail
 } from "lucide-react"
 import Link from "next/link"
 import { format } from "date-fns"
 
 export default async function AdminDashboardPage() {
-  const [courses, leads] = await Promise.all([
+  const [courses, leads, blogPosts, newsletterStats] = await Promise.all([
     getAllCourses(),
     getLeads(),
+    getAllBlogPosts(),
+    getNewsletterStats(),
   ])
 
   const publishedCourses = courses.filter(c => c.isPublished).length
+  const publishedPosts = blogPosts.filter(p => p.isPublished).length
   const newLeads = leads.filter(l => l.status === "NEW").length
   const recentLeads = leads.slice(0, 5)
   const topCourses = courses
@@ -53,8 +60,8 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card className="border-none bg-gradient-to-br from-blue-500/10 to-blue-600/5 dark:from-blue-500/20 dark:to-blue-600/10">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+        <Card className="border-none bg-linear-to-br from-blue-500/10 to-blue-600/5 dark:from-blue-500/20 dark:to-blue-600/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Courses</CardTitle>
             <BookOpen className="size-4 text-blue-600" />
@@ -67,7 +74,7 @@ export default async function AdminDashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-none bg-gradient-to-br from-green-500/10 to-green-600/5 dark:from-green-500/20 dark:to-green-600/10">
+        <Card className="border-none bg-linear-to-br from-green-500/10 to-green-600/5 dark:from-green-500/20 dark:to-green-600/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Published</CardTitle>
             <Eye className="size-4 text-green-600" />
@@ -80,7 +87,33 @@ export default async function AdminDashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-none bg-gradient-to-br from-purple-500/10 to-purple-600/5 dark:from-purple-500/20 dark:to-purple-600/10">
+        <Card className="border-none bg-linear-to-br from-indigo-500/10 to-indigo-600/5 dark:from-indigo-500/20 dark:to-indigo-600/10">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Blog Posts</CardTitle>
+            <FileText className="size-4 text-indigo-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold">{blogPosts.length}</div>
+            <p className="text-xs text-muted-foreground">
+              {publishedPosts} published
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-none bg-linear-to-br from-pink-500/10 to-pink-600/5 dark:from-pink-500/20 dark:to-pink-600/10">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Subscribers</CardTitle>
+            <Mail className="size-4 text-pink-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold">{newsletterStats.activeSubscribers}</div>
+            <p className="text-xs text-muted-foreground">
+              Newsletter subscribers
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-none bg-linear-to-br from-purple-500/10 to-purple-600/5 dark:from-purple-500/20 dark:to-purple-600/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Leads</CardTitle>
             <Users className="size-4 text-purple-600" />
@@ -93,7 +126,7 @@ export default async function AdminDashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-none bg-gradient-to-br from-amber-500/10 to-amber-600/5 dark:from-amber-500/20 dark:to-amber-600/10">
+        <Card className="border-none bg-linear-to-br from-amber-500/10 to-amber-600/5 dark:from-amber-500/20 dark:to-amber-600/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">New Leads</CardTitle>
             <UserPlus className="size-4 text-amber-600" />

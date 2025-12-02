@@ -35,3 +35,14 @@ export const LeadStatus = {
 } as const
 
 export type LeadStatus = (typeof LeadStatus)[keyof typeof LeadStatus]
+
+
+export const NewsletterStatus = {
+  DRAFT: 'DRAFT',
+  SCHEDULED: 'SCHEDULED',
+  SENDING: 'SENDING',
+  SENT: 'SENT',
+  FAILED: 'FAILED'
+} as const
+
+export type NewsletterStatus = (typeof NewsletterStatus)[keyof typeof NewsletterStatus]

@@ -14,7 +14,7 @@ export default function ContactPage() {
     <div className="flex min-h-screen w-full flex-col">
       {/* Hero Section */}
       <section className="relative flex w-full flex-col items-center justify-center overflow-hidden px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-24">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_var(--primary)/0.1,_transparent_60%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,var(--primary)/0.1,transparent_60%)]" />
         
         <div className="mx-auto max-w-3xl space-y-6">
           <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm font-medium backdrop-blur-md">
@@ -22,7 +22,7 @@ export default function ContactPage() {
           </Badge>
           
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            We'd love to <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">hear from you</span>
+            We'd love to <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">hear from you</span>
           </h1>
           
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl">

@@ -1,11 +1,13 @@
 import { notFound } from "next/navigation"
-import { getCourseBySlug } from "@/lib/courses"
+import { getCourseBySlug, getRelatedCourses } from "@/lib/courses"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { EnrollmentForm } from "@/components/marketing/enrollment-form"
+import { RelatedCourses } from "@/components/marketing/related-courses"
+import { CourseTestimonials } from "@/components/marketing/course-testimonials"
 import { CheckCircle2, Clock, BarChart, Calendar, FileText, MonitorPlay } from "lucide-react"
 import { Metadata } from "next"
 
@@ -39,11 +41,19 @@ export default async function CoursePage({ params }: CoursePageProps) {
     notFound()
   }
 
+  // Fetch related courses based on techStack and level
+  const relatedCourses = await getRelatedCourses(
+    course.id,
+    course.techStack,
+    course.level,
+    3
+  )
+
   return (
     <div className="flex min-h-screen w-full flex-col">
       {/* Hero Section */}
       <section className="relative w-full border-b glass px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--primary)/0.1,_transparent_50%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,var(--primary)/0.1,transparent_50%)]" />
         
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
@@ -152,6 +162,9 @@ export default async function CoursePage({ params }: CoursePageProps) {
                 </div>
               </section>
             )}
+
+            {/* Student Testimonials */}
+            <CourseTestimonials courseTitle={course.title} />
           </div>
 
           {/* Sidebar Column */}
@@ -205,6 +218,15 @@ export default async function CoursePage({ params }: CoursePageProps) {
 
         </div>
       </div>
+
+      {/* Related Courses Section */}
+      {relatedCourses.length > 0 && (
+        <div className="border-t glass px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <RelatedCourses courses={relatedCourses} />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
