@@ -37,3 +37,16 @@ export async function createLead(input: {
     },
   })
 }
+
+export async function getLeads() {
+  return prisma.lead.findMany({
+    orderBy: { createdAt: "desc" },
+    include: {
+      course: {
+        select: {
+          title: true,
+        },
+      },
+    },
+  })
+}

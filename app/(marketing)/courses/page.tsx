@@ -1,9 +1,9 @@
 import Link from "next/link"
-import { getPublishedCourses } from "../../../lib/courses"
-import { Badge } from "../../../components/ui/badge"
-import { Button } from "../../../components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../../components/ui/card"
-import { Separator } from "../../../components/ui/separator"
+import { getPublishedCourses } from "@/lib/courses"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { BookOpen, CheckCircle2, Filter, Search } from "lucide-react"
 
 export default async function CoursesPage() {

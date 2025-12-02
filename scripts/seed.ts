@@ -18,6 +18,12 @@ async function main() {
       techStack: ["Python", "pandas", "NumPy"],
       tools: ["Jupyter"],
       tags: ["data-science", "python", "beginner"],
+      sections: [
+        { title: "Introduction to Python & Jupyter", content: "Setting up your environment, variables, and basic data types." },
+        { title: "Data Manipulation with Pandas", content: "Loading data, filtering, sorting, and cleaning datasets." },
+        { title: "Data Visualization", content: "Creating charts with Matplotlib and Seaborn." },
+        { title: "Exploratory Data Analysis", content: "Understanding your data through statistics and visualization." },
+      ]
     },
     {
       title: "Data Analysis with Excel",
@@ -32,6 +38,12 @@ async function main() {
       techStack: ["Excel"],
       tools: ["Excel"],
       tags: ["excel", "data-analysis", "beginner"],
+      sections: [
+        { title: "Excel Basics & Shortcuts", content: "Navigating Excel efficiently and essential shortcuts." },
+        { title: "Advanced Formulas", content: "VLOOKUP, INDEX-MATCH, and IF statements." },
+        { title: "Pivot Tables Mastery", content: "Summarizing large datasets with Pivot Tables." },
+        { title: "Dashboards & Visualization", content: "Building interactive dashboards." },
+      ]
     },
     {
       title: "R for Data Science",
@@ -46,6 +58,7 @@ async function main() {
       techStack: ["R", "tidyverse"],
       tools: ["RStudio"],
       tags: ["r", "data-science", "intermediate"],
+      sections: []
     },
     {
       title: "PowerPoint for Data Storytelling",
@@ -60,6 +73,7 @@ async function main() {
       techStack: ["Data Storytelling"],
       tools: ["PowerPoint"],
       tags: ["powerpoint", "communication", "beginner"],
+      sections: []
     },
     {
       title: "Word for Professional Reports",
@@ -74,40 +88,45 @@ async function main() {
       techStack: ["Reporting"],
       tools: ["Word"],
       tags: ["word", "reporting", "beginner"],
+      sections: []
     },
   ]
 
   for (const course of courses) {
+    // Extract sections to handle separately
+    const { sections, ...courseData } = course
+
     const created = await prisma.course.upsert({
       where: { slug: course.slug },
       update: {
-        title: course.title,
-        shortSummary: course.shortSummary,
-        description: course.description,
-        level: course.level,
-        format: course.format,
-        duration: course.duration,
-        price: course.price,
-        techStack: course.techStack,
-        tools: course.tools,
-        tags: course.tags,
+        ...courseData,
         isPublished: true,
       },
       create: {
-        title: course.title,
-        slug: course.slug,
-        shortSummary: course.shortSummary,
-        description: course.description,
-        level: course.level,
-        format: course.format,
-        duration: course.duration,
-        price: course.price,
-        techStack: course.techStack,
-        tools: course.tools,
-        tags: course.tags,
+        ...courseData,
         isPublished: true,
       },
     })
+
+    // Handle sections if they exist
+    if (sections && sections.length > 0) {
+      // Clear existing sections to avoid duplicates/ordering issues
+      await prisma.courseSection.deleteMany({
+        where: { courseId: created.id }
+      })
+
+      // Create new sections
+      for (let i = 0; i < sections.length; i++) {
+        await prisma.courseSection.create({
+          data: {
+            courseId: created.id,
+            title: sections[i].title,
+            content: sections[i].content,
+            order: i + 1
+          }
+        })
+      }
+    }
 
     console.log(`✅ Seeded course: ${created.title}`)
   }

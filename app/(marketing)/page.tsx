@@ -1,8 +1,8 @@
 import Link from "next/link"
-import { getPublishedCourses } from "../../lib/courses"
-import { Button } from "../../components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "../../components/ui/card"
-import { Badge } from "../../components/ui/badge"
+import { getPublishedCourses } from "@/lib/courses"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { ArrowRight, BarChart3, BookOpen, CheckCircle2, Code2, Laptop, Users } from "lucide-react"
 
 export default async function HomePage() {
