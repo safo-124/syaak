@@ -84,3 +84,68 @@ export type NewsletterSubscriber = Prisma.NewsletterSubscriberModel
  * 
  */
 export type Newsletter = Prisma.NewsletterModel
+/**
+ * Model BlogCategory
+ * 
+ */
+export type BlogCategory = Prisma.BlogCategoryModel
+/**
+ * Model Post
+ * 
+ */
+export type Post = Prisma.PostModel
+/**
+ * Model Comment
+ * 
+ */
+export type Comment = Prisma.CommentModel
+/**
+ * Model ContactSubmission
+ * 
+ */
+export type ContactSubmission = Prisma.ContactSubmissionModel
+/**
+ * Model Instructor
+ * 
+ */
+export type Instructor = Prisma.InstructorModel
+/**
+ * Model Student
+ * 
+ */
+export type Student = Prisma.StudentModel
+/**
+ * Model InstructorCourse
+ * 
+ */
+export type InstructorCourse = Prisma.InstructorCourseModel
+/**
+ * Model ManagedCourse
+ * 
+ */
+export type ManagedCourse = Prisma.ManagedCourseModel
+/**
+ * Model CourseModule
+ * 
+ */
+export type CourseModule = Prisma.CourseModuleModel
+/**
+ * Model Lesson
+ * 
+ */
+export type Lesson = Prisma.LessonModel
+/**
+ * Model LessonResource
+ * 
+ */
+export type LessonResource = Prisma.LessonResourceModel
+/**
+ * Model Enrollment
+ * 
+ */
+export type Enrollment = Prisma.EnrollmentModel
+/**
+ * Model LessonProgress
+ * 
+ */
+export type LessonProgress = Prisma.LessonProgressModel

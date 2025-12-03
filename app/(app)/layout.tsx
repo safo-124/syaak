@@ -10,7 +10,9 @@ import {
   ExternalLink,
   Menu,
   FileText,
-  Mail
+  Mail,
+  GraduationCap,
+  UserCog
 } from "lucide-react"
 
 export default function AppLayout({
@@ -48,6 +50,20 @@ export default function AppLayout({
           >
             <BookOpen className="size-4" />
             Courses
+          </Link>
+          <Link 
+            href="/admin/instructors" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <UserCog className="size-4" />
+            Instructors
+          </Link>
+          <Link 
+            href="/admin/students" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <GraduationCap className="size-4" />
+            Students
           </Link>
           <Link 
             href="/admin/blog" 
@@ -127,6 +143,20 @@ export default function AppLayout({
           >
             <BookOpen className="size-4" />
             Courses
+          </Link>
+          <Link 
+            href="/admin/instructors" 
+            className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
+          >
+            <UserCog className="size-4" />
+            Instructors
+          </Link>
+          <Link 
+            href="/admin/students" 
+            className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
+          >
+            <GraduationCap className="size-4" />
+            Students
           </Link>
           <Link 
             href="/admin/blog" 

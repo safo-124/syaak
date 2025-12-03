@@ -199,3 +199,326 @@ enum NewsletterStatus {
   SENT
   FAILED
 }
+
+// Blog Category Model
+model BlogCategory {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  name        String      @unique
+  slug        String      @unique
+  description String?
+  color       String?     // Hex color for badges
+
+  posts       Post[]
+
+  @@map("blog_categories")
+}
+
+// Blog Post Model (Enhanced)
+model Post {
+  id          String       @id @default(uuid())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  title       String
+  slug        String       @unique
+  excerpt     String?      // Short summary for cards
+  content     String?      // Full markdown content
+  
+  coverImage  String?      // URL to cover image
+  
+  author      String?      // Author name
+  authorImage String?      // Author avatar URL
+  
+  categoryId  String?
+  category    BlogCategory? @relation(fields: [categoryId], references: [id])
+  
+  tags        String[]     // e.g. ["python", "beginners", "tips"]
+  
+  readTime    Int?         // Estimated read time in minutes
+  views       Int          @default(0)
+  
+  isPublished Boolean      @default(false)
+  isFeatured  Boolean      @default(false)
+  publishedAt DateTime?
+
+  comments    Comment[]
+
+  @@map("posts")
+}
+
+// Blog Comment Model
+model Comment {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  content     String
+  
+  authorName  String
+  authorEmail String
+  
+  postId      String
+  post        Post        @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
+  parentId    String?     // For nested replies
+  parent      Comment?    @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     Comment[]   @relation("CommentReplies")
+  
+  isApproved  Boolean     @default(false) // Moderation
+  
+  @@map("comments")
+}
+
+// Contact Form Submission Model
+model ContactSubmission {
+  id          String        @id @default(uuid())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  name        String
+  email       String
+  phone       String?
+  subject     String
+  message     String
+  
+  status      ContactStatus @default(NEW)
+  
+  notes       String?       // Admin notes
+  respondedAt DateTime?
+
+  @@map("contact_submissions")
+}
+
+enum ContactStatus {
+  NEW
+  READ
+  RESPONDED
+  ARCHIVED
+}
+
+// ============ INSTRUCTOR & STUDENT PORTAL MODELS ============
+
+// Instructor Model
+model Instructor {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  email       String      @unique
+  password    String
+  name        String
+  bio         String?
+  avatar      String?
+  title       String?     // e.g. "Senior Data Scientist"
+  expertise   String[]    // e.g. ["Python", "Machine Learning"]
+  
+  isActive    Boolean     @default(true)
+  isVerified  Boolean     @default(false)
+
+  courses     InstructorCourse[]
+
+  @@map("instructors")
+}
+
+// Student Model
+model Student {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  email       String      @unique
+  password    String
+  name        String
+  avatar      String?
+  phone       String?
+  
+  isActive    Boolean     @default(true)
+  
+  enrollments Enrollment[]
+
+  @@map("students")
+}
+
+// Instructor-Course Relationship (with role)
+model InstructorCourse {
+  id           String     @id @default(uuid())
+  createdAt    DateTime   @default(now())
+  
+  instructorId String
+  instructor   Instructor @relation(fields: [instructorId], references: [id], onDelete: Cascade)
+  
+  courseId     String
+  course       ManagedCourse @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  role         InstructorRole @default(INSTRUCTOR)
+
+  @@unique([instructorId, courseId])
+  @@map("instructor_courses")
+}
+
+enum InstructorRole {
+  OWNER       // Created the course, full control
+  INSTRUCTOR  // Can teach but not delete
+  ASSISTANT   // Limited access
+}
+
+// Managed Course (courses with lessons and enrollments)
+model ManagedCourse {
+  id            String        @id @default(uuid())
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  title         String
+  slug          String        @unique
+  shortSummary  String?
+  description   String?
+  
+  level         CourseLevel   @default(BEGINNER)
+  format        String?       // "online", "in-person", "hybrid"
+  duration      String?       // "6 weeks"
+  price         Int           @default(0)  // 0 = free
+  
+  techStack     String[]
+  tags          String[]
+  learningOutcomes String[]
+  
+  heroImageUrl  String?
+  
+  isPublished   Boolean       @default(false)
+  isFeatured    Boolean       @default(false)
+  
+  maxStudents   Int?          // null = unlimited
+  
+  startDate     DateTime?
+  endDate       DateTime?
+
+  instructors   InstructorCourse[]
+  modules       CourseModule[]
+  enrollments   Enrollment[]
+
+  @@map("managed_courses")
+}
+
+// Course Module (container for lessons)
+model CourseModule {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  courseId    String
+  course      ManagedCourse @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  title       String
+  description String?
+  order       Int
+
+  lessons     Lesson[]
+
+  @@map("course_modules")
+}
+
+// Lesson Model
+model Lesson {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  moduleId    String
+  module      CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  title       String
+  description String?
+  content     String?     // Markdown content
+  videoUrl    String?     // Video URL (YouTube, Vimeo, etc.)
+  duration    Int?        // Duration in minutes
+  order       Int
+  
+  isFree      Boolean     @default(false)  // Free preview
+  isPublished Boolean     @default(false)
+  
+  resources   LessonResource[]
+  progress    LessonProgress[]
+
+  @@map("lessons")
+}
+
+// Lesson Resource (downloadable files, links)
+model LessonResource {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+
+  lessonId    String
+  lesson      Lesson      @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  title       String
+  type        ResourceType
+  url         String
+
+  @@map("lesson_resources")
+}
+
+enum ResourceType {
+  PDF
+  VIDEO
+  LINK
+  CODE
+  FILE
+}
+
+// Student Enrollment
+model Enrollment {
+  id          String           @id @default(uuid())
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  studentId   String
+  student     Student          @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  courseId    String
+  course      ManagedCourse    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  status      EnrollmentStatus @default(ACTIVE)
+  
+  enrolledAt  DateTime         @default(now())
+  completedAt DateTime?
+  
+  progress    Int              @default(0)  // 0-100 percentage
+  
+  lessonProgress LessonProgress[]
+
+  @@unique([studentId, courseId])
+  @@map("enrollments")
+}
+
+enum EnrollmentStatus {
+  PENDING     // Waiting for approval/payment
+  ACTIVE      // Currently enrolled
+  COMPLETED   // Finished the course
+  CANCELLED   // Dropped out
+  EXPIRED     // Access expired
+}
+
+// Lesson Progress Tracking
+model LessonProgress {
+  id           String     @id @default(uuid())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  enrollmentId String
+  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+
+  lessonId     String
+  lesson       Lesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  isCompleted  Boolean    @default(false)
+  completedAt  DateTime?
+  
+  watchTime    Int        @default(0)  // Seconds watched
+  lastPosition Int        @default(0)  // Last video position
+
+  @@unique([enrollmentId, lessonId])
+  @@map("lesson_progress")
+}

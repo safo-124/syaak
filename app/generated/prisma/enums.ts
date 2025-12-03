@@ -46,3 +46,44 @@ export const NewsletterStatus = {
 } as const
 
 export type NewsletterStatus = (typeof NewsletterStatus)[keyof typeof NewsletterStatus]
+
+
+export const ContactStatus = {
+  NEW: 'NEW',
+  READ: 'READ',
+  RESPONDED: 'RESPONDED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type ContactStatus = (typeof ContactStatus)[keyof typeof ContactStatus]
+
+
+export const InstructorRole = {
+  OWNER: 'OWNER',
+  INSTRUCTOR: 'INSTRUCTOR',
+  ASSISTANT: 'ASSISTANT'
+} as const
+
+export type InstructorRole = (typeof InstructorRole)[keyof typeof InstructorRole]
+
+
+export const ResourceType = {
+  PDF: 'PDF',
+  VIDEO: 'VIDEO',
+  LINK: 'LINK',
+  CODE: 'CODE',
+  FILE: 'FILE'
+} as const
+
+export type ResourceType = (typeof ResourceType)[keyof typeof ResourceType]
+
+
+export const EnrollmentStatus = {
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus]

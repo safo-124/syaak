@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { getPublishedCourses } from "@/lib/courses"
-import { getRecentBlogPosts } from "@/lib/blog"
+import { getRecentPosts } from "@/lib/blog"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const [courses, recentPosts] = await Promise.all([
     getPublishedCourses(),
-    getRecentBlogPosts(3),
+    getRecentPosts(3),
   ])
   const featuredCourses = courses.slice(0, 3) // Only show top 3
 
@@ -107,7 +107,7 @@ export default async function HomePage() {
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredCourses.map((course) => (
+            {featuredCourses.map((course: { id: string; level: string; duration?: string | null; title: string; slug: string; shortSummary?: string | null; techStack?: string[] | null }) => (
               <Card key={course.id} className="group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl">
                 <CardHeader className="space-y-4">
                   <div className="flex items-start justify-between">
@@ -258,7 +258,7 @@ export default async function HomePage() {
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {recentPosts.map((post) => (
+              {recentPosts.map((post: { id: string; coverImage?: string | null; title: string; slug: string; category?: { name: string } | null; readTime?: number | null; excerpt?: string | null }) => (
                 <Card key={post.id} className="group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl">
                   {post.coverImage && (
                     <div className="aspect-video overflow-hidden">
@@ -273,7 +273,7 @@ export default async function HomePage() {
                     <div className="flex items-center gap-3">
                       {post.category && (
                         <Badge variant="secondary" className="text-xs">
-                          {post.category}
+                          {post.category.name}
                         </Badge>
                       )}
                       {post.readTime && (

@@ -19,7 +19,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
-import { deleteBlogPost, toggleBlogPostPublish } from "@/app/actions/blog"
+import { deletePostAction, togglePostPublish } from "@/app/actions/blog"
 import { 
   MoreVertical, 
   Eye, 
@@ -39,13 +39,13 @@ export function BlogActions({ postId, isPublished }: BlogActionsProps) {
 
   const handleTogglePublish = () => {
     startTransition(async () => {
-      await toggleBlogPostPublish(postId)
+      await togglePostPublish(postId)
     })
   }
 
   const handleDelete = () => {
     startTransition(async () => {
-      await deleteBlogPost(postId)
+      await deletePostAction(postId)
       setShowDeleteDialog(false)
     })
   }

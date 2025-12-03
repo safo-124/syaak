@@ -7,8 +7,8 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { Separator } from "@/components/ui/separator"
-import { createBlogPost, updateBlogPost } from "@/app/actions/blog"
-import type { BlogPost } from "@/app/generated/prisma/client"
+import { createPostAction, updatePostAction } from "@/app/actions/blog"
+import type { Post, BlogCategory } from "@/app/generated/prisma/client"
 import Link from "next/link"
 import { useTransition } from "react"
 import { 
@@ -23,18 +23,19 @@ import {
 } from "lucide-react"
 
 interface BlogFormProps {
-  post?: BlogPost
+  post?: Post & { category?: BlogCategory | null }
+  categories?: BlogCategory[]
 }
 
-export function BlogForm({ post }: BlogFormProps) {
+export function BlogForm({ post, categories = [] }: BlogFormProps) {
   const [isPending, startTransition] = useTransition()
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
       if (post) {
-        await updateBlogPost(post.id, formData)
+        await updatePostAction(post.id, formData)
       } else {
-        await createBlogPost(formData)
+        await createPostAction(formData)
       }
     })
   }
@@ -162,14 +163,20 @@ export function BlogForm({ post }: BlogFormProps) {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="category">Category</Label>
-                  <Input 
-                    id="category" 
-                    name="category" 
-                    defaultValue={post?.category || ""} 
-                    placeholder="e.g. Data Science, Tutorials" 
-                    className="bg-background"
-                  />
+                  <Label htmlFor="categoryId">Category</Label>
+                  <select 
+                    id="categoryId" 
+                    name="categoryId" 
+                    defaultValue={post?.categoryId || ""} 
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    <option value="">No Category</option>
+                    {categories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="readTime">Read Time (minutes)</Label>
@@ -241,7 +248,7 @@ export function BlogForm({ post }: BlogFormProps) {
               <CardHeader>
                 <CardTitle className="text-lg">Visibility</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
                 <div className="flex items-center justify-between rounded-lg border bg-background p-4">
                   <div className="space-y-0.5">
                     <Label htmlFor="isPublished" className="text-base font-medium">
@@ -255,6 +262,21 @@ export function BlogForm({ post }: BlogFormProps) {
                     id="isPublished" 
                     name="isPublished" 
                     defaultChecked={post?.isPublished} 
+                  />
+                </div>
+                <div className="flex items-center justify-between rounded-lg border bg-background p-4">
+                  <div className="space-y-0.5">
+                    <Label htmlFor="isFeatured" className="text-base font-medium">
+                      Featured Post
+                    </Label>
+                    <p className="text-xs text-muted-foreground">
+                      Show on homepage
+                    </p>
+                  </div>
+                  <Switch 
+                    id="isFeatured" 
+                    name="isFeatured" 
+                    defaultChecked={post?.isFeatured} 
                   />
                 </div>
               </CardContent>

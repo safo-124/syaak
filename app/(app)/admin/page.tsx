@@ -1,5 +1,5 @@
 import { getAllCourses, getLeads } from "@/lib/courses"
-import { getAllBlogPosts } from "@/lib/blog"
+import { getAllPosts } from "@/lib/blog"
 import { getNewsletterStats } from "@/lib/newsletter"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -22,16 +22,16 @@ export default async function AdminDashboardPage() {
   const [courses, leads, blogPosts, newsletterStats] = await Promise.all([
     getAllCourses(),
     getLeads(),
-    getAllBlogPosts(),
+    getAllPosts(),
     getNewsletterStats(),
   ])
 
-  const publishedCourses = courses.filter(c => c.isPublished).length
-  const publishedPosts = blogPosts.filter(p => p.isPublished).length
-  const newLeads = leads.filter(l => l.status === "NEW").length
+  const publishedCourses = courses.filter((c: { isPublished: boolean }) => c.isPublished).length
+  const publishedPosts = blogPosts.filter((p: { isPublished: boolean }) => p.isPublished).length
+  const newLeads = leads.filter((l: { status: string }) => l.status === "NEW").length
   const recentLeads = leads.slice(0, 5)
   const topCourses = courses
-    .sort((a, b) => b._count.leads - a._count.leads)
+    .sort((a: { _count: { leads: number } }, b: { _count: { leads: number } }) => b._count.leads - a._count.leads)
     .slice(0, 3)
 
   return (
@@ -163,7 +163,7 @@ export default async function AdminDashboardPage() {
               </div>
             ) : (
               <div className="space-y-4">
-                {recentLeads.map((lead) => (
+                {recentLeads.map((lead: { id: string; name: string; course?: { title: string } | null; status: string; createdAt: Date }) => (
                   <div key={lead.id} className="flex items-center gap-3">
                     <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
                       {lead.name.charAt(0).toUpperCase()}
@@ -217,7 +217,7 @@ export default async function AdminDashboardPage() {
               </div>
             ) : (
               <div className="space-y-4">
-                {topCourses.map((course, index) => (
+                {topCourses.map((course: { id: string; title: string; level: string; isPublished: boolean; _count: { leads: number } }, index: number) => (
                   <div key={course.id} className="flex items-center gap-3">
                     <div className={`flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
                       index === 0 

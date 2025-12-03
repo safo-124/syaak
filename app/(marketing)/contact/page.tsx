@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { EnrollmentForm } from "@/components/marketing/enrollment-form"
-import { Mail, MapPin, Phone } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { ContactForm } from "@/components/contact-form"
+import { Mail, MapPin, Phone, Clock } from "lucide-react"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -46,31 +46,35 @@ export default function ContactPage() {
             </div>
 
             <div className="grid gap-6">
-              <Card className="border-none bg-white/40 dark:bg-black/20">
+              <Card className="glass border-none">
                 <CardContent className="flex items-center gap-4 p-6">
                   <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Mail className="size-6" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Email Us</h3>
-                    <p className="text-sm text-muted-foreground">hello@tech4gh.com</p>
+                    <a href="mailto:hello@tech4gh.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      hello@tech4gh.com
+                    </a>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-none bg-white/40 dark:bg-black/20">
+              <Card className="glass border-none">
                 <CardContent className="flex items-center gap-4 p-6">
                   <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Phone className="size-6" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Call Us</h3>
-                    <p className="text-sm text-muted-foreground">+233 (0) 20 123 4567</p>
+                    <a href="tel:+233201234567" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      +233 (0) 20 123 4567
+                    </a>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-none bg-white/40 dark:bg-black/20">
+              <Card className="glass border-none">
                 <CardContent className="flex items-center gap-4 p-6">
                   <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <MapPin className="size-6" />
@@ -78,6 +82,18 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold">Visit Us</h3>
                     <p className="text-sm text-muted-foreground">Accra, Ghana</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass border-none">
+                <CardContent className="flex items-center gap-4 p-6">
+                  <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <Clock className="size-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Business Hours</h3>
+                    <p className="text-sm text-muted-foreground">Mon - Fri: 9:00 AM - 6:00 PM</p>
                   </div>
                 </CardContent>
               </Card>
@@ -92,7 +108,7 @@ export default function ContactPage() {
                 Fill out the form below and we'll get back to you within 24 hours.
               </p>
             </div>
-            <EnrollmentForm source="contact-page" />
+            <ContactForm />
           </div>
 
         </div>
