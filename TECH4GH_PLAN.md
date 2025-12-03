@@ -80,3 +80,6 @@ Build a clear marketing + light learning/enrollment site for Tech4GH using the e
 1. Decide if v1 is **marketing + lead capture only** (no login) or if you want to add simple auth before launch; the plan above keeps auth as a later phase.
 2. You can incrementally migrate from the existing `User`/habit demo by leaving that data in place but no longer exposing it in the UI.
 3. Once v1 is live, future phases can add a learner dashboard, lesson content models (`Lesson`, `Module`, `Resource`), payments (Stripe), and email notifications (Resend/SendGrid) on top of this foundation.
+
+
+i need to build the admin and student more

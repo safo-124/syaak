@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import "@/app/globals.css"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -26,8 +27,14 @@ export default function AppLayout({
       <aside className="hidden w-64 flex-col border-r bg-background lg:flex">
         {/* Logo */}
         <div className="flex h-16 items-center gap-2 border-b px-6">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
-            T4
+          <div className="flex size-8 items-center justify-center rounded-lg overflow-hidden">
+            <Image 
+              src="/T4u_logo.jpg" 
+              alt="Tech4GH Logo" 
+              width={32} 
+              height={32}
+              className="object-cover"
+            />
           </div>
           <span className="font-semibold">Tech4GH</span>
           <Badge variant="secondary" className="ml-auto text-[10px]">
@@ -111,8 +118,14 @@ export default function AppLayout({
         {/* Mobile Header */}
         <header className="flex h-16 items-center justify-between border-b bg-background px-4 lg:hidden">
           <div className="flex items-center gap-2">
-            <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
-              T4
+            <div className="flex size-8 items-center justify-center rounded-lg overflow-hidden">
+              <Image 
+                src="/T4u_logo.jpg" 
+                alt="Tech4GH Logo" 
+                width={32} 
+                height={32}
+                className="object-cover"
+              />
             </div>
             <span className="font-semibold">Admin</span>
           </div>
