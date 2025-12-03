@@ -133,7 +133,9 @@ export default async function AdminInstructorsPage() {
                       <div className="flex items-center gap-2">
                         <h4 className="font-semibold truncate">{instructor.name}</h4>
                         {instructor.isVerified && (
-                          <Shield className="size-4 text-blue-500" title="Verified" />
+                          <span title="Verified">
+                            <Shield className="size-4 text-blue-500" />
+                          </span>
                         )}
                         {!instructor.isActive && (
                           <Badge variant="destructive">Inactive</Badge>
