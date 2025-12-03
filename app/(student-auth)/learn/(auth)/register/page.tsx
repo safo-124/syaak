@@ -1,20 +1,19 @@
 "use client"
 
 import { useState, useTransition } from "react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { GraduationCap, Loader2, Mail, Lock, User, Phone, AlertCircle, Sparkles } from "lucide-react"
+import { GraduationCap, Loader2, Mail, Lock, User, Phone, AlertCircle, Sparkles, CheckCircle2, Clock } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { registerStudentAction } from "@/app/actions/student"
 
 export default function StudentRegisterPage() {
-  const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
+  const [pendingApproval, setPendingApproval] = useState(false)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -45,13 +44,69 @@ export default function StudentRegisterPage() {
         password,
       })
 
-      if (result.success) {
-        router.push("/learn")
-        router.refresh()
-      } else {
+      if (result.success && result.pendingApproval) {
+        setPendingApproval(true)
+      } else if (!result.success) {
         setError(result.error || "Registration failed")
       }
     })
+  }
+
+  // Show pending approval message
+  if (pendingApproval) {
+    return (
+      <div className="w-full max-w-md">
+        <Card className="glass border-none">
+          <CardHeader className="space-y-1 text-center">
+            <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-amber-500/10">
+              <Clock className="size-8 text-amber-500" />
+            </div>
+            <CardTitle className="text-xl">Registration Pending</CardTitle>
+            <CardDescription>
+              Your account has been created successfully!
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Alert className="border-amber-500/50 bg-amber-500/10">
+              <CheckCircle2 className="size-4 text-amber-500" />
+              <AlertDescription className="text-amber-700 dark:text-amber-300">
+                Your registration is pending admin approval. You will be able to sign in once an administrator approves your account.
+              </AlertDescription>
+            </Alert>
+            
+            <div className="rounded-lg bg-muted/50 p-4 text-sm text-muted-foreground">
+              <h4 className="mb-2 font-medium text-foreground">What happens next?</h4>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
+                  An administrator will review your registration
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
+                  You will be notified once your account is approved
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
+                  After approval, you can sign in and start learning
+                </li>
+              </ul>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col gap-4">
+            <Button asChild className="w-full" variant="outline">
+              <Link href="/learn/login">
+                Back to Login
+              </Link>
+            </Button>
+            <Button asChild className="w-full" variant="ghost">
+              <Link href="/">
+                Return to Home
+              </Link>
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    )
   }
 
   return (
@@ -155,6 +210,13 @@ export default function StudentRegisterPage() {
                 />
               </div>
             </div>
+
+            <Alert className="border-blue-500/50 bg-blue-500/10">
+              <Clock className="size-4 text-blue-500" />
+              <AlertDescription className="text-blue-700 dark:text-blue-300">
+                Account registration requires admin approval before you can access courses.
+              </AlertDescription>
+            </Alert>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
             <Button type="submit" className="w-full" disabled={isPending}>

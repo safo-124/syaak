@@ -8,13 +8,17 @@ export async function createStudent(data: {
   password: string
   name: string
   phone?: string
+  isActive?: boolean
 }) {
   const hashedPassword = await bcrypt.hash(data.password, 10)
   
   return prisma.student.create({
     data: {
-      ...data,
+      email: data.email,
+      name: data.name,
+      phone: data.phone,
       password: hashedPassword,
+      isActive: data.isActive ?? false, // Requires admin approval by default
     },
   })
 }

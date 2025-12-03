@@ -27,7 +27,8 @@ import {
   UserCheck, 
   UserX, 
   Trash2,
-  Loader2 
+  Loader2,
+  CheckCircle2
 } from "lucide-react"
 import { 
   toggleStudentStatusAction, 
@@ -51,7 +52,7 @@ export function StudentActions({ studentId, isActive }: StudentActionsProps) {
       const result = await toggleStudentStatusAction(studentId)
       if (result.success) {
         toast.success(
-          isActive ? "Student deactivated" : "Student activated"
+          isActive ? "Student deactivated" : "Student approved and activated"
         )
         router.refresh()
       } else {
@@ -84,6 +85,24 @@ export function StudentActions({ studentId, isActive }: StudentActionsProps) {
 
   return (
     <>
+      {/* Quick approve button for pending students */}
+      {!isActive && (
+        <Button 
+          variant="outline" 
+          size="sm" 
+          onClick={handleToggleStatus}
+          disabled={isLoading}
+          className="border-green-500 text-green-700 hover:bg-green-50 hover:text-green-800 dark:text-green-300 dark:hover:bg-green-950"
+        >
+          {isLoading ? (
+            <Loader2 className="mr-1 size-3 animate-spin" />
+          ) : (
+            <CheckCircle2 className="mr-1 size-3" />
+          )}
+          Approve
+        </Button>
+      )}
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" disabled={isLoading}>
@@ -117,7 +136,7 @@ export function StudentActions({ studentId, isActive }: StudentActionsProps) {
             ) : (
               <>
                 <UserCheck className="mr-2 size-4" />
-                Activate Account
+                Approve Account
               </>
             )}
           </DropdownMenuItem>

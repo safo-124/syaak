@@ -43,7 +43,7 @@ export async function loginStudentAction(data: { email: string; password: string
     }
 
     if (!student.isActive) {
-      return { success: false, error: "Your account has been deactivated" }
+      return { success: false, error: "Your account is pending approval. Please wait for an administrator to approve your registration." }
     }
 
     // Set session cookie
@@ -76,19 +76,15 @@ export async function registerStudentAction(data: {
   }
 
   try {
-    const student = await createStudent(result.data)
+    // Create student with isActive: false (requires admin approval)
+    await createStudent(result.data)
 
-    // Set session cookie
-    const cookieStore = await cookies()
-    cookieStore.set("student_session", student.id, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
-      path: "/",
-    })
-
-    return { success: true }
+    // Don't log in automatically - account needs approval
+    return { 
+      success: true, 
+      pendingApproval: true,
+      message: "Registration successful! Your account is pending admin approval. You will be notified once approved." 
+    }
   } catch (error: unknown) {
     console.error("Student register error:", error)
     if (error instanceof Error && error.message.includes("Unique constraint")) {
@@ -117,7 +113,7 @@ export async function studentLoginAction(formData: FormData) {
     }
 
     if (!student.isActive) {
-      return { success: false, error: "Your account has been deactivated" }
+      return { success: false, error: "Your account is pending approval. Please wait for an administrator to approve your registration." }
     }
 
     // Set session cookie
@@ -152,18 +148,15 @@ export async function studentRegisterAction(formData: FormData) {
   }
 
   try {
-    const student = await createStudent(result.data)
+    // Create student with isActive: false (requires admin approval)
+    await createStudent(result.data)
 
-    // Set session cookie
-    const cookieStore = await cookies()
-    cookieStore.set("student_session", student.id, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
-      path: "/",
-    })
-
+    // Don't log in automatically - account needs approval
+    return { 
+      success: true, 
+      pendingApproval: true,
+      message: "Registration successful! Your account is pending admin approval." 
+    }
   } catch (error: unknown) {
     console.error("Student register error:", error)
     if (error instanceof Error && error.message.includes("Unique constraint")) {
@@ -171,8 +164,6 @@ export async function studentRegisterAction(formData: FormData) {
     }
     return { success: false, error: "Registration failed. Please try again." }
   }
-
-  redirect("/learn")
 }
 
 export async function logoutStudentAction() {

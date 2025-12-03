@@ -46,7 +46,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           <GlobalSearch />
           <Button asChild>
-            <Link href="/contact">Get Started</Link>
+            <Link href="/learn/register">Get Started</Link>
           </Button>
         </div>
 
@@ -91,7 +91,7 @@ export function SiteHeader() {
 
                 {/* Mobile CTA */}
                 <Button asChild className="mt-4">
-                  <Link href="/contact" onClick={() => setIsOpen(false)}>
+                  <Link href="/learn/register" onClick={() => setIsOpen(false)}>
                     Get Started
                   </Link>
                 </Button>
