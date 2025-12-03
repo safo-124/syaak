@@ -42,11 +42,14 @@ export default async function LessonPage({ params }: Props) {
   }
 
   // Find the current lesson
-  let currentLesson = null
-  let currentModule = null
-  let prevLesson = null
-  let nextLesson = null
-  let allLessons: { lesson: typeof currentLesson; module: typeof currentModule }[] = []
+  type LessonType = typeof enrollment.course.modules[0]['lessons'][0]
+  type ModuleType = typeof enrollment.course.modules[0]
+  
+  let currentLesson: LessonType | null = null
+  let currentModule: ModuleType | null = null
+  let prevLesson: LessonType | null = null
+  let nextLesson: LessonType | null = null
+  const allLessons: { lesson: LessonType; module: ModuleType }[] = []
 
   for (const module of enrollment.course.modules) {
     for (const lesson of module.lessons) {
@@ -54,7 +57,7 @@ export default async function LessonPage({ params }: Props) {
     }
   }
 
-  const currentIndex = allLessons.findIndex(item => item.lesson?.id === lessonId)
+  const currentIndex = allLessons.findIndex(item => item.lesson.id === lessonId)
   
   if (currentIndex === -1) {
     notFound()

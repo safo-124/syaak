@@ -63,9 +63,9 @@ export default async function BrowseCoursesPage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => {
             const totalLessons = course.modules.reduce(
-              (sum, m) => sum._count.lessons + m._count.lessons,
-              { _count: { lessons: 0 } }
-            )._count?.lessons || course.modules.reduce((sum, m) => sum + (m._count?.lessons || 0), 0)
+              (sum, m) => sum + (m._count?.lessons || 0),
+              0
+            )
             
             const isEnrolled = 'isEnrolled' in course && course.isEnrolled
 

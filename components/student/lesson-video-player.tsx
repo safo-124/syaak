@@ -18,7 +18,7 @@ export function LessonVideoPlayer({
 }: LessonVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [lastSavedPosition, setLastSavedPosition] = useState(initialPosition)
-  const saveIntervalRef = useRef<NodeJS.Timeout>()
+  const saveIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   // Determine video type (YouTube, Vimeo, or direct)
   const isYouTube = videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")
