@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getBlogPostById } from "@/lib/blog";
+import { getPostById } from "@/lib/blog";
 import { BlogForm } from "@/components/admin/blog-form";
 
 interface EditBlogPostPageProps {
@@ -8,7 +8,7 @@ interface EditBlogPostPageProps {
 
 export default async function EditBlogPostPage({ params }: EditBlogPostPageProps) {
   const { postId } = await params;
-  const post = await getBlogPostById(postId);
+  const post = await getPostById(postId);
 
   if (!post) {
     notFound();
