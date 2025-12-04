@@ -191,7 +191,7 @@ export async function bulkApproveStudentsAction(ids: string[]) {
       students.map((s) => 
         createNotification({
           studentId: s.id,
-          type: "SYSTEM",
+          type: "ACCOUNT_APPROVED",
           title: "Account Approved! 🎉",
           message: "Your account has been approved. You can now browse and enroll in courses.",
           link: "/learn/browse",
