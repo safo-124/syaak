@@ -6,16 +6,21 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import {
   Award,
-  Download,
   Calendar,
   BookOpen,
   Trophy,
-  ExternalLink,
+  Share2,
 } from "lucide-react"
 import { format } from "date-fns"
 import Link from "next/link"
+import { CertificateDownload } from "@/components/student/certificate-download"
 
-async function getStudentCertificates(studentId: string) {
+async function getStudentWithCertificates(studentId: string) {
+  const student = await prisma.student.findUnique({
+    where: { id: studentId },
+    select: { name: true },
+  })
+
   const enrollments = await prisma.enrollment.findMany({
     where: {
       studentId,
@@ -43,25 +48,30 @@ async function getStudentCertificates(studentId: string) {
           },
         },
       },
+      certificate: true,
     },
     orderBy: { completedAt: "desc" },
   })
 
-  return enrollments.map((enrollment) => ({
-    id: enrollment.id,
-    courseId: enrollment.course.id,
-    courseTitle: enrollment.course.title,
-    courseSlug: enrollment.course.slug,
-    heroImageUrl: enrollment.course.heroImageUrl,
-    level: enrollment.course.level,
-    completedAt: enrollment.completedAt,
-    enrolledAt: enrollment.enrolledAt,
-    totalLessons: enrollment.course.modules.reduce(
-      (sum, m) => sum + m._count.lessons,
-      0
-    ),
-    instructors: enrollment.course.instructors.map((i) => i.instructor.name),
-  }))
+  return {
+    studentName: student?.name || "Student",
+    certificates: enrollments.map((enrollment) => ({
+      id: enrollment.id,
+      courseId: enrollment.course.id,
+      courseTitle: enrollment.course.title,
+      courseSlug: enrollment.course.slug,
+      heroImageUrl: enrollment.course.heroImageUrl,
+      level: enrollment.course.level,
+      completedAt: enrollment.completedAt,
+      enrolledAt: enrollment.enrolledAt,
+      totalLessons: enrollment.course.modules.reduce(
+        (sum, m) => sum + m._count.lessons,
+        0
+      ),
+      instructors: enrollment.course.instructors.map((i) => i.instructor.name),
+      certificate: enrollment.certificate,
+    })),
+  }
 }
 
 export default async function CertificatesPage() {
@@ -72,7 +82,7 @@ export default async function CertificatesPage() {
     redirect("/learn/login")
   }
 
-  const certificates = await getStudentCertificates(studentId)
+  const { studentName, certificates } = await getStudentWithCertificates(studentId)
 
   return (
     <div className="space-y-8">
@@ -145,64 +155,79 @@ export default async function CertificatesPage() {
             </div>
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {certificates.map((cert) => (
-                <Card
-                  key={cert.id}
-                  className="group overflow-hidden border-2 border-yellow-200/50 bg-gradient-to-br from-yellow-50/50 to-amber-50/30 dark:from-yellow-950/20 dark:to-amber-950/10"
-                >
-                  {/* Certificate Header */}
-                  <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-yellow-100 to-amber-100 dark:from-yellow-900/30 dark:to-amber-900/20">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                      <Award className="size-12 text-yellow-600 mb-2" />
-                      <p className="text-xs uppercase tracking-widest text-yellow-700 dark:text-yellow-400">
-                        Certificate of Completion
-                      </p>
-                      <h3 className="font-bold text-lg mt-2 line-clamp-2">
-                        {cert.courseTitle}
-                      </h3>
-                      <Badge variant="outline" className="mt-2">
-                        {cert.level}
-                      </Badge>
-                    </div>
-                    {/* Decorative elements */}
-                    <div className="absolute top-2 left-2 size-8 border-t-2 border-l-2 border-yellow-400/50" />
-                    <div className="absolute top-2 right-2 size-8 border-t-2 border-r-2 border-yellow-400/50" />
-                    <div className="absolute bottom-2 left-2 size-8 border-b-2 border-l-2 border-yellow-400/50" />
-                    <div className="absolute bottom-2 right-2 size-8 border-b-2 border-r-2 border-yellow-400/50" />
-                  </div>
+              {certificates.map((cert) => {
+                // Certificate data for download - use existing certificate number or fallback
+                const certificateData = {
+                  id: cert.certificate?.id || cert.id,
+                  studentName: studentName,
+                  courseName: cert.courseTitle,
+                  instructorName: cert.instructors[0] || "Tech4GH Team",
+                  certificateNumber: cert.certificate?.certificateNumber || `TEMP-${cert.id.slice(0, 8).toUpperCase()}`,
+                  issuedAt: cert.certificate?.issuedAt || cert.completedAt || new Date(),
+                }
 
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="size-4" />
-                      <span>
-                        Completed{" "}
-                        {cert.completedAt
-                          ? format(cert.completedAt, "MMMM d, yyyy")
-                          : "N/A"}
-                      </span>
+                return (
+                  <Card
+                    key={cert.id}
+                    className="group overflow-hidden border-2 border-yellow-200/50 bg-gradient-to-br from-yellow-50/50 to-amber-50/30 dark:from-yellow-950/20 dark:to-amber-950/10"
+                  >
+                    {/* Certificate Header */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-yellow-100 to-amber-100 dark:from-yellow-900/30 dark:to-amber-900/20">
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                        <Award className="size-12 text-yellow-600 mb-2" />
+                        <p className="text-xs uppercase tracking-widest text-yellow-700 dark:text-yellow-400">
+                          Certificate of Completion
+                        </p>
+                        <h3 className="font-bold text-lg mt-2 line-clamp-2">
+                          {cert.courseTitle}
+                        </h3>
+                        <Badge variant="outline" className="mt-2">
+                          {cert.level}
+                        </Badge>
+                      </div>
+                      {/* Decorative elements */}
+                      <div className="absolute top-2 left-2 size-8 border-t-2 border-l-2 border-yellow-400/50" />
+                      <div className="absolute top-2 right-2 size-8 border-t-2 border-r-2 border-yellow-400/50" />
+                      <div className="absolute bottom-2 left-2 size-8 border-b-2 border-l-2 border-yellow-400/50" />
+                      <div className="absolute bottom-2 right-2 size-8 border-b-2 border-r-2 border-yellow-400/50" />
                     </div>
 
-                    {cert.instructors.length > 0 && (
-                      <p className="text-sm text-muted-foreground">
-                        Instructor: {cert.instructors.join(", ")}
-                      </p>
-                    )}
+                    <CardContent className="p-4 space-y-3">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="size-4" />
+                        <span>
+                          Completed{" "}
+                          {cert.completedAt
+                            ? format(cert.completedAt, "MMMM d, yyyy")
+                            : "N/A"}
+                        </span>
+                      </div>
 
-                    <div className="flex gap-2 pt-2">
-                      <Button size="sm" variant="outline" className="flex-1" disabled>
-                        <Download className="mr-2 size-4" />
-                        Download
-                      </Button>
-                      <Button size="sm" variant="outline" disabled>
-                        <ExternalLink className="size-4" />
-                      </Button>
-                    </div>
-                    <p className="text-xs text-center text-muted-foreground">
-                      Certificate download coming soon
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+                      {cert.instructors.length > 0 && (
+                        <p className="text-sm text-muted-foreground">
+                          Instructor: {cert.instructors.join(", ")}
+                        </p>
+                      )}
+
+                      <div className="text-xs text-muted-foreground font-mono">
+                        ID: {certificateData.certificateNumber}
+                      </div>
+
+                      <div className="flex gap-2 pt-2">
+                        <div className="flex-1">
+                          <CertificateDownload 
+                            certificate={certificateData}
+                            level={cert.level}
+                          />
+                        </div>
+                        <Button size="sm" variant="outline" title="Share Certificate">
+                          <Share2 className="size-4" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              })}
             </div>
           )}
         </CardContent>

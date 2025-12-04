@@ -87,3 +87,31 @@ export const EnrollmentStatus = {
 } as const
 
 export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus]
+
+
+export const NotificationType = {
+  ACCOUNT_APPROVED: 'ACCOUNT_APPROVED',
+  COURSE_ENROLLED: 'COURSE_ENROLLED',
+  COURSE_COMPLETED: 'COURSE_COMPLETED',
+  LESSON_REMINDER: 'LESSON_REMINDER',
+  NEW_COURSE: 'NEW_COURSE',
+  CERTIFICATE_READY: 'CERTIFICATE_READY',
+  GENERAL: 'GENERAL'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
+
+
+export const AchievementType = {
+  FIRST_LESSON: 'FIRST_LESSON',
+  FIRST_COURSE: 'FIRST_COURSE',
+  STREAK_7: 'STREAK_7',
+  STREAK_30: 'STREAK_30',
+  COURSES_3: 'COURSES_3',
+  COURSES_10: 'COURSES_10',
+  PERFECT_SCORE: 'PERFECT_SCORE',
+  EARLY_BIRD: 'EARLY_BIRD',
+  NIGHT_OWL: 'NIGHT_OWL'
+} as const
+
+export type AchievementType = (typeof AchievementType)[keyof typeof AchievementType]

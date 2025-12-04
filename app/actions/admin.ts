@@ -167,3 +167,80 @@ export async function deleteStudentAction(id: string) {
     return { success: false, error: "Failed to delete student" }
   }
 }
+
+// ============ BULK STUDENT ACTIONS ============
+
+export async function bulkApproveStudentsAction(ids: string[]) {
+  try {
+    await prisma.student.updateMany({
+      where: { id: { in: ids } },
+      data: { 
+        isActive: true,
+      },
+    })
+    
+    // Get student details for notifications and emails
+    const students = await prisma.student.findMany({
+      where: { id: { in: ids } },
+      select: { id: true, name: true, email: true },
+    })
+    
+    // Send in-app notifications
+    const { createNotification } = await import("@/lib/notifications")
+    await Promise.all(
+      students.map((s) => 
+        createNotification({
+          studentId: s.id,
+          type: "SYSTEM",
+          title: "Account Approved! 🎉",
+          message: "Your account has been approved. You can now browse and enroll in courses.",
+          link: "/learn/browse",
+        })
+      )
+    )
+    
+    // Send emails (async, don't wait)
+    const { sendApprovalEmail } = await import("@/lib/email")
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+    students.forEach((s) => {
+      sendApprovalEmail(s.email, s.name, `${baseUrl}/learn/login`).catch((err) =>
+        console.error("Failed to send approval email:", err)
+      )
+    })
+    
+    revalidatePath("/admin/students")
+    return { success: true }
+  } catch (error) {
+    console.error("Bulk approve students error:", error)
+    return { success: false, error: "Failed to approve students" }
+  }
+}
+
+export async function bulkDeactivateStudentsAction(ids: string[]) {
+  try {
+    await prisma.student.updateMany({
+      where: { id: { in: ids } },
+      data: { isActive: false },
+    })
+    
+    revalidatePath("/admin/students")
+    return { success: true }
+  } catch (error) {
+    console.error("Bulk deactivate students error:", error)
+    return { success: false, error: "Failed to deactivate students" }
+  }
+}
+
+export async function bulkDeleteStudentsAction(ids: string[]) {
+  try {
+    await prisma.student.deleteMany({
+      where: { id: { in: ids } },
+    })
+    
+    revalidatePath("/admin/students")
+    return { success: true }
+  } catch (error) {
+    console.error("Bulk delete students error:", error)
+    return { success: false, error: "Failed to delete students" }
+  }
+}

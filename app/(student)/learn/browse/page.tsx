@@ -3,25 +3,72 @@ import { getAvailableCourses } from "@/lib/students"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
 import {
   BookOpen,
   Clock,
   Users,
-  Search,
-  Filter,
-  Star,
   CheckCircle,
   ArrowRight,
 } from "lucide-react"
 import Link from "next/link"
 import { EnrollButton } from "@/components/student/enroll-button"
+import { CourseFilters } from "@/components/student/course-filters"
+import prisma from "@/lib/prisma"
 
-export default async function BrowseCoursesPage() {
+async function getAllTags() {
+  const tags = await prisma.courseTag.findMany({
+    select: { name: true },
+    distinct: ["name"],
+    orderBy: { name: "asc" },
+  })
+  return tags.map((t) => t.name)
+}
+
+export default async function BrowseCoursesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ 
+    search?: string
+    level?: string
+    tags?: string
+    price?: string 
+  }>
+}) {
   const cookieStore = await cookies()
   const studentId = cookieStore.get("student_session")?.value
+  const params = await searchParams
 
-  const courses = await getAvailableCourses(studentId)
+  const allCourses = await getAvailableCourses(studentId)
+  const allTags = await getAllTags()
+
+  // Filter courses based on search params
+  let courses = allCourses
+
+  if (params.search) {
+    const search = params.search.toLowerCase()
+    courses = courses.filter(
+      (c) =>
+        c.title.toLowerCase().includes(search) ||
+        c.description?.toLowerCase().includes(search)
+    )
+  }
+
+  if (params.level) {
+    courses = courses.filter((c) => c.level === params.level)
+  }
+
+  if (params.tags) {
+    const selectedTags = params.tags.split(",")
+    courses = courses.filter((c) =>
+      c.tags?.some((t) => selectedTags.includes(t.name))
+    )
+  }
+
+  if (params.price === "free") {
+    courses = courses.filter((c) => !c.price || c.price === 0)
+  } else if (params.price === "paid") {
+    courses = courses.filter((c) => c.price && c.price > 0)
+  }
 
   return (
     <div className="space-y-8">
@@ -34,28 +81,20 @@ export default async function BrowseCoursesPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            placeholder="Search courses..."
-            className="pl-10"
-          />
-        </div>
-        <Button variant="outline">
-          <Filter className="mr-2 size-4" />
-          Filters
-        </Button>
-      </div>
+      <CourseFilters 
+        availableTags={allTags} 
+        totalCourses={allCourses.length}
+        filteredCount={courses.length}
+      />
 
       {/* Course Grid */}
       {courses.length === 0 ? (
         <Card className="glass border-none">
           <CardContent className="flex flex-col items-center justify-center py-16">
             <BookOpen className="mb-4 size-12 text-muted-foreground/50" />
-            <h3 className="text-lg font-semibold">No courses available</h3>
+            <h3 className="text-lg font-semibold">No courses found</h3>
             <p className="text-sm text-muted-foreground">
-              Check back later for new courses
+              Try adjusting your filters or search terms
             </p>
           </CardContent>
         </Card>

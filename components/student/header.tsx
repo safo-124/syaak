@@ -10,9 +10,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Menu, Bell, Settings, LogOut, User } from "lucide-react"
+import { Menu, Settings, LogOut, User } from "lucide-react"
 import Link from "next/link"
 import { studentLogoutAction } from "@/app/actions/student"
+import { NotificationBell } from "./notification-bell"
+
+interface Notification {
+  id: string
+  type: string
+  title: string
+  message: string
+  link: string | null
+  isRead: boolean
+  createdAt: Date
+}
 
 interface StudentHeaderProps {
   student: {
@@ -21,11 +32,13 @@ interface StudentHeaderProps {
     email: string
     avatar?: string | null
   }
+  notifications?: Notification[]
+  unreadCount?: number
 }
 
-export function StudentHeader({ student }: StudentHeaderProps) {
+export function StudentHeader({ student, notifications = [], unreadCount = 0 }: StudentHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-background/95 px-6 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-background/95 px-6 backdrop-blur supports-backdrop-filter:bg-background/60">
       {/* Mobile menu button */}
       <Button variant="ghost" size="icon" className="lg:hidden">
         <Menu className="size-5" />
@@ -34,9 +47,7 @@ export function StudentHeader({ student }: StudentHeaderProps) {
       <div className="flex-1" />
 
       {/* Notifications */}
-      <Button variant="ghost" size="icon" className="relative">
-        <Bell className="size-5" />
-      </Button>
+      <NotificationBell notifications={notifications} unreadCount={unreadCount} />
 
       {/* User menu */}
       <DropdownMenu>

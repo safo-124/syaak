@@ -149,3 +149,23 @@ export type Enrollment = Prisma.EnrollmentModel
  * 
  */
 export type LessonProgress = Prisma.LessonProgressModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model Certificate
+ * 
+ */
+export type Certificate = Prisma.CertificateModel
+/**
+ * Model LearningStreak
+ * 
+ */
+export type LearningStreak = Prisma.LearningStreakModel
+/**
+ * Model Achievement
+ * 
+ */
+export type Achievement = Prisma.AchievementModel

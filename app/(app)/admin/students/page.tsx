@@ -17,6 +17,8 @@ import {
 import Link from "next/link"
 import { format } from "date-fns"
 import { StudentActions } from "@/components/admin/student-actions"
+import { BulkStudentActions } from "@/components/admin/bulk-student-actions"
+import { ExportButton } from "@/components/admin/export-button"
 
 export default async function AdminStudentsPage() {
   const [students, stats] = await Promise.all([
@@ -38,12 +40,15 @@ export default async function AdminStudentsPage() {
             Manage student accounts and enrollments
           </p>
         </div>
-        <Button asChild>
-          <Link href="/admin/students/new">
-            <Plus className="mr-2 size-4" />
-            Add Student
-          </Link>
-        </Button>
+        <div className="flex gap-2">
+          <ExportButton type="students" />
+          <Button asChild>
+            <Link href="/admin/students/new">
+              <Plus className="mr-2 size-4" />
+              Add Student
+            </Link>
+          </Button>
+        </div>
       </div>
 
       {/* Stats */}
@@ -89,13 +94,19 @@ export default async function AdminStudentsPage() {
         </Card>
       </div>
 
-      {/* Pending Approval Section */}
+      {/* Pending Approval Section with Bulk Actions */}
       {pendingStudents.length > 0 && (
         <Card className="border-amber-500/50 bg-amber-500/5">
           <CardHeader>
-            <div className="flex items-center gap-2">
-              <AlertCircle className="size-5 text-amber-600" />
-              <CardTitle className="text-amber-900 dark:text-amber-100">Pending Approval</CardTitle>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <AlertCircle className="size-5 text-amber-600" />
+                <CardTitle className="text-amber-900 dark:text-amber-100">Pending Approval</CardTitle>
+              </div>
+              <BulkStudentActions 
+                students={pendingStudents.map(s => ({ id: s.id, name: s.name }))}
+                showApprove={true}
+              />
             </div>
             <CardDescription>
               {pendingStudents.length} student{pendingStudents.length !== 1 ? "s" : ""} waiting for approval

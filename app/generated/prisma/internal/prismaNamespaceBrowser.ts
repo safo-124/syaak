@@ -72,7 +72,11 @@ export const ModelName = {
   Lesson: 'Lesson',
   LessonResource: 'LessonResource',
   Enrollment: 'Enrollment',
-  LessonProgress: 'LessonProgress'
+  LessonProgress: 'LessonProgress',
+  Notification: 'Notification',
+  Certificate: 'Certificate',
+  LearningStreak: 'LearningStreak',
+  Achievement: 'Achievement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -442,6 +446,63 @@ export const LessonProgressScalarFieldEnum = {
 } as const
 
 export type LessonProgressScalarFieldEnum = (typeof LessonProgressScalarFieldEnum)[keyof typeof LessonProgressScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  studentId: 'studentId',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  link: 'link',
+  isRead: 'isRead',
+  readAt: 'readAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const CertificateScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  studentId: 'studentId',
+  enrollmentId: 'enrollmentId',
+  certificateNumber: 'certificateNumber',
+  issuedAt: 'issuedAt',
+  courseName: 'courseName',
+  studentName: 'studentName',
+  instructorName: 'instructorName',
+  pdfUrl: 'pdfUrl'
+} as const
+
+export type CertificateScalarFieldEnum = (typeof CertificateScalarFieldEnum)[keyof typeof CertificateScalarFieldEnum]
+
+
+export const LearningStreakScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  currentStreak: 'currentStreak',
+  longestStreak: 'longestStreak',
+  lastActiveDate: 'lastActiveDate',
+  totalDaysActive: 'totalDaysActive'
+} as const
+
+export type LearningStreakScalarFieldEnum = (typeof LearningStreakScalarFieldEnum)[keyof typeof LearningStreakScalarFieldEnum]
+
+
+export const AchievementScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  studentId: 'studentId',
+  type: 'type',
+  name: 'name',
+  description: 'description',
+  icon: 'icon',
+  unlockedAt: 'unlockedAt'
+} as const
+
+export type AchievementScalarFieldEnum = (typeof AchievementScalarFieldEnum)[keyof typeof AchievementScalarFieldEnum]
 
 
 export const SortOrder = {

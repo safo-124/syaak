@@ -215,6 +215,10 @@ export type StudentWhereInput = {
   phone?: Prisma.StringNullableFilter<"Student"> | string | null
   isActive?: Prisma.BoolFilter<"Student"> | boolean
   enrollments?: Prisma.EnrollmentListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
+  certificates?: Prisma.CertificateListRelationFilter
+  streak?: Prisma.XOR<Prisma.LearningStreakNullableScalarRelationFilter, Prisma.LearningStreakWhereInput> | null
+  achievements?: Prisma.AchievementListRelationFilter
 }
 
 export type StudentOrderByWithRelationInput = {
@@ -228,6 +232,10 @@ export type StudentOrderByWithRelationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   enrollments?: Prisma.EnrollmentOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  certificates?: Prisma.CertificateOrderByRelationAggregateInput
+  streak?: Prisma.LearningStreakOrderByWithRelationInput
+  achievements?: Prisma.AchievementOrderByRelationAggregateInput
 }
 
 export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -244,6 +252,10 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringNullableFilter<"Student"> | string | null
   isActive?: Prisma.BoolFilter<"Student"> | boolean
   enrollments?: Prisma.EnrollmentListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
+  certificates?: Prisma.CertificateListRelationFilter
+  streak?: Prisma.XOR<Prisma.LearningStreakNullableScalarRelationFilter, Prisma.LearningStreakWhereInput> | null
+  achievements?: Prisma.AchievementListRelationFilter
 }, "id" | "email">
 
 export type StudentOrderByWithAggregationInput = {
@@ -287,6 +299,10 @@ export type StudentCreateInput = {
   phone?: string | null
   isActive?: boolean
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateInput = {
@@ -300,6 +316,10 @@ export type StudentUncheckedCreateInput = {
   phone?: string | null
   isActive?: boolean
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUpdateInput = {
@@ -313,6 +333,10 @@ export type StudentUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateInput = {
@@ -326,6 +350,10 @@ export type StudentUncheckedUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateManyInput = {
@@ -419,6 +447,62 @@ export type StudentUpdateOneRequiredWithoutEnrollmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutEnrollmentsInput, Prisma.StudentUpdateWithoutEnrollmentsInput>, Prisma.StudentUncheckedUpdateWithoutEnrollmentsInput>
 }
 
+export type StudentCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutNotificationsInput, Prisma.StudentUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.StudentWhereUniqueInput
+}
+
+export type StudentUpdateOneRequiredWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutNotificationsInput, Prisma.StudentUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.StudentUpsertWithoutNotificationsInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutNotificationsInput, Prisma.StudentUpdateWithoutNotificationsInput>, Prisma.StudentUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type StudentCreateNestedOneWithoutCertificatesInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutCertificatesInput, Prisma.StudentUncheckedCreateWithoutCertificatesInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutCertificatesInput
+  connect?: Prisma.StudentWhereUniqueInput
+}
+
+export type StudentUpdateOneRequiredWithoutCertificatesNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutCertificatesInput, Prisma.StudentUncheckedCreateWithoutCertificatesInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutCertificatesInput
+  upsert?: Prisma.StudentUpsertWithoutCertificatesInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutCertificatesInput, Prisma.StudentUpdateWithoutCertificatesInput>, Prisma.StudentUncheckedUpdateWithoutCertificatesInput>
+}
+
+export type StudentCreateNestedOneWithoutStreakInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutStreakInput, Prisma.StudentUncheckedCreateWithoutStreakInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutStreakInput
+  connect?: Prisma.StudentWhereUniqueInput
+}
+
+export type StudentUpdateOneRequiredWithoutStreakNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutStreakInput, Prisma.StudentUncheckedCreateWithoutStreakInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutStreakInput
+  upsert?: Prisma.StudentUpsertWithoutStreakInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutStreakInput, Prisma.StudentUpdateWithoutStreakInput>, Prisma.StudentUncheckedUpdateWithoutStreakInput>
+}
+
+export type StudentCreateNestedOneWithoutAchievementsInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutAchievementsInput, Prisma.StudentUncheckedCreateWithoutAchievementsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutAchievementsInput
+  connect?: Prisma.StudentWhereUniqueInput
+}
+
+export type StudentUpdateOneRequiredWithoutAchievementsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutAchievementsInput, Prisma.StudentUncheckedCreateWithoutAchievementsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutAchievementsInput
+  upsert?: Prisma.StudentUpsertWithoutAchievementsInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutAchievementsInput, Prisma.StudentUpdateWithoutAchievementsInput>, Prisma.StudentUncheckedUpdateWithoutAchievementsInput>
+}
+
 export type StudentCreateWithoutEnrollmentsInput = {
   id?: string
   createdAt?: Date | string
@@ -429,6 +513,10 @@ export type StudentCreateWithoutEnrollmentsInput = {
   avatar?: string | null
   phone?: string | null
   isActive?: boolean
+  notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutEnrollmentsInput = {
@@ -441,6 +529,10 @@ export type StudentUncheckedCreateWithoutEnrollmentsInput = {
   avatar?: string | null
   phone?: string | null
   isActive?: boolean
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutEnrollmentsInput = {
@@ -469,6 +561,10 @@ export type StudentUpdateWithoutEnrollmentsInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
@@ -481,6 +577,330 @@ export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateWithoutNotificationsInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutNotificationsInput, Prisma.StudentUncheckedCreateWithoutNotificationsInput>
+}
+
+export type StudentUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutNotificationsInput, Prisma.StudentUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutNotificationsInput, Prisma.StudentUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutNotificationsInput, Prisma.StudentUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type StudentUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateWithoutCertificatesInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutCertificatesInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutCertificatesInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutCertificatesInput, Prisma.StudentUncheckedCreateWithoutCertificatesInput>
+}
+
+export type StudentUpsertWithoutCertificatesInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutCertificatesInput, Prisma.StudentUncheckedUpdateWithoutCertificatesInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutCertificatesInput, Prisma.StudentUncheckedCreateWithoutCertificatesInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutCertificatesInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutCertificatesInput, Prisma.StudentUncheckedUpdateWithoutCertificatesInput>
+}
+
+export type StudentUpdateWithoutCertificatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutCertificatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateWithoutStreakInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutStreakInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutStreakInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutStreakInput, Prisma.StudentUncheckedCreateWithoutStreakInput>
+}
+
+export type StudentUpsertWithoutStreakInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutStreakInput, Prisma.StudentUncheckedUpdateWithoutStreakInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutStreakInput, Prisma.StudentUncheckedCreateWithoutStreakInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutStreakInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutStreakInput, Prisma.StudentUncheckedUpdateWithoutStreakInput>
+}
+
+export type StudentUpdateWithoutStreakInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutStreakInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateWithoutAchievementsInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutAchievementsInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutAchievementsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutAchievementsInput, Prisma.StudentUncheckedCreateWithoutAchievementsInput>
+}
+
+export type StudentUpsertWithoutAchievementsInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutAchievementsInput, Prisma.StudentUncheckedUpdateWithoutAchievementsInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutAchievementsInput, Prisma.StudentUncheckedCreateWithoutAchievementsInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutAchievementsInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutAchievementsInput, Prisma.StudentUncheckedUpdateWithoutAchievementsInput>
+}
+
+export type StudentUpdateWithoutAchievementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutAchievementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
 }
 
 
@@ -490,10 +910,16 @@ export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
 
 export type StudentCountOutputType = {
   enrollments: number
+  notifications: number
+  certificates: number
+  achievements: number
 }
 
 export type StudentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
+  notifications?: boolean | StudentCountOutputTypeCountNotificationsArgs
+  certificates?: boolean | StudentCountOutputTypeCountCertificatesArgs
+  achievements?: boolean | StudentCountOutputTypeCountAchievementsArgs
 }
 
 /**
@@ -513,6 +939,27 @@ export type StudentCountOutputTypeCountEnrollmentsArgs<ExtArgs extends runtime.T
   where?: Prisma.EnrollmentWhereInput
 }
 
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountCertificatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CertificateWhereInput
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountAchievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AchievementWhereInput
+}
+
 
 export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -525,6 +972,10 @@ export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   phone?: boolean
   isActive?: boolean
   enrollments?: boolean | Prisma.Student$enrollmentsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Student$notificationsArgs<ExtArgs>
+  certificates?: boolean | Prisma.Student$certificatesArgs<ExtArgs>
+  streak?: boolean | Prisma.Student$streakArgs<ExtArgs>
+  achievements?: boolean | Prisma.Student$achievementsArgs<ExtArgs>
   _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
@@ -567,6 +1018,10 @@ export type StudentSelectScalar = {
 export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "email" | "password" | "name" | "avatar" | "phone" | "isActive", ExtArgs["result"]["student"]>
 export type StudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   enrollments?: boolean | Prisma.Student$enrollmentsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Student$notificationsArgs<ExtArgs>
+  certificates?: boolean | Prisma.Student$certificatesArgs<ExtArgs>
+  streak?: boolean | Prisma.Student$streakArgs<ExtArgs>
+  achievements?: boolean | Prisma.Student$achievementsArgs<ExtArgs>
   _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -576,6 +1031,10 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Student"
   objects: {
     enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    certificates: Prisma.$CertificatePayload<ExtArgs>[]
+    streak: Prisma.$LearningStreakPayload<ExtArgs> | null
+    achievements: Prisma.$AchievementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -982,6 +1441,10 @@ readonly fields: StudentFieldRefs;
 export interface Prisma__StudentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   enrollments<T extends Prisma.Student$enrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Student$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  certificates<T extends Prisma.Student$certificatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$certificatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CertificatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  streak<T extends Prisma.Student$streakArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$streakArgs<ExtArgs>>): Prisma.Prisma__LearningStreakClient<runtime.Types.Result.GetResult<Prisma.$LearningStreakPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  achievements<T extends Prisma.Student$achievementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1429,6 +1892,97 @@ export type Student$enrollmentsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.EnrollmentScalarFieldEnum | Prisma.EnrollmentScalarFieldEnum[]
+}
+
+/**
+ * Student.notifications
+ */
+export type Student$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * Student.certificates
+ */
+export type Student$certificatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Certificate
+   */
+  select?: Prisma.CertificateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Certificate
+   */
+  omit?: Prisma.CertificateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CertificateInclude<ExtArgs> | null
+  where?: Prisma.CertificateWhereInput
+  orderBy?: Prisma.CertificateOrderByWithRelationInput | Prisma.CertificateOrderByWithRelationInput[]
+  cursor?: Prisma.CertificateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CertificateScalarFieldEnum | Prisma.CertificateScalarFieldEnum[]
+}
+
+/**
+ * Student.streak
+ */
+export type Student$streakArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LearningStreak
+   */
+  select?: Prisma.LearningStreakSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LearningStreak
+   */
+  omit?: Prisma.LearningStreakOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LearningStreakInclude<ExtArgs> | null
+  where?: Prisma.LearningStreakWhereInput
+}
+
+/**
+ * Student.achievements
+ */
+export type Student$achievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Achievement
+   */
+  select?: Prisma.AchievementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Achievement
+   */
+  omit?: Prisma.AchievementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AchievementInclude<ExtArgs> | null
+  where?: Prisma.AchievementWhereInput
+  orderBy?: Prisma.AchievementOrderByWithRelationInput | Prisma.AchievementOrderByWithRelationInput[]
+  cursor?: Prisma.AchievementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AchievementScalarFieldEnum | Prisma.AchievementScalarFieldEnum[]
 }
 
 /**

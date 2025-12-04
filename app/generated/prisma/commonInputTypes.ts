@@ -338,6 +338,40 @@ export type EnumEnrollmentStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumEnrollmentStatusFilter<$PrismaModel>
 }
 
+export type EnumNotificationTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.NotificationType | Prisma.EnumNotificationTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.NotificationType[] | Prisma.ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.NotificationType[] | Prisma.ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumNotificationTypeFilter<$PrismaModel> | $Enums.NotificationType
+}
+
+export type EnumNotificationTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.NotificationType | Prisma.EnumNotificationTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.NotificationType[] | Prisma.ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.NotificationType[] | Prisma.ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumNotificationTypeWithAggregatesFilter<$PrismaModel> | $Enums.NotificationType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumNotificationTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumNotificationTypeFilter<$PrismaModel>
+}
+
+export type EnumAchievementTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel> | $Enums.AchievementType
+}
+
+export type EnumAchievementTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAchievementTypeWithAggregatesFilter<$PrismaModel> | $Enums.AchievementType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -673,6 +707,40 @@ export type NestedEnumEnrollmentStatusWithAggregatesFilter<$PrismaModel = never>
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumEnrollmentStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumEnrollmentStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumNotificationTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.NotificationType | Prisma.EnumNotificationTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.NotificationType[] | Prisma.ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.NotificationType[] | Prisma.ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumNotificationTypeFilter<$PrismaModel> | $Enums.NotificationType
+}
+
+export type NestedEnumNotificationTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.NotificationType | Prisma.EnumNotificationTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.NotificationType[] | Prisma.ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.NotificationType[] | Prisma.ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumNotificationTypeWithAggregatesFilter<$PrismaModel> | $Enums.NotificationType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumNotificationTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumNotificationTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumAchievementTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel> | $Enums.AchievementType
+}
+
+export type NestedEnumAchievementTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AchievementType | Prisma.EnumAchievementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AchievementType[] | Prisma.ListEnumAchievementTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAchievementTypeWithAggregatesFilter<$PrismaModel> | $Enums.AchievementType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAchievementTypeFilter<$PrismaModel>
 }
 
 

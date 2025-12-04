@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -41,7 +42,15 @@ export function InstructorSidebar({ instructor }: InstructorSidebarProps) {
     <aside className="fixed inset-y-0 left-0 z-50 hidden w-64 flex-col border-r bg-card lg:flex">
       {/* Logo */}
       <div className="flex h-16 items-center gap-2 border-b px-6">
-        <GraduationCap className="size-8 text-primary" />
+        <div className="flex size-8 items-center justify-center rounded-lg overflow-hidden">
+          <Image 
+            src="/T4u_logo.jpg" 
+            alt="Tech4GH Logo" 
+            width={32} 
+            height={32}
+            className="object-cover"
+          />
+        </div>
         <div>
           <span className="font-bold text-lg">Tech4GH</span>
           <span className="text-xs text-muted-foreground block">Instructor Portal</span>

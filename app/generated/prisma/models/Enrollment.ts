@@ -251,6 +251,7 @@ export type EnrollmentWhereInput = {
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   course?: Prisma.XOR<Prisma.ManagedCourseScalarRelationFilter, Prisma.ManagedCourseWhereInput>
   lessonProgress?: Prisma.LessonProgressListRelationFilter
+  certificate?: Prisma.XOR<Prisma.CertificateNullableScalarRelationFilter, Prisma.CertificateWhereInput> | null
 }
 
 export type EnrollmentOrderByWithRelationInput = {
@@ -266,6 +267,7 @@ export type EnrollmentOrderByWithRelationInput = {
   student?: Prisma.StudentOrderByWithRelationInput
   course?: Prisma.ManagedCourseOrderByWithRelationInput
   lessonProgress?: Prisma.LessonProgressOrderByRelationAggregateInput
+  certificate?: Prisma.CertificateOrderByWithRelationInput
 }
 
 export type EnrollmentWhereUniqueInput = Prisma.AtLeast<{
@@ -285,6 +287,7 @@ export type EnrollmentWhereUniqueInput = Prisma.AtLeast<{
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   course?: Prisma.XOR<Prisma.ManagedCourseScalarRelationFilter, Prisma.ManagedCourseWhereInput>
   lessonProgress?: Prisma.LessonProgressListRelationFilter
+  certificate?: Prisma.XOR<Prisma.CertificateNullableScalarRelationFilter, Prisma.CertificateWhereInput> | null
 }, "id" | "studentId_courseId">
 
 export type EnrollmentOrderByWithAggregationInput = {
@@ -330,6 +333,7 @@ export type EnrollmentCreateInput = {
   student: Prisma.StudentCreateNestedOneWithoutEnrollmentsInput
   course: Prisma.ManagedCourseCreateNestedOneWithoutEnrollmentsInput
   lessonProgress?: Prisma.LessonProgressCreateNestedManyWithoutEnrollmentInput
+  certificate?: Prisma.CertificateCreateNestedOneWithoutEnrollmentInput
 }
 
 export type EnrollmentUncheckedCreateInput = {
@@ -343,6 +347,7 @@ export type EnrollmentUncheckedCreateInput = {
   completedAt?: Date | string | null
   progress?: number
   lessonProgress?: Prisma.LessonProgressUncheckedCreateNestedManyWithoutEnrollmentInput
+  certificate?: Prisma.CertificateUncheckedCreateNestedOneWithoutEnrollmentInput
 }
 
 export type EnrollmentUpdateInput = {
@@ -356,6 +361,7 @@ export type EnrollmentUpdateInput = {
   student?: Prisma.StudentUpdateOneRequiredWithoutEnrollmentsNestedInput
   course?: Prisma.ManagedCourseUpdateOneRequiredWithoutEnrollmentsNestedInput
   lessonProgress?: Prisma.LessonProgressUpdateManyWithoutEnrollmentNestedInput
+  certificate?: Prisma.CertificateUpdateOneWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentUncheckedUpdateInput = {
@@ -369,6 +375,7 @@ export type EnrollmentUncheckedUpdateInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   lessonProgress?: Prisma.LessonProgressUncheckedUpdateManyWithoutEnrollmentNestedInput
+  certificate?: Prisma.CertificateUncheckedUpdateOneWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentCreateManyInput = {
@@ -571,6 +578,20 @@ export type EnrollmentUpdateOneRequiredWithoutLessonProgressNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EnrollmentUpdateToOneWithWhereWithoutLessonProgressInput, Prisma.EnrollmentUpdateWithoutLessonProgressInput>, Prisma.EnrollmentUncheckedUpdateWithoutLessonProgressInput>
 }
 
+export type EnrollmentCreateNestedOneWithoutCertificateInput = {
+  create?: Prisma.XOR<Prisma.EnrollmentCreateWithoutCertificateInput, Prisma.EnrollmentUncheckedCreateWithoutCertificateInput>
+  connectOrCreate?: Prisma.EnrollmentCreateOrConnectWithoutCertificateInput
+  connect?: Prisma.EnrollmentWhereUniqueInput
+}
+
+export type EnrollmentUpdateOneRequiredWithoutCertificateNestedInput = {
+  create?: Prisma.XOR<Prisma.EnrollmentCreateWithoutCertificateInput, Prisma.EnrollmentUncheckedCreateWithoutCertificateInput>
+  connectOrCreate?: Prisma.EnrollmentCreateOrConnectWithoutCertificateInput
+  upsert?: Prisma.EnrollmentUpsertWithoutCertificateInput
+  connect?: Prisma.EnrollmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EnrollmentUpdateToOneWithWhereWithoutCertificateInput, Prisma.EnrollmentUpdateWithoutCertificateInput>, Prisma.EnrollmentUncheckedUpdateWithoutCertificateInput>
+}
+
 export type EnrollmentCreateWithoutStudentInput = {
   id?: string
   createdAt?: Date | string
@@ -581,6 +602,7 @@ export type EnrollmentCreateWithoutStudentInput = {
   progress?: number
   course: Prisma.ManagedCourseCreateNestedOneWithoutEnrollmentsInput
   lessonProgress?: Prisma.LessonProgressCreateNestedManyWithoutEnrollmentInput
+  certificate?: Prisma.CertificateCreateNestedOneWithoutEnrollmentInput
 }
 
 export type EnrollmentUncheckedCreateWithoutStudentInput = {
@@ -593,6 +615,7 @@ export type EnrollmentUncheckedCreateWithoutStudentInput = {
   completedAt?: Date | string | null
   progress?: number
   lessonProgress?: Prisma.LessonProgressUncheckedCreateNestedManyWithoutEnrollmentInput
+  certificate?: Prisma.CertificateUncheckedCreateNestedOneWithoutEnrollmentInput
 }
 
 export type EnrollmentCreateOrConnectWithoutStudentInput = {
@@ -646,6 +669,7 @@ export type EnrollmentCreateWithoutCourseInput = {
   progress?: number
   student: Prisma.StudentCreateNestedOneWithoutEnrollmentsInput
   lessonProgress?: Prisma.LessonProgressCreateNestedManyWithoutEnrollmentInput
+  certificate?: Prisma.CertificateCreateNestedOneWithoutEnrollmentInput
 }
 
 export type EnrollmentUncheckedCreateWithoutCourseInput = {
@@ -658,6 +682,7 @@ export type EnrollmentUncheckedCreateWithoutCourseInput = {
   completedAt?: Date | string | null
   progress?: number
   lessonProgress?: Prisma.LessonProgressUncheckedCreateNestedManyWithoutEnrollmentInput
+  certificate?: Prisma.CertificateUncheckedCreateNestedOneWithoutEnrollmentInput
 }
 
 export type EnrollmentCreateOrConnectWithoutCourseInput = {
@@ -696,6 +721,7 @@ export type EnrollmentCreateWithoutLessonProgressInput = {
   progress?: number
   student: Prisma.StudentCreateNestedOneWithoutEnrollmentsInput
   course: Prisma.ManagedCourseCreateNestedOneWithoutEnrollmentsInput
+  certificate?: Prisma.CertificateCreateNestedOneWithoutEnrollmentInput
 }
 
 export type EnrollmentUncheckedCreateWithoutLessonProgressInput = {
@@ -708,6 +734,7 @@ export type EnrollmentUncheckedCreateWithoutLessonProgressInput = {
   enrolledAt?: Date | string
   completedAt?: Date | string | null
   progress?: number
+  certificate?: Prisma.CertificateUncheckedCreateNestedOneWithoutEnrollmentInput
 }
 
 export type EnrollmentCreateOrConnectWithoutLessonProgressInput = {
@@ -736,6 +763,7 @@ export type EnrollmentUpdateWithoutLessonProgressInput = {
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   student?: Prisma.StudentUpdateOneRequiredWithoutEnrollmentsNestedInput
   course?: Prisma.ManagedCourseUpdateOneRequiredWithoutEnrollmentsNestedInput
+  certificate?: Prisma.CertificateUpdateOneWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentUncheckedUpdateWithoutLessonProgressInput = {
@@ -748,6 +776,75 @@ export type EnrollmentUncheckedUpdateWithoutLessonProgressInput = {
   enrolledAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progress?: Prisma.IntFieldUpdateOperationsInput | number
+  certificate?: Prisma.CertificateUncheckedUpdateOneWithoutEnrollmentNestedInput
+}
+
+export type EnrollmentCreateWithoutCertificateInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  status?: $Enums.EnrollmentStatus
+  enrolledAt?: Date | string
+  completedAt?: Date | string | null
+  progress?: number
+  student: Prisma.StudentCreateNestedOneWithoutEnrollmentsInput
+  course: Prisma.ManagedCourseCreateNestedOneWithoutEnrollmentsInput
+  lessonProgress?: Prisma.LessonProgressCreateNestedManyWithoutEnrollmentInput
+}
+
+export type EnrollmentUncheckedCreateWithoutCertificateInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  studentId: string
+  courseId: string
+  status?: $Enums.EnrollmentStatus
+  enrolledAt?: Date | string
+  completedAt?: Date | string | null
+  progress?: number
+  lessonProgress?: Prisma.LessonProgressUncheckedCreateNestedManyWithoutEnrollmentInput
+}
+
+export type EnrollmentCreateOrConnectWithoutCertificateInput = {
+  where: Prisma.EnrollmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.EnrollmentCreateWithoutCertificateInput, Prisma.EnrollmentUncheckedCreateWithoutCertificateInput>
+}
+
+export type EnrollmentUpsertWithoutCertificateInput = {
+  update: Prisma.XOR<Prisma.EnrollmentUpdateWithoutCertificateInput, Prisma.EnrollmentUncheckedUpdateWithoutCertificateInput>
+  create: Prisma.XOR<Prisma.EnrollmentCreateWithoutCertificateInput, Prisma.EnrollmentUncheckedCreateWithoutCertificateInput>
+  where?: Prisma.EnrollmentWhereInput
+}
+
+export type EnrollmentUpdateToOneWithWhereWithoutCertificateInput = {
+  where?: Prisma.EnrollmentWhereInput
+  data: Prisma.XOR<Prisma.EnrollmentUpdateWithoutCertificateInput, Prisma.EnrollmentUncheckedUpdateWithoutCertificateInput>
+}
+
+export type EnrollmentUpdateWithoutCertificateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
+  enrolledAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progress?: Prisma.IntFieldUpdateOperationsInput | number
+  student?: Prisma.StudentUpdateOneRequiredWithoutEnrollmentsNestedInput
+  course?: Prisma.ManagedCourseUpdateOneRequiredWithoutEnrollmentsNestedInput
+  lessonProgress?: Prisma.LessonProgressUpdateManyWithoutEnrollmentNestedInput
+}
+
+export type EnrollmentUncheckedUpdateWithoutCertificateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  courseId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
+  enrolledAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  progress?: Prisma.IntFieldUpdateOperationsInput | number
+  lessonProgress?: Prisma.LessonProgressUncheckedUpdateManyWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentCreateManyStudentInput = {
@@ -771,6 +868,7 @@ export type EnrollmentUpdateWithoutStudentInput = {
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   course?: Prisma.ManagedCourseUpdateOneRequiredWithoutEnrollmentsNestedInput
   lessonProgress?: Prisma.LessonProgressUpdateManyWithoutEnrollmentNestedInput
+  certificate?: Prisma.CertificateUpdateOneWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentUncheckedUpdateWithoutStudentInput = {
@@ -783,6 +881,7 @@ export type EnrollmentUncheckedUpdateWithoutStudentInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   lessonProgress?: Prisma.LessonProgressUncheckedUpdateManyWithoutEnrollmentNestedInput
+  certificate?: Prisma.CertificateUncheckedUpdateOneWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentUncheckedUpdateManyWithoutStudentInput = {
@@ -817,6 +916,7 @@ export type EnrollmentUpdateWithoutCourseInput = {
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   student?: Prisma.StudentUpdateOneRequiredWithoutEnrollmentsNestedInput
   lessonProgress?: Prisma.LessonProgressUpdateManyWithoutEnrollmentNestedInput
+  certificate?: Prisma.CertificateUpdateOneWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentUncheckedUpdateWithoutCourseInput = {
@@ -829,6 +929,7 @@ export type EnrollmentUncheckedUpdateWithoutCourseInput = {
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   lessonProgress?: Prisma.LessonProgressUncheckedUpdateManyWithoutEnrollmentNestedInput
+  certificate?: Prisma.CertificateUncheckedUpdateOneWithoutEnrollmentNestedInput
 }
 
 export type EnrollmentUncheckedUpdateManyWithoutCourseInput = {
@@ -886,6 +987,7 @@ export type EnrollmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   course?: boolean | Prisma.ManagedCourseDefaultArgs<ExtArgs>
   lessonProgress?: boolean | Prisma.Enrollment$lessonProgressArgs<ExtArgs>
+  certificate?: boolean | Prisma.Enrollment$certificateArgs<ExtArgs>
   _count?: boolean | Prisma.EnrollmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enrollment"]>
 
@@ -934,6 +1036,7 @@ export type EnrollmentInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   course?: boolean | Prisma.ManagedCourseDefaultArgs<ExtArgs>
   lessonProgress?: boolean | Prisma.Enrollment$lessonProgressArgs<ExtArgs>
+  certificate?: boolean | Prisma.Enrollment$certificateArgs<ExtArgs>
   _count?: boolean | Prisma.EnrollmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EnrollmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -951,6 +1054,7 @@ export type $EnrollmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     student: Prisma.$StudentPayload<ExtArgs>
     course: Prisma.$ManagedCoursePayload<ExtArgs>
     lessonProgress: Prisma.$LessonProgressPayload<ExtArgs>[]
+    certificate: Prisma.$CertificatePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1359,6 +1463,7 @@ export interface Prisma__EnrollmentClient<T, Null = never, ExtArgs extends runti
   student<T extends Prisma.StudentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   course<T extends Prisma.ManagedCourseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ManagedCourseDefaultArgs<ExtArgs>>): Prisma.Prisma__ManagedCourseClient<runtime.Types.Result.GetResult<Prisma.$ManagedCoursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   lessonProgress<T extends Prisma.Enrollment$lessonProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Enrollment$lessonProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LessonProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  certificate<T extends Prisma.Enrollment$certificateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Enrollment$certificateArgs<ExtArgs>>): Prisma.Prisma__CertificateClient<runtime.Types.Result.GetResult<Prisma.$CertificatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1814,6 +1919,25 @@ export type Enrollment$lessonProgressArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.LessonProgressScalarFieldEnum | Prisma.LessonProgressScalarFieldEnum[]
+}
+
+/**
+ * Enrollment.certificate
+ */
+export type Enrollment$certificateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Certificate
+   */
+  select?: Prisma.CertificateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Certificate
+   */
+  omit?: Prisma.CertificateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CertificateInclude<ExtArgs> | null
+  where?: Prisma.CertificateWhereInput
 }
 
 /**

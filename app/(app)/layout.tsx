@@ -13,7 +13,8 @@ import {
   FileText,
   Mail,
   GraduationCap,
-  UserCog
+  UserCog,
+  BarChart3
 } from "lucide-react"
 
 export default function AppLayout({
@@ -71,6 +72,13 @@ export default function AppLayout({
           >
             <GraduationCap className="size-4" />
             Students
+          </Link>
+          <Link 
+            href="/admin/analytics" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <BarChart3 className="size-4" />
+            Analytics
           </Link>
           <Link 
             href="/admin/blog" 
@@ -170,6 +178,13 @@ export default function AppLayout({
           >
             <GraduationCap className="size-4" />
             Students
+          </Link>
+          <Link 
+            href="/admin/analytics" 
+            className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
+          >
+            <BarChart3 className="size-4" />
+            Analytics
           </Link>
           <Link 
             href="/admin/blog" 
