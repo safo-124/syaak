@@ -16,12 +16,16 @@ import { CourseFilters } from "@/components/student/course-filters"
 import prisma from "@/lib/prisma"
 
 async function getAllTags() {
-  const tags = await prisma.courseTag.findMany({
-    select: { name: true },
-    distinct: ["name"],
-    orderBy: { name: "asc" },
+  // Get all published courses and extract unique tags
+  const courses = await prisma.managedCourse.findMany({
+    where: { isPublished: true },
+    select: { tags: true },
   })
-  return tags.map((t) => t.name)
+  
+  // Flatten and deduplicate tags
+  const allTags = courses.flatMap((c) => c.tags)
+  const uniqueTags = [...new Set(allTags)].sort()
+  return uniqueTags
 }
 
 export default async function BrowseCoursesPage({
@@ -60,7 +64,7 @@ export default async function BrowseCoursesPage({
   if (params.tags) {
     const selectedTags = params.tags.split(",")
     courses = courses.filter((c) =>
-      c.tags?.some((t) => selectedTags.includes(t.name))
+      c.tags?.some((t) => selectedTags.includes(t))
     )
   }
 
