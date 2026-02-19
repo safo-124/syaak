@@ -169,10 +169,10 @@ export default async function CertificatesPage() {
                 return (
                   <Card
                     key={cert.id}
-                    className="group overflow-hidden border-2 border-yellow-200/50 bg-gradient-to-br from-yellow-50/50 to-amber-50/30 dark:from-yellow-950/20 dark:to-amber-950/10"
+                    className="group overflow-hidden border-2 border-yellow-200/50 bg-linear-to-br from-yellow-50/50 to-amber-50/30 dark:from-yellow-950/20 dark:to-amber-950/10"
                   >
                     {/* Certificate Header */}
-                    <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-yellow-100 to-amber-100 dark:from-yellow-900/30 dark:to-amber-900/20">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-linear-to-br from-yellow-100 to-amber-100 dark:from-yellow-900/30 dark:to-amber-900/20">
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                         <Award className="size-12 text-yellow-600 mb-2" />
                         <p className="text-xs uppercase tracking-widest text-yellow-700 dark:text-yellow-400">

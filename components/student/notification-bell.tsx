@@ -138,7 +138,7 @@ export function NotificationBell({ notifications, unreadCount }: NotificationBel
                   }`}
                 >
                   <div className="flex gap-3">
-                    <div className="flex-shrink-0 mt-0.5">
+                    <div className="shrink-0 mt-0.5">
                       {typeIcons[notification.type] || typeIcons.GENERAL}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -147,7 +147,7 @@ export function NotificationBell({ notifications, unreadCount }: NotificationBel
                           {notification.title}
                         </p>
                         {!notification.isRead && (
-                          <div className="size-2 rounded-full bg-primary flex-shrink-0 mt-1" />
+                          <div className="size-2 rounded-full bg-primary shrink-0 mt-1" />
                         )}
                       </div>
                       <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">

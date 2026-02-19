@@ -60,7 +60,7 @@ export default function StudentRegisterPage() {
       <div className="w-full max-w-lg animate-scale-in">
         {/* Success Header */}
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex size-20 items-center justify-center rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/10 animate-pulse-glow">
+          <div className="mx-auto mb-4 flex size-20 items-center justify-center rounded-full bg-linear-to-br from-amber-500/20 to-amber-600/10 animate-pulse-glow">
             <Clock className="size-10 text-amber-600 animate-wiggle" />
           </div>
           <Badge variant="outline" className="mb-4 border-amber-500/50 text-amber-700 dark:text-amber-300">
@@ -76,7 +76,7 @@ export default function StudentRegisterPage() {
         <Card className="glass border-none shadow-2xl animate-slide-up">
           <CardContent className="pt-6 space-y-6">
             {/* Success Alert */}
-            <Alert className="border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-amber-600/5">
+            <Alert className="border-amber-500/50 bg-linear-to-br from-amber-500/10 to-amber-600/5">
               <CheckCircle2 className="size-5 text-amber-600" />
               <AlertDescription className="text-amber-900 dark:text-amber-100 font-medium">
                 Your registration has been submitted successfully! An administrator will review your application shortly.
@@ -84,7 +84,7 @@ export default function StudentRegisterPage() {
             </Alert>
             
             {/* Timeline */}
-            <div className="rounded-xl bg-gradient-to-br from-muted/50 to-muted/30 p-6 space-y-4">
+            <div className="rounded-xl bg-linear-to-br from-muted/50 to-muted/30 p-6 space-y-4">
               <h4 className="font-semibold text-foreground flex items-center gap-2">
                 <TrendingUp className="size-5 text-primary" />
                 What happens next?
@@ -155,7 +155,7 @@ export default function StudentRegisterPage() {
       {/* Header Section */}
       <div className="mb-8 text-center animate-slide-up">
         <div className="mx-auto mb-4 relative">
-          <div className="flex size-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 shadow-lg animate-float overflow-hidden">
+          <div className="flex size-20 items-center justify-center rounded-2xl bg-linear-to-br from-primary/20 to-primary/5 shadow-lg animate-float overflow-hidden">
             <Image 
               src="/T4u_logo.jpg" 
               alt="Tech4GH Logo" 
@@ -292,7 +292,7 @@ export default function StudentRegisterPage() {
             </div>
 
             {/* Info Alert */}
-            <Alert className="border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-blue-600/5">
+            <Alert className="border-blue-500/50 bg-linear-to-br from-blue-500/10 to-blue-600/5">
               <Shield className="size-4 text-blue-600" />
               <AlertDescription className="text-blue-900 dark:text-blue-100 text-xs">
                 Your account will be reviewed by an admin before activation. This typically takes less than 24 hours.
@@ -303,7 +303,7 @@ export default function StudentRegisterPage() {
           <CardFooter className="flex flex-col gap-4 pt-2">
             <Button 
               type="submit" 
-              className="w-full h-11 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-primary/50 transition-all duration-300 group" 
+              className="w-full h-11 bg-linear-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-primary/50 transition-all duration-300 group" 
               disabled={isPending}
             >
               {isPending ? (

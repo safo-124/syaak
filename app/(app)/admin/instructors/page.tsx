@@ -44,7 +44,7 @@ export default async function AdminInstructorsPage() {
 
       {/* Stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card className="border-none bg-gradient-to-br from-blue-500/10 to-blue-600/5">
+        <Card className="border-none bg-linear-to-br from-blue-500/10 to-blue-600/5">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Instructors</CardTitle>
             <GraduationCap className="size-4 text-blue-600" />
@@ -54,7 +54,7 @@ export default async function AdminInstructorsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-none bg-gradient-to-br from-green-500/10 to-green-600/5">
+        <Card className="border-none bg-linear-to-br from-green-500/10 to-green-600/5">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Active Courses</CardTitle>
             <BookOpen className="size-4 text-green-600" />
@@ -67,7 +67,7 @@ export default async function AdminInstructorsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-none bg-gradient-to-br from-purple-500/10 to-purple-600/5">
+        <Card className="border-none bg-linear-to-br from-purple-500/10 to-purple-600/5">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Students</CardTitle>
             <Users className="size-4 text-purple-600" />
@@ -77,7 +77,7 @@ export default async function AdminInstructorsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-none bg-gradient-to-br from-amber-500/10 to-amber-600/5">
+        <Card className="border-none bg-linear-to-br from-amber-500/10 to-amber-600/5">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Active Enrollments</CardTitle>
             <CheckCircle className="size-4 text-amber-600" />

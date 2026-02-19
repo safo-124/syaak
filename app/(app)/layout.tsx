@@ -14,7 +14,9 @@ import {
   Mail,
   GraduationCap,
   UserCog,
-  BarChart3
+  BarChart3,
+  Layers,
+  Info
 } from "lucide-react"
 
 export default function AppLayout({
@@ -79,6 +81,20 @@ export default function AppLayout({
           >
             <BarChart3 className="size-4" />
             Analytics
+          </Link>
+          <Link 
+            href="/admin/solutions" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <Layers className="size-4" />
+            Solutions
+          </Link>
+          <Link 
+            href="/admin/about" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <Info className="size-4" />
+            About Page
           </Link>
           <Link 
             href="/admin/blog" 
@@ -185,6 +201,20 @@ export default function AppLayout({
           >
             <BarChart3 className="size-4" />
             Analytics
+          </Link>
+          <Link 
+            href="/admin/solutions" 
+            className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
+          >
+            <Layers className="size-4" />
+            Solutions
+          </Link>
+          <Link 
+            href="/admin/about" 
+            className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground hover:bg-muted"
+          >
+            <Info className="size-4" />
+            About
           </Link>
           <Link 
             href="/admin/blog" 

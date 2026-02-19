@@ -629,3 +629,105 @@ enum AchievementType {
   EARLY_BIRD
   NIGHT_OWL
 }
+
+// ============ TECHNOLOGY SOLUTIONS ============
+
+model TechSolution {
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  title           String
+  slug            String   @unique
+  shortSummary    String?  // One-liner shown on home page cards
+  description     String?  // Full rich description
+  
+  category        String   // e.g. "Web Development", "Data Analytics", "Mobile Apps", "AI & Automation"
+
+  imageUrl        String?  // Main showcase/hero image of the work
+  galleryImages   String[] // Additional project images
+
+  techStack       String[] // Technologies used, e.g. ["React", "Node.js", "PostgreSQL"]
+  tags            String[] // e.g. ["fintech", "automation"]
+
+  clientName      String?  // Client or project name
+  clientLogo      String?  // Client logo URL
+  liveUrl         String?  // Link to live project / case study
+
+  isFeatured     Boolean  @default(false)  // Show in hero/spotlight
+  isPublished    Boolean  @default(false)  // Controls visibility on site
+  order          Int      @default(0)       // Manual ordering
+
+  @@map("tech_solutions")
+}
+
+// ============ ABOUT PAGE ============
+
+// Single-record about page content (singleton via id = "singleton")
+model AboutPage {
+  id            String   @id @default("singleton")
+  updatedAt     DateTime @updatedAt
+
+  // Hero
+  heroTagline   String?  // Badge text, e.g. "About Tech4GH"
+  heroTitle     String?  // Big headline
+  heroSubtitle  String?  // Paragraph below headline
+  heroImageUrl  String?  // Optional hero image
+
+  // Mission
+  missionTitle  String?
+  missionBody   String?  // Long text / markdown
+
+  // Vision  
+  visionTitle   String?
+  visionBody    String?
+
+  // Story / Why Us
+  storyTitle    String?
+  storyBody     String?
+
+  // Values cards (JSON array: [{icon, title, description}])
+  values        Json     @default("[]")
+
+  // Stats bar (JSON array: [{number, label}])
+  stats         Json     @default("[]")
+
+  // Gallery images (URLs)
+  galleryImages String[]
+
+  @@map("about_page")
+}
+
+// Team / People
+model TeamMember {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  name        String
+  role        String
+  bio         String?
+  imageUrl    String?
+  linkedinUrl String?
+  twitterUrl  String?
+  githubUrl   String?
+  order           Int      @default(0)
+  isVisible       Boolean  @default(true)
+  showOnHomepage  Boolean  @default(false)
+
+  @@map("team_members")
+}
+
+// FAQ Items
+model FaqItem {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  question  String
+  answer    String
+  order     Int      @default(0)
+  isVisible Boolean  @default(true)
+
+  @@map("faq_items")
+}

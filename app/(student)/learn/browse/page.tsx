@@ -123,7 +123,7 @@ export default async function BrowseCoursesPage({
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <div className="h-full w-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                    <div className="h-full w-full bg-linear-to-br from-primary/20 to-primary/5 flex items-center justify-center">
                       <BookOpen className="size-12 text-primary/50" />
                     </div>
                   )}

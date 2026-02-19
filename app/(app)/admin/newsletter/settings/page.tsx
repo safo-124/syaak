@@ -184,9 +184,9 @@ export default function EmailSettingsPage() {
                   } text-sm`}
                 >
                   {testResult.success ? (
-                    <CheckCircle className="h-4 w-4 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 shrink-0" />
                   ) : (
-                    <XCircle className="h-4 w-4 flex-shrink-0" />
+                    <XCircle className="h-4 w-4 shrink-0" />
                   )}
                   <span>{testResult.message}</span>
                 </div>

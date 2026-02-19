@@ -76,7 +76,11 @@ export const ModelName = {
   Notification: 'Notification',
   Certificate: 'Certificate',
   LearningStreak: 'LearningStreak',
-  Achievement: 'Achievement'
+  Achievement: 'Achievement',
+  TechSolution: 'TechSolution',
+  AboutPage: 'AboutPage',
+  TeamMember: 'TeamMember',
+  FaqItem: 'FaqItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -505,12 +509,96 @@ export const AchievementScalarFieldEnum = {
 export type AchievementScalarFieldEnum = (typeof AchievementScalarFieldEnum)[keyof typeof AchievementScalarFieldEnum]
 
 
+export const TechSolutionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  title: 'title',
+  slug: 'slug',
+  shortSummary: 'shortSummary',
+  description: 'description',
+  category: 'category',
+  imageUrl: 'imageUrl',
+  galleryImages: 'galleryImages',
+  techStack: 'techStack',
+  tags: 'tags',
+  clientName: 'clientName',
+  clientLogo: 'clientLogo',
+  liveUrl: 'liveUrl',
+  isFeatured: 'isFeatured',
+  isPublished: 'isPublished',
+  order: 'order'
+} as const
+
+export type TechSolutionScalarFieldEnum = (typeof TechSolutionScalarFieldEnum)[keyof typeof TechSolutionScalarFieldEnum]
+
+
+export const AboutPageScalarFieldEnum = {
+  id: 'id',
+  updatedAt: 'updatedAt',
+  heroTagline: 'heroTagline',
+  heroTitle: 'heroTitle',
+  heroSubtitle: 'heroSubtitle',
+  heroImageUrl: 'heroImageUrl',
+  missionTitle: 'missionTitle',
+  missionBody: 'missionBody',
+  visionTitle: 'visionTitle',
+  visionBody: 'visionBody',
+  storyTitle: 'storyTitle',
+  storyBody: 'storyBody',
+  values: 'values',
+  stats: 'stats',
+  galleryImages: 'galleryImages'
+} as const
+
+export type AboutPageScalarFieldEnum = (typeof AboutPageScalarFieldEnum)[keyof typeof AboutPageScalarFieldEnum]
+
+
+export const TeamMemberScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  role: 'role',
+  bio: 'bio',
+  imageUrl: 'imageUrl',
+  linkedinUrl: 'linkedinUrl',
+  twitterUrl: 'twitterUrl',
+  githubUrl: 'githubUrl',
+  order: 'order',
+  isVisible: 'isVisible',
+  showOnHomepage: 'showOnHomepage'
+} as const
+
+export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
+
+
+export const FaqItemScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  question: 'question',
+  answer: 'answer',
+  order: 'order',
+  isVisible: 'isVisible'
+} as const
+
+export type FaqItemScalarFieldEnum = (typeof FaqItemScalarFieldEnum)[keyof typeof FaqItemScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: 'JsonNull'
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -527,4 +615,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull',
+  AnyNull: 'AnyNull'
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

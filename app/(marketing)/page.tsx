@@ -1,23 +1,32 @@
 import Link from "next/link"
 import { getPublishedCourses } from "@/lib/courses"
 import { getRecentPosts } from "@/lib/blog"
+import { getPublishedSolutions } from "@/lib/solutions"
+import { getHomepageTeamMembers } from "@/lib/about"
+import { SolutionPreview } from "@/components/solution-preview"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, BarChart3, BookOpen, CheckCircle2, Code2, Laptop, Users, Quote, Star, FileText, Clock, TrendingUp, Award, GraduationCap, Target, Rocket, Database, PieChart, LineChart, Activity, Brain, Binary, Table2, Sheet, Calculator, FileSpreadsheet, ChartBar, ChartLine, ChartPie, GitBranch, Workflow, Sigma } from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Github } from "lucide-react"
+import { ArrowRight, BarChart3, BookOpen, CheckCircle2, Code2, Laptop, Users, Quote, Star, FileText, Clock, TrendingUp, Award, GraduationCap, Target, Rocket, Database, PieChart, LineChart, Activity, Brain, Binary, Table2, Sheet, Calculator, FileSpreadsheet, ChartBar, ChartLine, ChartPie, GitBranch, Workflow, Sigma, Layers } from "lucide-react"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Tech4GH - Master Data Science & Analytics",
-  description: "Practical, hands-on training in Python, R, Excel, and Microsoft tools. Designed for students and professionals in Ghana and beyond.",
+  title: "Tech4GH - Technology Solutions & Training",
+  description: "Tech solutions, software development, data analytics, and hands-on technology training for individuals and businesses in Ghana and beyond.",
 }
 
 export default async function HomePage() {
-  const [courses, recentPosts] = await Promise.all([
+  const [courses, recentPosts, solutions, teamMembers] = await Promise.all([
     getPublishedCourses(),
     getRecentPosts(3),
+    getPublishedSolutions(),
+    getHomepageTeamMembers(),
   ])
-  const featuredCourses = courses.slice(0, 3) // Only show top 3
+  const featuredCourses = courses.slice(0, 3)
+  const featuredSolutions = solutions.filter((s) => s.isFeatured).slice(0, 6)
+  const allSolutions = solutions.slice(0, 6)
 
   return (
     <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
@@ -68,20 +77,20 @@ export default async function HomePage() {
         
         <div className="glass mx-auto max-w-4xl rounded-3xl p-8 sm:p-12 lg:p-16 animate-scale-in hover-lift">
           <Badge variant="secondary" className="mb-6 rounded-full px-4 py-1.5 text-sm font-medium animate-bounce-subtle">
-            <BarChart3 className="mr-1 size-3 inline" />
-            📊 Master Data Science & Excel
+            <Rocket className="mr-1 size-3 inline" />
+            🚀 Technology Solutions & Training
           </Badge>
           
           <h1 className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="animate-slide-up inline-block">Master Data Science</span> <br className="hidden sm:block" />
+            <span className="animate-slide-up inline-block">Tech Solutions</span> <br className="hidden sm:block" />
             <span className="gradient-text-animated inline-block animation-delay-200">
-              Build Your Future
+              Built for Ghana
             </span>
           </h1>
           
           <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl animate-slide-up animation-delay-300 opacity-0" style={{animationFillMode: 'forwards'}}>
-            Practical, hands-on training in Python, R, Excel, and Microsoft tools. 
-            Designed for students and professionals in Ghana and beyond.
+            We build software, automate workflows, and deliver world-class technology
+            training — empowering individuals and businesses across Ghana and beyond.
           </p>
           
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row animate-slide-up animation-delay-500 opacity-0" style={{animationFillMode: 'forwards'}}>
@@ -302,6 +311,101 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Technology Solutions Section */}
+      {(featuredSolutions.length > 0 || allSolutions.length > 0) && (
+        <section className="w-full px-4 py-20 sm:px-6 lg:px-8 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
+          <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-pulse-glow animation-delay-2000" />
+
+          <div className="mx-auto max-w-7xl relative z-10 space-y-12">
+            <div className="text-center animate-slide-up">
+              <Badge variant="outline" className="mb-4">
+                <Layers className="mr-1 size-3" />
+                Our Work
+              </Badge>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Technology <span className="gradient-text-animated">Solutions</span> We Deliver
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                From web platforms to data dashboards and mobile apps — see what we build for our clients.
+              </p>
+            </div>
+
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {(featuredSolutions.length > 0 ? featuredSolutions : allSolutions).map((solution, index) => (
+                <div
+                  key={solution.id}
+                  className={`group relative overflow-hidden rounded-2xl border bg-white/50 dark:bg-black/20 hover-lift card-shine animate-scale-in animation-delay-${(index + 1) * 100} opacity-0 transition-all`}
+                  style={{ animationFillMode: "forwards" }}
+                >
+                  {/* Preview: live iframe or image fallback */}
+                  <SolutionPreview
+                    liveUrl={solution.liveUrl}
+                    imageUrl={solution.imageUrl}
+                    title={solution.title}
+                  />
+
+                  {/* Content */}
+                  <div className="p-5 space-y-3">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <Badge variant="secondary" className="mb-2 text-xs">
+                          {solution.category}
+                        </Badge>
+                        <h3 className="font-bold text-lg group-hover:text-primary transition-colors line-clamp-2">
+                          {solution.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {solution.shortSummary && (
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {solution.shortSummary}
+                      </p>
+                    )}
+
+                    {solution.techStack.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {solution.techStack.slice(0, 4).map((tech) => (
+                          <Badge key={tech} variant="outline" className="text-[10px] py-0">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-between pt-1">
+                      {solution.clientName && (
+                        <span className="text-xs text-muted-foreground">
+                          Client: {solution.clientName}
+                        </span>
+                      )}
+                      {solution.liveUrl && (
+                        <Button size="sm" variant="ghost" className="ml-auto gap-1 text-xs" asChild>
+                          <Link href={solution.liveUrl} target="_blank" rel="noopener noreferrer">
+                            View Live
+                            <ArrowRight className="size-3" />
+                          </Link>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-center animate-slide-up animation-delay-500">
+              <Button variant="outline" size="lg" className="h-12 px-8 hover:scale-105 transition-transform group" asChild>
+                <Link href="/contact">
+                  Work With Us
+                  <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Testimonials Section */}
       <section className="w-full px-4 py-20 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Floating data visualization elements */}
@@ -476,6 +580,74 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* Meet the Team Section */}
+      {teamMembers.length > 0 && (
+        <section className="w-full bg-muted/30 px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl space-y-12">
+            <div className="text-center animate-slide-up">
+              <Badge variant="outline" className="mb-4">
+                <Users className="mr-1 size-3" />
+                Our Team
+              </Badge>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Meet the <span className="gradient-text-animated">People</span> Behind Tech4GH
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Experts passionate about technology, training, and building impactful solutions.
+              </p>
+            </div>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {teamMembers.map((member, index) => (
+                <div
+                  key={member.id}
+                  className={`group flex flex-col items-center text-center p-6 rounded-2xl border bg-white/50 dark:bg-black/20 hover-lift card-shine animate-scale-in animation-delay-${(index + 1) * 100} opacity-0`}
+                  style={{ animationFillMode: "forwards" }}
+                >
+                  <Avatar className="h-24 w-24 mb-4 ring-4 ring-primary/20 transition-transform group-hover:scale-105">
+                    <AvatarImage src={member.imageUrl || ""} alt={member.name} />
+                    <AvatarFallback className="bg-primary/10 text-primary text-2xl font-bold">
+                      {member.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">{member.name}</h3>
+                  <p className="text-sm text-primary mb-2">{member.role}</p>
+                  {member.bio && (
+                    <p className="text-sm text-muted-foreground line-clamp-3 mb-3">{member.bio}</p>
+                  )}
+                  {(member.linkedinUrl || member.twitterUrl || member.githubUrl) && (
+                    <div className="flex justify-center gap-3 mt-auto pt-2">
+                      {member.linkedinUrl && (
+                        <Link href={member.linkedinUrl} target="_blank" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+                          <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </Link>
+                      )}
+                      {member.twitterUrl && (
+                        <Link href={member.twitterUrl} target="_blank" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
+                          <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </Link>
+                      )}
+                      {member.githubUrl && (
+                        <Link href={member.githubUrl} target="_blank" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
+                          <Github className="h-4 w-4" />
+                        </Link>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center animate-slide-up animation-delay-500">
+              <Button variant="outline" size="lg" className="h-12 px-8 hover:scale-105 transition-transform group" asChild>
+                <Link href="/about">
+                  Learn More About Us
+                  <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA Section */}
       <section className="w-full px-4 py-24 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Animated background */}
@@ -504,11 +676,11 @@ export default async function HomePage() {
               <GraduationCap className="size-10" />
             </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl animate-slide-up">
-              Ready to become a <span className="gradient-text-animated">Data Expert</span>?
+              Ready to <span className="gradient-text-animated">Build Something Great</span>?
             </h2>
             <p className="text-lg text-muted-foreground animate-slide-up animation-delay-200 opacity-0" style={{animationFillMode: 'forwards'}}>
-              Join hundreds of students mastering Python, Excel, and data analytics with Tech4GH.
-              Transform raw data into insights and advance your career.
+              Whether you need a software solution for your business or want to master
+              tech skills — Tech4GH is your partner in Ghana and beyond.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row animate-slide-up animation-delay-400 opacity-0" style={{animationFillMode: 'forwards'}}>
               <Button size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform group" asChild>
@@ -519,7 +691,7 @@ export default async function HomePage() {
               </Button>
               <Button variant="outline" size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform" asChild>
                 <Link href="/contact">
-                  Contact Sales
+                  Get a Solution Built
                 </Link>
               </Button>
             </div>

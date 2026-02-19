@@ -43,7 +43,7 @@ export function LessonItem({
       )}
     >
       {/* Status Icon */}
-      <div className="flex-shrink-0">
+      <div className="shrink-0">
         {isCompleted ? (
           <CheckCircle className="size-5 text-green-500" />
         ) : isNext ? (

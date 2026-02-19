@@ -150,7 +150,7 @@ function CourseList({ enrollments, emptyMessage }: { enrollments: Enrollment[]; 
                 />
               </div>
             ) : (
-              <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+              <div className="aspect-video bg-linear-to-br from-primary/20 to-primary/5 flex items-center justify-center">
                 <BookOpen className="size-12 text-primary/50" />
               </div>
             )}

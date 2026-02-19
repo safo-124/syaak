@@ -169,3 +169,23 @@ export type LearningStreak = Prisma.LearningStreakModel
  * 
  */
 export type Achievement = Prisma.AchievementModel
+/**
+ * Model TechSolution
+ * 
+ */
+export type TechSolution = Prisma.TechSolutionModel
+/**
+ * Model AboutPage
+ * 
+ */
+export type AboutPage = Prisma.AboutPageModel
+/**
+ * Model TeamMember
+ * 
+ */
+export type TeamMember = Prisma.TeamMemberModel
+/**
+ * Model FaqItem
+ * 
+ */
+export type FaqItem = Prisma.FaqItemModel

@@ -100,7 +100,7 @@ function UnsubscribeForm() {
 
             {status === "error" && (
               <div className="flex items-center gap-2 p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
-                <XCircle className="h-4 w-4 flex-shrink-0" />
+                <XCircle className="h-4 w-4 shrink-0" />
                 <span>{message}</span>
               </div>
             )}
@@ -150,7 +150,7 @@ function LoadingCard() {
 
 export default function UnsubscribePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background to-muted">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-linear-to-br from-background to-muted">
       <Suspense fallback={<LoadingCard />}>
         <UnsubscribeForm />
       </Suspense>

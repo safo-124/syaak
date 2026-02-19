@@ -51,7 +51,7 @@ export function SiteHeader() {
             <div className="absolute -top-1 -right-1 size-3 bg-green-500 rounded-full border-2 border-background animate-pulse" />
           </div>
           <div className="flex flex-col">
-            <span className="text-base sm:text-lg font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            <span className="text-base sm:text-lg font-bold bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent">
               Tech4GH
             </span>
             <span className="text-[10px] text-muted-foreground hidden sm:block">
@@ -88,7 +88,7 @@ export function SiteHeader() {
             </Link>
           </Button>
           
-          <Button size="sm" className="gap-2 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-primary/50 transition-all duration-300 group" asChild>
+          <Button size="sm" className="gap-2 bg-linear-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-primary/50 transition-all duration-300 group" asChild>
             <Link href="/learn/register">
               <Sparkles className="size-4 group-hover:rotate-12 transition-transform" />
               Get Started
@@ -132,7 +132,7 @@ export function SiteHeader() {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-lg font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                      <span className="text-lg font-bold bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                         Tech4GH
                       </span>
                       <span className="text-[10px] text-muted-foreground">
@@ -182,7 +182,7 @@ export function SiteHeader() {
                   </Button>
                   
                   <Button 
-                    className="w-full gap-2 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-primary/50 transition-all duration-300 group" 
+                    className="w-full gap-2 bg-linear-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-primary/50 transition-all duration-300 group" 
                     asChild
                   >
                     <Link href="/learn/register" onClick={() => setIsOpen(false)}>

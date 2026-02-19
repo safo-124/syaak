@@ -43,7 +43,7 @@ export default function StudentLoginPage() {
       {/* Enhanced Header */}
       <div className="mb-8 flex flex-col items-center text-center animate-scale-in">
         <div className="relative mb-4">
-          <div className="flex size-20 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 shadow-lg shadow-primary/20 animate-float overflow-hidden">
+          <div className="flex size-20 items-center justify-center rounded-2xl bg-linear-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 shadow-lg shadow-primary/20 animate-float overflow-hidden">
             <Image 
               src="/T4u_logo.jpg" 
               alt="Tech4GH Logo" 
@@ -63,7 +63,7 @@ export default function StudentLoginPage() {
         </div>
         
         <div className="mb-3 flex items-center gap-2">
-          <h1 className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-3xl font-bold text-transparent">
+          <h1 className="bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-3xl font-bold text-transparent">
             Welcome Back
           </h1>
         </div>
@@ -87,7 +87,7 @@ export default function StudentLoginPage() {
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-5">
             {error && (
-              <Alert variant="destructive" className="animate-wiggle bg-gradient-to-r from-red-500/10 to-rose-500/10 border-red-500/20">
+              <Alert variant="destructive" className="animate-wiggle bg-linear-to-r from-red-500/10 to-rose-500/10 border-red-500/20">
                 <AlertCircle className="size-4" />
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
@@ -129,14 +129,14 @@ export default function StudentLoginPage() {
 
             {/* Quick Stats */}
             <div className="pt-2 grid grid-cols-2 gap-3">
-              <div className="flex items-center gap-2 rounded-lg bg-gradient-to-br from-blue-500/5 to-blue-500/10 p-3 border border-blue-500/10">
+              <div className="flex items-center gap-2 rounded-lg bg-linear-to-br from-blue-500/5 to-blue-500/10 p-3 border border-blue-500/10">
                 <BarChart3 className="size-4 text-blue-600 dark:text-blue-400" />
                 <div className="flex flex-col">
                   <span className="text-xs text-muted-foreground">Active Students</span>
                   <span className="text-sm font-bold">500+</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2 rounded-lg bg-gradient-to-br from-green-500/5 to-green-500/10 p-3 border border-green-500/10">
+              <div className="flex items-center gap-2 rounded-lg bg-linear-to-br from-green-500/5 to-green-500/10 p-3 border border-green-500/10">
                 <TrendingUp className="size-4 text-green-600 dark:text-green-400" />
                 <div className="flex flex-col">
                   <span className="text-xs text-muted-foreground">Success Rate</span>
@@ -149,7 +149,7 @@ export default function StudentLoginPage() {
           <CardFooter className="flex flex-col gap-4 pt-2">
             <Button 
               type="submit" 
-              className="w-full h-11 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 shadow-lg shadow-primary/25 group" 
+              className="w-full h-11 bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 shadow-lg shadow-primary/25 group" 
               disabled={isPending}
             >
               {isPending ? (

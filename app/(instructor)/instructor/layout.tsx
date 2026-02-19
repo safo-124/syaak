@@ -23,7 +23,7 @@ export default async function InstructorLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/20">
       <InstructorSidebar instructor={instructor} />
       <div className="lg:pl-64">
         <InstructorHeader instructor={instructor} />
