@@ -410,6 +410,9 @@ export const ModelName = {
   Certificate: 'Certificate',
   LearningStreak: 'LearningStreak',
   Achievement: 'Achievement',
+  CourseRating: 'CourseRating',
+  LessonComment: 'LessonComment',
+  Testimonial: 'Testimonial',
   TechSolution: 'TechSolution',
   AboutPage: 'AboutPage',
   TeamMember: 'TeamMember',
@@ -429,7 +432,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "habit" | "habitCompletion" | "course" | "courseSection" | "lead" | "blogPost" | "newsletterSubscriber" | "newsletter" | "blogCategory" | "post" | "comment" | "contactSubmission" | "instructor" | "student" | "instructorCourse" | "managedCourse" | "courseModule" | "lesson" | "lessonResource" | "enrollment" | "lessonProgress" | "notification" | "certificate" | "learningStreak" | "achievement" | "techSolution" | "aboutPage" | "teamMember" | "faqItem"
+    modelProps: "user" | "habit" | "habitCompletion" | "course" | "courseSection" | "lead" | "blogPost" | "newsletterSubscriber" | "newsletter" | "blogCategory" | "post" | "comment" | "contactSubmission" | "instructor" | "student" | "instructorCourse" | "managedCourse" | "courseModule" | "lesson" | "lessonResource" | "enrollment" | "lessonProgress" | "notification" | "certificate" | "learningStreak" | "achievement" | "courseRating" | "lessonComment" | "testimonial" | "techSolution" | "aboutPage" | "teamMember" | "faqItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2357,6 +2360,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CourseRating: {
+      payload: Prisma.$CourseRatingPayload<ExtArgs>
+      fields: Prisma.CourseRatingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CourseRatingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CourseRatingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>
+        }
+        findFirst: {
+          args: Prisma.CourseRatingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CourseRatingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>
+        }
+        findMany: {
+          args: Prisma.CourseRatingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>[]
+        }
+        create: {
+          args: Prisma.CourseRatingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>
+        }
+        createMany: {
+          args: Prisma.CourseRatingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CourseRatingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>[]
+        }
+        delete: {
+          args: Prisma.CourseRatingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>
+        }
+        update: {
+          args: Prisma.CourseRatingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>
+        }
+        deleteMany: {
+          args: Prisma.CourseRatingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CourseRatingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CourseRatingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>[]
+        }
+        upsert: {
+          args: Prisma.CourseRatingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseRatingPayload>
+        }
+        aggregate: {
+          args: Prisma.CourseRatingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCourseRating>
+        }
+        groupBy: {
+          args: Prisma.CourseRatingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CourseRatingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CourseRatingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CourseRatingCountAggregateOutputType> | number
+        }
+      }
+    }
+    LessonComment: {
+      payload: Prisma.$LessonCommentPayload<ExtArgs>
+      fields: Prisma.LessonCommentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LessonCommentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LessonCommentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>
+        }
+        findFirst: {
+          args: Prisma.LessonCommentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LessonCommentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>
+        }
+        findMany: {
+          args: Prisma.LessonCommentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>[]
+        }
+        create: {
+          args: Prisma.LessonCommentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>
+        }
+        createMany: {
+          args: Prisma.LessonCommentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LessonCommentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>[]
+        }
+        delete: {
+          args: Prisma.LessonCommentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>
+        }
+        update: {
+          args: Prisma.LessonCommentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>
+        }
+        deleteMany: {
+          args: Prisma.LessonCommentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LessonCommentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LessonCommentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>[]
+        }
+        upsert: {
+          args: Prisma.LessonCommentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LessonCommentPayload>
+        }
+        aggregate: {
+          args: Prisma.LessonCommentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLessonComment>
+        }
+        groupBy: {
+          args: Prisma.LessonCommentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LessonCommentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LessonCommentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LessonCommentCountAggregateOutputType> | number
+        }
+      }
+    }
+    Testimonial: {
+      payload: Prisma.$TestimonialPayload<ExtArgs>
+      fields: Prisma.TestimonialFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TestimonialFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TestimonialFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>
+        }
+        findFirst: {
+          args: Prisma.TestimonialFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TestimonialFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>
+        }
+        findMany: {
+          args: Prisma.TestimonialFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>[]
+        }
+        create: {
+          args: Prisma.TestimonialCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>
+        }
+        createMany: {
+          args: Prisma.TestimonialCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TestimonialCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>[]
+        }
+        delete: {
+          args: Prisma.TestimonialDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>
+        }
+        update: {
+          args: Prisma.TestimonialUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>
+        }
+        deleteMany: {
+          args: Prisma.TestimonialDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TestimonialUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TestimonialUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>[]
+        }
+        upsert: {
+          args: Prisma.TestimonialUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestimonialPayload>
+        }
+        aggregate: {
+          args: Prisma.TestimonialAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTestimonial>
+        }
+        groupBy: {
+          args: Prisma.TestimonialGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TestimonialGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TestimonialCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TestimonialCountAggregateOutputType> | number
+        }
+      }
+    }
     TechSolution: {
       payload: Prisma.$TechSolutionPayload<ExtArgs>
       fields: Prisma.TechSolutionFieldRefs
@@ -2913,6 +3138,10 @@ export const InstructorScalarFieldEnum = {
   avatar: 'avatar',
   title: 'title',
   expertise: 'expertise',
+  slug: 'slug',
+  linkedinUrl: 'linkedinUrl',
+  twitterUrl: 'twitterUrl',
+  githubUrl: 'githubUrl',
   isActive: 'isActive',
   isVerified: 'isVerified'
 } as const
@@ -3100,6 +3329,50 @@ export const AchievementScalarFieldEnum = {
 } as const
 
 export type AchievementScalarFieldEnum = (typeof AchievementScalarFieldEnum)[keyof typeof AchievementScalarFieldEnum]
+
+
+export const CourseRatingScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  studentId: 'studentId',
+  courseId: 'courseId',
+  rating: 'rating',
+  review: 'review'
+} as const
+
+export type CourseRatingScalarFieldEnum = (typeof CourseRatingScalarFieldEnum)[keyof typeof CourseRatingScalarFieldEnum]
+
+
+export const LessonCommentScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  lessonId: 'lessonId',
+  studentId: 'studentId',
+  content: 'content',
+  parentId: 'parentId'
+} as const
+
+export type LessonCommentScalarFieldEnum = (typeof LessonCommentScalarFieldEnum)[keyof typeof LessonCommentScalarFieldEnum]
+
+
+export const TestimonialScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  role: 'role',
+  content: 'content',
+  rating: 'rating',
+  imageUrl: 'imageUrl',
+  companyLogo: 'companyLogo',
+  isVisible: 'isVisible',
+  showOnHomepage: 'showOnHomepage',
+  order: 'order'
+} as const
+
+export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
 
 
 export const TechSolutionScalarFieldEnum = {
@@ -3546,6 +3819,9 @@ export type GlobalOmitConfig = {
   certificate?: Prisma.CertificateOmit
   learningStreak?: Prisma.LearningStreakOmit
   achievement?: Prisma.AchievementOmit
+  courseRating?: Prisma.CourseRatingOmit
+  lessonComment?: Prisma.LessonCommentOmit
+  testimonial?: Prisma.TestimonialOmit
   techSolution?: Prisma.TechSolutionOmit
   aboutPage?: Prisma.AboutPageOmit
   teamMember?: Prisma.TeamMemberOmit

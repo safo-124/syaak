@@ -3,6 +3,7 @@ import { getPublishedCourses } from "@/lib/courses"
 import { getRecentPosts } from "@/lib/blog"
 import { getPublishedSolutions } from "@/lib/solutions"
 import { getHomepageTeamMembers } from "@/lib/about"
+import { getHomepageTestimonials } from "@/lib/testimonials"
 import { SolutionPreview } from "@/components/solution-preview"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
@@ -18,11 +19,12 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const [courses, recentPosts, solutions, teamMembers] = await Promise.all([
+  const [courses, recentPosts, solutions, teamMembers, testimonials] = await Promise.all([
     getPublishedCourses(),
     getRecentPosts(3),
     getPublishedSolutions(),
     getHomepageTeamMembers(),
+    getHomepageTestimonials(),
   ])
   const featuredCourses = courses.slice(0, 3)
   const featuredSolutions = solutions.filter((s) => s.isFeatured).slice(0, 6)
@@ -643,6 +645,55 @@ export default async function HomePage() {
                   <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA Section */}
+      {/* Testimonials Section */}
+      {testimonials.length > 0 && (
+        <section className="w-full px-4 py-20 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto space-y-12">
+            <div className="text-center space-y-3">
+              <Badge variant="secondary" className="px-4 py-1">
+                <Quote className="mr-2 size-4" />
+                Testimonials
+              </Badge>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                What Our Students Say
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Real experiences from people who have learned and grown with Tech4GH.
+              </p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((t) => (
+                <div key={t.id} className="glass rounded-2xl p-6 space-y-4 hover:shadow-lg transition-shadow">
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} className={`size-4 ${t.rating >= s ? "fill-amber-400 text-amber-400" : "text-muted-foreground/30"}`} />
+                    ))}
+                  </div>
+                  <p className="text-sm leading-relaxed text-muted-foreground">&ldquo;{t.content}&rdquo;</p>
+                  <div className="flex items-center gap-3 pt-2">
+                    {t.imageUrl ? (
+                      <img src={t.imageUrl} alt={t.name} className="size-10 rounded-full object-cover shrink-0" />
+                    ) : (
+                      <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold shrink-0">
+                        {t.name.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm font-semibold">{t.name}</p>
+                      {t.role && <p className="text-xs text-muted-foreground">{t.role}</p>}
+                    </div>
+                    {t.companyLogo && (
+                      <img src={t.companyLogo} alt="" className="h-6 ml-auto opacity-60" />
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

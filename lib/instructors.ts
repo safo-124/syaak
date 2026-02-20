@@ -349,3 +349,64 @@ export async function getCourseStudents(courseId: string) {
     orderBy: { enrolledAt: "desc" },
   })
 }
+
+// ============ PUBLIC INSTRUCTOR PROFILES ============
+
+export async function getPublicInstructors() {
+  return prisma.instructor.findMany({
+    where: { isActive: true },
+    include: {
+      courses: {
+        include: {
+          course: {
+            include: {
+              _count: { select: { enrollments: true } },
+            },
+          },
+        },
+      },
+    },
+    orderBy: { name: "asc" },
+  })
+}
+
+export async function getPublicInstructorBySlug(slug: string) {
+  return prisma.instructor.findUnique({
+    where: { slug },
+    include: {
+      courses: {
+        include: {
+          course: {
+            include: {
+              modules: {
+                include: { _count: { select: { lessons: true } } },
+              },
+              _count: { select: { enrollments: true } },
+            },
+          },
+        },
+      },
+    },
+  })
+}
+
+export async function ensureInstructorSlug(instructorId: string) {
+  const instructor = await prisma.instructor.findUnique({ where: { id: instructorId } })
+  if (!instructor) return null
+  if (instructor.slug) return instructor
+
+  // Generate slug from name
+  const base = instructor.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+
+  let slug = base
+  let counter = 1
+  while (await prisma.instructor.findUnique({ where: { slug } })) {
+    slug = `${base}-${counter}`
+    counter++
+  }
+
+  return prisma.instructor.update({ where: { id: instructorId }, data: { slug } })
+}

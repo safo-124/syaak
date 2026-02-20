@@ -19,6 +19,10 @@ import {
   Loader2,
   Shield,
   Camera,
+  Linkedin,
+  Twitter,
+  Github,
+  Link2,
 } from "lucide-react"
 import { toast } from "sonner"
 
@@ -32,6 +36,10 @@ interface InstructorSettingsFormProps {
     title: string | null
     expertise: string[]
     isVerified: boolean
+    linkedinUrl?: string | null
+    twitterUrl?: string | null
+    githubUrl?: string | null
+    slug?: string | null
   }
 }
 
@@ -43,6 +51,9 @@ export function InstructorSettingsForm({ instructor }: InstructorSettingsFormPro
     title: instructor.title || "",
     bio: instructor.bio || "",
     expertise: instructor.expertise.join(", "),
+    linkedinUrl: instructor.linkedinUrl || "",
+    twitterUrl: instructor.twitterUrl || "",
+    githubUrl: instructor.githubUrl || "",
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,6 +72,9 @@ export function InstructorSettingsForm({ instructor }: InstructorSettingsFormPro
               .split(",")
               .map((s) => s.trim())
               .filter(Boolean),
+            linkedinUrl: formData.linkedinUrl || null,
+            twitterUrl: formData.twitterUrl || null,
+            githubUrl: formData.githubUrl || null,
           }),
         })
 
@@ -198,7 +212,62 @@ export function InstructorSettingsForm({ instructor }: InstructorSettingsFormPro
         </CardContent>
       </Card>
 
-      {/* Account Status */}
+      {/* Social Links */}
+      <Card className="glass border-none">
+        <CardHeader>
+          <CardTitle>Social Links</CardTitle>
+          <CardDescription>Add your social profiles so students can connect with you</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="linkedinUrl">LinkedIn URL</Label>
+            <div className="relative">
+              <Linkedin className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="linkedinUrl"
+                value={formData.linkedinUrl}
+                onChange={(e) => setFormData({ ...formData, linkedinUrl: e.target.value })}
+                placeholder="https://linkedin.com/in/yourprofile"
+                className="pl-10"
+              />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="twitterUrl">Twitter / X URL</Label>
+            <div className="relative">
+              <Twitter className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="twitterUrl"
+                value={formData.twitterUrl}
+                onChange={(e) => setFormData({ ...formData, twitterUrl: e.target.value })}
+                placeholder="https://twitter.com/yourusername"
+                className="pl-10"
+              />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="githubUrl">GitHub URL</Label>
+            <div className="relative">
+              <Github className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="githubUrl"
+                value={formData.githubUrl}
+                onChange={(e) => setFormData({ ...formData, githubUrl: e.target.value })}
+                placeholder="https://github.com/yourusername"
+                className="pl-10"
+              />
+            </div>
+          </div>
+          {instructor.slug && (
+            <div className="pt-2 border-t">
+              <p className="text-xs text-muted-foreground flex items-center gap-1">
+                <Link2 className="size-3" />
+                Your public profile: <a href={`/instructors/${instructor.slug}`} className="underline">/instructors/{instructor.slug}</a>
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
       <Card className="glass border-none">
         <CardHeader>
           <CardTitle>Account Status</CardTitle>

@@ -22,6 +22,10 @@ export default async function InstructorSettingsPage() {
       title: true,
       expertise: true,
       isVerified: true,
+      linkedinUrl: true,
+      twitterUrl: true,
+      githubUrl: true,
+      slug: true,
     },
   })
 

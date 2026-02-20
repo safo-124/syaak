@@ -21,6 +21,9 @@ import {
   User,
 } from "lucide-react"
 import Link from "next/link"
+import { getStudentRatingForCourse, getCourseRatings, getCourseAverageRating } from "@/lib/ratings"
+import { CourseRatingForm } from "@/components/student/course-rating-form"
+import { CourseRatingDisplay } from "@/components/student/course-rating-display"
 import { LessonItem } from "@/components/student/lesson-item"
 
 interface Props {
@@ -36,11 +39,24 @@ export default async function CourseDetailPage({ params }: Props) {
     redirect("/learn/login")
   }
 
-  const enrollment = await getEnrollmentById(enrollmentId)
+  const [enrollment, myRating, allRatings, ratingStats] = await Promise.all([
+    getEnrollmentById(enrollmentId),
+    getStudentRatingForCourse(studentId, "").then(() => null).catch(() => null), // placeholder
+    getCourseRatings(""), // placeholder
+    getCourseAverageRating(""), // placeholder
+  ])
 
   if (!enrollment || enrollment.studentId !== studentId) {
     notFound()
   }
+
+  const courseId = enrollment.courseId
+
+  const [_myRating, _allRatings, _ratingStats] = await Promise.all([
+    getStudentRatingForCourse(studentId, courseId),
+    getCourseRatings(courseId),
+    getCourseAverageRating(courseId),
+  ])
 
   const course = enrollment.course
   const totalLessons = course.modules.reduce(

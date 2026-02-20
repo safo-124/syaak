@@ -34,6 +34,10 @@ export type InstructorMinAggregateOutputType = {
   bio: string | null
   avatar: string | null
   title: string | null
+  slug: string | null
+  linkedinUrl: string | null
+  twitterUrl: string | null
+  githubUrl: string | null
   isActive: boolean | null
   isVerified: boolean | null
 }
@@ -48,6 +52,10 @@ export type InstructorMaxAggregateOutputType = {
   bio: string | null
   avatar: string | null
   title: string | null
+  slug: string | null
+  linkedinUrl: string | null
+  twitterUrl: string | null
+  githubUrl: string | null
   isActive: boolean | null
   isVerified: boolean | null
 }
@@ -63,6 +71,10 @@ export type InstructorCountAggregateOutputType = {
   avatar: number
   title: number
   expertise: number
+  slug: number
+  linkedinUrl: number
+  twitterUrl: number
+  githubUrl: number
   isActive: number
   isVerified: number
   _all: number
@@ -79,6 +91,10 @@ export type InstructorMinAggregateInputType = {
   bio?: true
   avatar?: true
   title?: true
+  slug?: true
+  linkedinUrl?: true
+  twitterUrl?: true
+  githubUrl?: true
   isActive?: true
   isVerified?: true
 }
@@ -93,6 +109,10 @@ export type InstructorMaxAggregateInputType = {
   bio?: true
   avatar?: true
   title?: true
+  slug?: true
+  linkedinUrl?: true
+  twitterUrl?: true
+  githubUrl?: true
   isActive?: true
   isVerified?: true
 }
@@ -108,6 +128,10 @@ export type InstructorCountAggregateInputType = {
   avatar?: true
   title?: true
   expertise?: true
+  slug?: true
+  linkedinUrl?: true
+  twitterUrl?: true
+  githubUrl?: true
   isActive?: true
   isVerified?: true
   _all?: true
@@ -196,6 +220,10 @@ export type InstructorGroupByOutputType = {
   avatar: string | null
   title: string | null
   expertise: string[]
+  slug: string | null
+  linkedinUrl: string | null
+  twitterUrl: string | null
+  githubUrl: string | null
   isActive: boolean
   isVerified: boolean
   _count: InstructorCountAggregateOutputType | null
@@ -232,6 +260,10 @@ export type InstructorWhereInput = {
   avatar?: Prisma.StringNullableFilter<"Instructor"> | string | null
   title?: Prisma.StringNullableFilter<"Instructor"> | string | null
   expertise?: Prisma.StringNullableListFilter<"Instructor">
+  slug?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  linkedinUrl?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  twitterUrl?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  githubUrl?: Prisma.StringNullableFilter<"Instructor"> | string | null
   isActive?: Prisma.BoolFilter<"Instructor"> | boolean
   isVerified?: Prisma.BoolFilter<"Instructor"> | boolean
   courses?: Prisma.InstructorCourseListRelationFilter
@@ -248,6 +280,10 @@ export type InstructorOrderByWithRelationInput = {
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrderInput | Prisma.SortOrder
   expertise?: Prisma.SortOrder
+  slug?: Prisma.SortOrderInput | Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  twitterUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  githubUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   courses?: Prisma.InstructorCourseOrderByRelationAggregateInput
@@ -256,6 +292,7 @@ export type InstructorOrderByWithRelationInput = {
 export type InstructorWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   email?: string
+  slug?: string
   AND?: Prisma.InstructorWhereInput | Prisma.InstructorWhereInput[]
   OR?: Prisma.InstructorWhereInput[]
   NOT?: Prisma.InstructorWhereInput | Prisma.InstructorWhereInput[]
@@ -267,10 +304,13 @@ export type InstructorWhereUniqueInput = Prisma.AtLeast<{
   avatar?: Prisma.StringNullableFilter<"Instructor"> | string | null
   title?: Prisma.StringNullableFilter<"Instructor"> | string | null
   expertise?: Prisma.StringNullableListFilter<"Instructor">
+  linkedinUrl?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  twitterUrl?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  githubUrl?: Prisma.StringNullableFilter<"Instructor"> | string | null
   isActive?: Prisma.BoolFilter<"Instructor"> | boolean
   isVerified?: Prisma.BoolFilter<"Instructor"> | boolean
   courses?: Prisma.InstructorCourseListRelationFilter
-}, "id" | "email">
+}, "id" | "email" | "slug">
 
 export type InstructorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -283,6 +323,10 @@ export type InstructorOrderByWithAggregationInput = {
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrderInput | Prisma.SortOrder
   expertise?: Prisma.SortOrder
+  slug?: Prisma.SortOrderInput | Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  twitterUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  githubUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   _count?: Prisma.InstructorCountOrderByAggregateInput
@@ -304,6 +348,10 @@ export type InstructorScalarWhereWithAggregatesInput = {
   avatar?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
   title?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
   expertise?: Prisma.StringNullableListFilter<"Instructor">
+  slug?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
+  linkedinUrl?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
+  twitterUrl?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
+  githubUrl?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Instructor"> | boolean
   isVerified?: Prisma.BoolWithAggregatesFilter<"Instructor"> | boolean
 }
@@ -319,6 +367,10 @@ export type InstructorCreateInput = {
   avatar?: string | null
   title?: string | null
   expertise?: Prisma.InstructorCreateexpertiseInput | string[]
+  slug?: string | null
+  linkedinUrl?: string | null
+  twitterUrl?: string | null
+  githubUrl?: string | null
   isActive?: boolean
   isVerified?: boolean
   courses?: Prisma.InstructorCourseCreateNestedManyWithoutInstructorInput
@@ -335,6 +387,10 @@ export type InstructorUncheckedCreateInput = {
   avatar?: string | null
   title?: string | null
   expertise?: Prisma.InstructorCreateexpertiseInput | string[]
+  slug?: string | null
+  linkedinUrl?: string | null
+  twitterUrl?: string | null
+  githubUrl?: string | null
   isActive?: boolean
   isVerified?: boolean
   courses?: Prisma.InstructorCourseUncheckedCreateNestedManyWithoutInstructorInput
@@ -351,6 +407,10 @@ export type InstructorUpdateInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expertise?: Prisma.InstructorUpdateexpertiseInput | string[]
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   courses?: Prisma.InstructorCourseUpdateManyWithoutInstructorNestedInput
@@ -367,6 +427,10 @@ export type InstructorUncheckedUpdateInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expertise?: Prisma.InstructorUpdateexpertiseInput | string[]
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   courses?: Prisma.InstructorCourseUncheckedUpdateManyWithoutInstructorNestedInput
@@ -383,6 +447,10 @@ export type InstructorCreateManyInput = {
   avatar?: string | null
   title?: string | null
   expertise?: Prisma.InstructorCreateexpertiseInput | string[]
+  slug?: string | null
+  linkedinUrl?: string | null
+  twitterUrl?: string | null
+  githubUrl?: string | null
   isActive?: boolean
   isVerified?: boolean
 }
@@ -398,6 +466,10 @@ export type InstructorUpdateManyMutationInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expertise?: Prisma.InstructorUpdateexpertiseInput | string[]
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -413,6 +485,10 @@ export type InstructorUncheckedUpdateManyInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expertise?: Prisma.InstructorUpdateexpertiseInput | string[]
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -428,6 +504,10 @@ export type InstructorCountOrderByAggregateInput = {
   avatar?: Prisma.SortOrder
   title?: Prisma.SortOrder
   expertise?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
+  twitterUrl?: Prisma.SortOrder
+  githubUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
 }
@@ -442,6 +522,10 @@ export type InstructorMaxOrderByAggregateInput = {
   bio?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
+  twitterUrl?: Prisma.SortOrder
+  githubUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
 }
@@ -456,6 +540,10 @@ export type InstructorMinOrderByAggregateInput = {
   bio?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
+  twitterUrl?: Prisma.SortOrder
+  githubUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
 }
@@ -499,6 +587,10 @@ export type InstructorCreateWithoutCoursesInput = {
   avatar?: string | null
   title?: string | null
   expertise?: Prisma.InstructorCreateexpertiseInput | string[]
+  slug?: string | null
+  linkedinUrl?: string | null
+  twitterUrl?: string | null
+  githubUrl?: string | null
   isActive?: boolean
   isVerified?: boolean
 }
@@ -514,6 +606,10 @@ export type InstructorUncheckedCreateWithoutCoursesInput = {
   avatar?: string | null
   title?: string | null
   expertise?: Prisma.InstructorCreateexpertiseInput | string[]
+  slug?: string | null
+  linkedinUrl?: string | null
+  twitterUrl?: string | null
+  githubUrl?: string | null
   isActive?: boolean
   isVerified?: boolean
 }
@@ -545,6 +641,10 @@ export type InstructorUpdateWithoutCoursesInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expertise?: Prisma.InstructorUpdateexpertiseInput | string[]
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -560,6 +660,10 @@ export type InstructorUncheckedUpdateWithoutCoursesInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expertise?: Prisma.InstructorUpdateexpertiseInput | string[]
+  slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -606,6 +710,10 @@ export type InstructorSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   avatar?: boolean
   title?: boolean
   expertise?: boolean
+  slug?: boolean
+  linkedinUrl?: boolean
+  twitterUrl?: boolean
+  githubUrl?: boolean
   isActive?: boolean
   isVerified?: boolean
   courses?: boolean | Prisma.Instructor$coursesArgs<ExtArgs>
@@ -623,6 +731,10 @@ export type InstructorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   avatar?: boolean
   title?: boolean
   expertise?: boolean
+  slug?: boolean
+  linkedinUrl?: boolean
+  twitterUrl?: boolean
+  githubUrl?: boolean
   isActive?: boolean
   isVerified?: boolean
 }, ExtArgs["result"]["instructor"]>
@@ -638,6 +750,10 @@ export type InstructorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   avatar?: boolean
   title?: boolean
   expertise?: boolean
+  slug?: boolean
+  linkedinUrl?: boolean
+  twitterUrl?: boolean
+  githubUrl?: boolean
   isActive?: boolean
   isVerified?: boolean
 }, ExtArgs["result"]["instructor"]>
@@ -653,11 +769,15 @@ export type InstructorSelectScalar = {
   avatar?: boolean
   title?: boolean
   expertise?: boolean
+  slug?: boolean
+  linkedinUrl?: boolean
+  twitterUrl?: boolean
+  githubUrl?: boolean
   isActive?: boolean
   isVerified?: boolean
 }
 
-export type InstructorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "email" | "password" | "name" | "bio" | "avatar" | "title" | "expertise" | "isActive" | "isVerified", ExtArgs["result"]["instructor"]>
+export type InstructorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "email" | "password" | "name" | "bio" | "avatar" | "title" | "expertise" | "slug" | "linkedinUrl" | "twitterUrl" | "githubUrl" | "isActive" | "isVerified", ExtArgs["result"]["instructor"]>
 export type InstructorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courses?: boolean | Prisma.Instructor$coursesArgs<ExtArgs>
   _count?: boolean | Prisma.InstructorCountOutputTypeDefaultArgs<ExtArgs>
@@ -681,6 +801,10 @@ export type $InstructorPayload<ExtArgs extends runtime.Types.Extensions.Internal
     avatar: string | null
     title: string | null
     expertise: string[]
+    slug: string | null
+    linkedinUrl: string | null
+    twitterUrl: string | null
+    githubUrl: string | null
     isActive: boolean
     isVerified: boolean
   }, ExtArgs["result"]["instructor"]>
@@ -1117,6 +1241,10 @@ export interface InstructorFieldRefs {
   readonly avatar: Prisma.FieldRef<"Instructor", 'String'>
   readonly title: Prisma.FieldRef<"Instructor", 'String'>
   readonly expertise: Prisma.FieldRef<"Instructor", 'String[]'>
+  readonly slug: Prisma.FieldRef<"Instructor", 'String'>
+  readonly linkedinUrl: Prisma.FieldRef<"Instructor", 'String'>
+  readonly twitterUrl: Prisma.FieldRef<"Instructor", 'String'>
+  readonly githubUrl: Prisma.FieldRef<"Instructor", 'String'>
   readonly isActive: Prisma.FieldRef<"Instructor", 'Boolean'>
   readonly isVerified: Prisma.FieldRef<"Instructor", 'Boolean'>
 }

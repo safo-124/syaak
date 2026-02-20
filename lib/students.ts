@@ -288,6 +288,11 @@ export async function getStudentStats(studentId: string) {
     0
   )
 
+  // Count certificates
+  const certificateCount = await prisma.certificate.count({
+    where: { studentId },
+  })
+
   return {
     totalEnrolled,
     inProgress,
@@ -295,6 +300,7 @@ export async function getStudentStats(studentId: string) {
     notStarted: totalEnrolled - inProgress - completed,
     totalLessonsCompleted,
     totalWatchTime,
+    certificateCount,
     averageProgress: totalEnrolled > 0
       ? Math.round(enrollments.reduce((sum, e) => sum + e.progress, 0) / totalEnrolled)
       : 0,

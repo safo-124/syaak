@@ -21,6 +21,8 @@ import {
 import Link from "next/link"
 import { LessonCompleteButton } from "@/components/student/lesson-complete-button"
 import { LessonVideoPlayer } from "@/components/student/lesson-video-player"
+import { LessonComments } from "@/components/student/lesson-comments"
+import { getLessonComments } from "@/lib/lesson-comments"
 
 interface Props {
   params: Promise<{ enrollmentId: string; lessonId: string }>
@@ -77,10 +79,13 @@ export default async function LessonPage({ params }: Props) {
   const isCompleted = progress?.isCompleted || false
 
   // Get lesson resources
-  const lessonWithResources = await prisma.lesson.findUnique({
-    where: { id: lessonId },
-    include: { resources: true },
-  })
+  const [lessonWithResources, comments] = await Promise.all([
+    prisma.lesson.findUnique({
+      where: { id: lessonId },
+      include: { resources: true },
+    }),
+    getLessonComments(lessonId),
+  ])
 
   const resources = lessonWithResources?.resources || []
 
@@ -186,6 +191,20 @@ export default async function LessonPage({ params }: Props) {
               <div />
             )}
           </div>
+
+          {/* Discussion */}
+          <Card className="glass border-none">
+            <CardContent className="pt-6">
+              <LessonComments
+                lessonId={lessonId}
+                enrollmentId={enrollmentId}
+                studentId={studentId}
+                studentName={enrollment.student.name}
+                studentAvatar={enrollment.student.avatar}
+                initialComments={comments as Parameters<typeof LessonComments>[0]["initialComments"]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         {/* Sidebar */}

@@ -314,6 +314,10 @@ model Instructor {
   avatar      String?
   title       String?     // e.g. "Senior Data Scientist"
   expertise   String[]    // e.g. ["Python", "Machine Learning"]
+  slug        String?  @unique
+  linkedinUrl String?
+  twitterUrl  String?
+  githubUrl   String?
   
   isActive    Boolean     @default(true)
   isVerified  Boolean     @default(false)
@@ -342,6 +346,8 @@ model Student {
   certificates   Certificate[]
   streak         LearningStreak?
   achievements   Achievement[]
+  courseRatings  CourseRating[]
+  lessonComments LessonComment[]
 
   @@map("students")
 }
@@ -402,6 +408,7 @@ model ManagedCourse {
   instructors   InstructorCourse[]
   modules       CourseModule[]
   enrollments   Enrollment[]
+  ratings       CourseRating[]
 
   @@map("managed_courses")
 }
@@ -445,6 +452,7 @@ model Lesson {
   
   resources   LessonResource[]
   progress    LessonProgress[]
+  comments    LessonComment[]
 
   @@map("lessons")
 }
@@ -628,6 +636,66 @@ enum AchievementType {
   PERFECT_SCORE
   EARLY_BIRD
   NIGHT_OWL
+}
+
+// Course Rating / Review
+model CourseRating {
+  id          String        @id @default(uuid())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  studentId   String
+  student     Student       @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  courseId    String
+  course      ManagedCourse @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  rating      Int           // 1–5
+  review      String?       // Optional written review
+
+  @@unique([studentId, courseId])
+  @@map("course_ratings")
+}
+
+// Lesson Discussion Comment
+model LessonComment {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  lessonId    String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  content     String
+
+  parentId    String?
+  parent      LessonComment?  @relation("LessonCommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     LessonComment[] @relation("LessonCommentReplies")
+
+  @@map("lesson_comments")
+}
+
+// Testimonial (admin-managed, shown on homepage)
+model Testimonial {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  name        String
+  role        String?        // e.g. "Data Analyst at MTN"
+  content     String         // The testimonial text
+  rating      Int            @default(5)  // 1–5 stars
+  imageUrl    String?        // Avatar
+  companyLogo String?        // Optional company logo
+
+  isVisible       Boolean  @default(true)
+  showOnHomepage  Boolean  @default(true)
+  order           Int      @default(0)
+
+  @@map("testimonials")
 }
 
 // ============ TECHNOLOGY SOLUTIONS ============

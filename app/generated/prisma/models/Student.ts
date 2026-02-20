@@ -219,6 +219,8 @@ export type StudentWhereInput = {
   certificates?: Prisma.CertificateListRelationFilter
   streak?: Prisma.XOR<Prisma.LearningStreakNullableScalarRelationFilter, Prisma.LearningStreakWhereInput> | null
   achievements?: Prisma.AchievementListRelationFilter
+  courseRatings?: Prisma.CourseRatingListRelationFilter
+  lessonComments?: Prisma.LessonCommentListRelationFilter
 }
 
 export type StudentOrderByWithRelationInput = {
@@ -236,6 +238,8 @@ export type StudentOrderByWithRelationInput = {
   certificates?: Prisma.CertificateOrderByRelationAggregateInput
   streak?: Prisma.LearningStreakOrderByWithRelationInput
   achievements?: Prisma.AchievementOrderByRelationAggregateInput
+  courseRatings?: Prisma.CourseRatingOrderByRelationAggregateInput
+  lessonComments?: Prisma.LessonCommentOrderByRelationAggregateInput
 }
 
 export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -256,6 +260,8 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   certificates?: Prisma.CertificateListRelationFilter
   streak?: Prisma.XOR<Prisma.LearningStreakNullableScalarRelationFilter, Prisma.LearningStreakWhereInput> | null
   achievements?: Prisma.AchievementListRelationFilter
+  courseRatings?: Prisma.CourseRatingListRelationFilter
+  lessonComments?: Prisma.LessonCommentListRelationFilter
 }, "id" | "email">
 
 export type StudentOrderByWithAggregationInput = {
@@ -303,6 +309,8 @@ export type StudentCreateInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
   achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateInput = {
@@ -320,6 +328,8 @@ export type StudentUncheckedCreateInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
   achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingUncheckedCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUpdateInput = {
@@ -337,6 +347,8 @@ export type StudentUpdateInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
   achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateInput = {
@@ -354,6 +366,8 @@ export type StudentUncheckedUpdateInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
   achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUncheckedUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateManyInput = {
@@ -503,6 +517,34 @@ export type StudentUpdateOneRequiredWithoutAchievementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutAchievementsInput, Prisma.StudentUpdateWithoutAchievementsInput>, Prisma.StudentUncheckedUpdateWithoutAchievementsInput>
 }
 
+export type StudentCreateNestedOneWithoutCourseRatingsInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutCourseRatingsInput, Prisma.StudentUncheckedCreateWithoutCourseRatingsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutCourseRatingsInput
+  connect?: Prisma.StudentWhereUniqueInput
+}
+
+export type StudentUpdateOneRequiredWithoutCourseRatingsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutCourseRatingsInput, Prisma.StudentUncheckedCreateWithoutCourseRatingsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutCourseRatingsInput
+  upsert?: Prisma.StudentUpsertWithoutCourseRatingsInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutCourseRatingsInput, Prisma.StudentUpdateWithoutCourseRatingsInput>, Prisma.StudentUncheckedUpdateWithoutCourseRatingsInput>
+}
+
+export type StudentCreateNestedOneWithoutLessonCommentsInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutLessonCommentsInput, Prisma.StudentUncheckedCreateWithoutLessonCommentsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutLessonCommentsInput
+  connect?: Prisma.StudentWhereUniqueInput
+}
+
+export type StudentUpdateOneRequiredWithoutLessonCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutLessonCommentsInput, Prisma.StudentUncheckedCreateWithoutLessonCommentsInput>
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutLessonCommentsInput
+  upsert?: Prisma.StudentUpsertWithoutLessonCommentsInput
+  connect?: Prisma.StudentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutLessonCommentsInput, Prisma.StudentUpdateWithoutLessonCommentsInput>, Prisma.StudentUncheckedUpdateWithoutLessonCommentsInput>
+}
+
 export type StudentCreateWithoutEnrollmentsInput = {
   id?: string
   createdAt?: Date | string
@@ -517,6 +559,8 @@ export type StudentCreateWithoutEnrollmentsInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
   achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutEnrollmentsInput = {
@@ -533,6 +577,8 @@ export type StudentUncheckedCreateWithoutEnrollmentsInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
   achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingUncheckedCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutEnrollmentsInput = {
@@ -565,6 +611,8 @@ export type StudentUpdateWithoutEnrollmentsInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
   achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
@@ -581,6 +629,8 @@ export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
   achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUncheckedUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateWithoutNotificationsInput = {
@@ -597,6 +647,8 @@ export type StudentCreateWithoutNotificationsInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
   achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutNotificationsInput = {
@@ -613,6 +665,8 @@ export type StudentUncheckedCreateWithoutNotificationsInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
   achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingUncheckedCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutNotificationsInput = {
@@ -645,6 +699,8 @@ export type StudentUpdateWithoutNotificationsInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
   achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutNotificationsInput = {
@@ -661,6 +717,8 @@ export type StudentUncheckedUpdateWithoutNotificationsInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
   achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUncheckedUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateWithoutCertificatesInput = {
@@ -677,6 +735,8 @@ export type StudentCreateWithoutCertificatesInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
   achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutCertificatesInput = {
@@ -693,6 +753,8 @@ export type StudentUncheckedCreateWithoutCertificatesInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
   achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingUncheckedCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutCertificatesInput = {
@@ -725,6 +787,8 @@ export type StudentUpdateWithoutCertificatesInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
   achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutCertificatesInput = {
@@ -741,6 +805,8 @@ export type StudentUncheckedUpdateWithoutCertificatesInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
   achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUncheckedUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateWithoutStreakInput = {
@@ -757,6 +823,8 @@ export type StudentCreateWithoutStreakInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutStreakInput = {
@@ -773,6 +841,8 @@ export type StudentUncheckedCreateWithoutStreakInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingUncheckedCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutStreakInput = {
@@ -805,6 +875,8 @@ export type StudentUpdateWithoutStreakInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutStreakInput = {
@@ -821,6 +893,8 @@ export type StudentUncheckedUpdateWithoutStreakInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUncheckedUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateWithoutAchievementsInput = {
@@ -837,6 +911,8 @@ export type StudentCreateWithoutAchievementsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutAchievementsInput = {
@@ -853,6 +929,8 @@ export type StudentUncheckedCreateWithoutAchievementsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingUncheckedCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutAchievementsInput = {
@@ -885,6 +963,8 @@ export type StudentUpdateWithoutAchievementsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutAchievementsInput = {
@@ -901,6 +981,184 @@ export type StudentUncheckedUpdateWithoutAchievementsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUncheckedUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateWithoutCourseRatingsInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutCourseRatingsInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+  lessonComments?: Prisma.LessonCommentUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutCourseRatingsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutCourseRatingsInput, Prisma.StudentUncheckedCreateWithoutCourseRatingsInput>
+}
+
+export type StudentUpsertWithoutCourseRatingsInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutCourseRatingsInput, Prisma.StudentUncheckedUpdateWithoutCourseRatingsInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutCourseRatingsInput, Prisma.StudentUncheckedCreateWithoutCourseRatingsInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutCourseRatingsInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutCourseRatingsInput, Prisma.StudentUncheckedUpdateWithoutCourseRatingsInput>
+}
+
+export type StudentUpdateWithoutCourseRatingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutCourseRatingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+  lessonComments?: Prisma.LessonCommentUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentCreateWithoutLessonCommentsInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingCreateNestedManyWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutLessonCommentsInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  password: string
+  name: string
+  avatar?: string | null
+  phone?: string | null
+  isActive?: boolean
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  streak?: Prisma.LearningStreakUncheckedCreateNestedOneWithoutStudentInput
+  achievements?: Prisma.AchievementUncheckedCreateNestedManyWithoutStudentInput
+  courseRatings?: Prisma.CourseRatingUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutLessonCommentsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutLessonCommentsInput, Prisma.StudentUncheckedCreateWithoutLessonCommentsInput>
+}
+
+export type StudentUpsertWithoutLessonCommentsInput = {
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutLessonCommentsInput, Prisma.StudentUncheckedUpdateWithoutLessonCommentsInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutLessonCommentsInput, Prisma.StudentUncheckedCreateWithoutLessonCommentsInput>
+  where?: Prisma.StudentWhereInput
+}
+
+export type StudentUpdateToOneWithWhereWithoutLessonCommentsInput = {
+  where?: Prisma.StudentWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutLessonCommentsInput, Prisma.StudentUncheckedUpdateWithoutLessonCommentsInput>
+}
+
+export type StudentUpdateWithoutLessonCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutLessonCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  streak?: Prisma.LearningStreakUncheckedUpdateOneWithoutStudentNestedInput
+  achievements?: Prisma.AchievementUncheckedUpdateManyWithoutStudentNestedInput
+  courseRatings?: Prisma.CourseRatingUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 
@@ -913,6 +1171,8 @@ export type StudentCountOutputType = {
   notifications: number
   certificates: number
   achievements: number
+  courseRatings: number
+  lessonComments: number
 }
 
 export type StudentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -920,6 +1180,8 @@ export type StudentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   notifications?: boolean | StudentCountOutputTypeCountNotificationsArgs
   certificates?: boolean | StudentCountOutputTypeCountCertificatesArgs
   achievements?: boolean | StudentCountOutputTypeCountAchievementsArgs
+  courseRatings?: boolean | StudentCountOutputTypeCountCourseRatingsArgs
+  lessonComments?: boolean | StudentCountOutputTypeCountLessonCommentsArgs
 }
 
 /**
@@ -960,6 +1222,20 @@ export type StudentCountOutputTypeCountAchievementsArgs<ExtArgs extends runtime.
   where?: Prisma.AchievementWhereInput
 }
 
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountCourseRatingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CourseRatingWhereInput
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountLessonCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LessonCommentWhereInput
+}
+
 
 export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -976,6 +1252,8 @@ export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   certificates?: boolean | Prisma.Student$certificatesArgs<ExtArgs>
   streak?: boolean | Prisma.Student$streakArgs<ExtArgs>
   achievements?: boolean | Prisma.Student$achievementsArgs<ExtArgs>
+  courseRatings?: boolean | Prisma.Student$courseRatingsArgs<ExtArgs>
+  lessonComments?: boolean | Prisma.Student$lessonCommentsArgs<ExtArgs>
   _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
@@ -1022,6 +1300,8 @@ export type StudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   certificates?: boolean | Prisma.Student$certificatesArgs<ExtArgs>
   streak?: boolean | Prisma.Student$streakArgs<ExtArgs>
   achievements?: boolean | Prisma.Student$achievementsArgs<ExtArgs>
+  courseRatings?: boolean | Prisma.Student$courseRatingsArgs<ExtArgs>
+  lessonComments?: boolean | Prisma.Student$lessonCommentsArgs<ExtArgs>
   _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1035,6 +1315,8 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     certificates: Prisma.$CertificatePayload<ExtArgs>[]
     streak: Prisma.$LearningStreakPayload<ExtArgs> | null
     achievements: Prisma.$AchievementPayload<ExtArgs>[]
+    courseRatings: Prisma.$CourseRatingPayload<ExtArgs>[]
+    lessonComments: Prisma.$LessonCommentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1445,6 +1727,8 @@ export interface Prisma__StudentClient<T, Null = never, ExtArgs extends runtime.
   certificates<T extends Prisma.Student$certificatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$certificatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CertificatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   streak<T extends Prisma.Student$streakArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$streakArgs<ExtArgs>>): Prisma.Prisma__LearningStreakClient<runtime.Types.Result.GetResult<Prisma.$LearningStreakPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   achievements<T extends Prisma.Student$achievementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  courseRatings<T extends Prisma.Student$courseRatingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$courseRatingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CourseRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  lessonComments<T extends Prisma.Student$lessonCommentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$lessonCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LessonCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1983,6 +2267,54 @@ export type Student$achievementsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.AchievementScalarFieldEnum | Prisma.AchievementScalarFieldEnum[]
+}
+
+/**
+ * Student.courseRatings
+ */
+export type Student$courseRatingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CourseRating
+   */
+  select?: Prisma.CourseRatingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CourseRating
+   */
+  omit?: Prisma.CourseRatingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CourseRatingInclude<ExtArgs> | null
+  where?: Prisma.CourseRatingWhereInput
+  orderBy?: Prisma.CourseRatingOrderByWithRelationInput | Prisma.CourseRatingOrderByWithRelationInput[]
+  cursor?: Prisma.CourseRatingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CourseRatingScalarFieldEnum | Prisma.CourseRatingScalarFieldEnum[]
+}
+
+/**
+ * Student.lessonComments
+ */
+export type Student$lessonCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LessonComment
+   */
+  select?: Prisma.LessonCommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LessonComment
+   */
+  omit?: Prisma.LessonCommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LessonCommentInclude<ExtArgs> | null
+  where?: Prisma.LessonCommentWhereInput
+  orderBy?: Prisma.LessonCommentOrderByWithRelationInput | Prisma.LessonCommentOrderByWithRelationInput[]
+  cursor?: Prisma.LessonCommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LessonCommentScalarFieldEnum | Prisma.LessonCommentScalarFieldEnum[]
 }
 
 /**

@@ -130,16 +130,14 @@ export default async function StudentDashboard() {
         <Card className="glass border-none">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Watch Time
+              Certificates
             </CardTitle>
-            <Clock className="size-4 text-amber-500" />
+            <Award className="size-4 text-purple-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-amber-600">
-              {formatWatchTime(stats.totalWatchTime)}
-            </div>
+            <div className="text-3xl font-bold text-purple-600">{stats.certificateCount}</div>
             <p className="text-xs text-muted-foreground">
-              Total learning time
+              Earned
             </p>
           </CardContent>
         </Card>
@@ -305,8 +303,14 @@ export default async function StudentDashboard() {
               </Link>
             </Button>
             <Button variant="outline" className="w-full justify-start" asChild>
-              <Link href="/learn/settings">
+              <Link href="/instructors">
                 <TrendingUp className="mr-2 size-4" />
+                Meet the Instructors
+              </Link>
+            </Button>
+            <Button variant="outline" className="w-full justify-start" asChild>
+              <Link href="/learn/settings">
+                <CheckCircle className="mr-2 size-4" />
                 Update Profile
               </Link>
             </Button>

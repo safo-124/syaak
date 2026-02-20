@@ -77,6 +77,9 @@ export const ModelName = {
   Certificate: 'Certificate',
   LearningStreak: 'LearningStreak',
   Achievement: 'Achievement',
+  CourseRating: 'CourseRating',
+  LessonComment: 'LessonComment',
+  Testimonial: 'Testimonial',
   TechSolution: 'TechSolution',
   AboutPage: 'AboutPage',
   TeamMember: 'TeamMember',
@@ -320,6 +323,10 @@ export const InstructorScalarFieldEnum = {
   avatar: 'avatar',
   title: 'title',
   expertise: 'expertise',
+  slug: 'slug',
+  linkedinUrl: 'linkedinUrl',
+  twitterUrl: 'twitterUrl',
+  githubUrl: 'githubUrl',
   isActive: 'isActive',
   isVerified: 'isVerified'
 } as const
@@ -507,6 +514,50 @@ export const AchievementScalarFieldEnum = {
 } as const
 
 export type AchievementScalarFieldEnum = (typeof AchievementScalarFieldEnum)[keyof typeof AchievementScalarFieldEnum]
+
+
+export const CourseRatingScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  studentId: 'studentId',
+  courseId: 'courseId',
+  rating: 'rating',
+  review: 'review'
+} as const
+
+export type CourseRatingScalarFieldEnum = (typeof CourseRatingScalarFieldEnum)[keyof typeof CourseRatingScalarFieldEnum]
+
+
+export const LessonCommentScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  lessonId: 'lessonId',
+  studentId: 'studentId',
+  content: 'content',
+  parentId: 'parentId'
+} as const
+
+export type LessonCommentScalarFieldEnum = (typeof LessonCommentScalarFieldEnum)[keyof typeof LessonCommentScalarFieldEnum]
+
+
+export const TestimonialScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  role: 'role',
+  content: 'content',
+  rating: 'rating',
+  imageUrl: 'imageUrl',
+  companyLogo: 'companyLogo',
+  isVisible: 'isVisible',
+  showOnHomepage: 'showOnHomepage',
+  order: 'order'
+} as const
+
+export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
 
 
 export const TechSolutionScalarFieldEnum = {

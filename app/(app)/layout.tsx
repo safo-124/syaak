@@ -16,7 +16,8 @@ import {
   UserCog,
   BarChart3,
   Layers,
-  Info
+  Info,
+  Star
 } from "lucide-react"
 
 export default function AppLayout({
@@ -95,6 +96,13 @@ export default function AppLayout({
           >
             <Info className="size-4" />
             About Page
+          </Link>
+          <Link 
+            href="/admin/testimonials" 
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <Star className="size-4" />
+            Testimonials
           </Link>
           <Link 
             href="/admin/blog" 

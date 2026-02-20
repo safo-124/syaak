@@ -15,7 +15,7 @@ export async function PUT(request: Request) {
     }
 
     const body = await request.json()
-    const { name, title, bio, expertise } = body
+    const { name, title, bio, expertise, linkedinUrl, twitterUrl, githubUrl } = body
 
     if (!name || name.trim() === "") {
       return NextResponse.json(
@@ -31,6 +31,9 @@ export async function PUT(request: Request) {
         title: title?.trim() || null,
         bio: bio?.trim() || null,
         expertise: expertise || [],
+        linkedinUrl: linkedinUrl?.trim() || null,
+        twitterUrl: twitterUrl?.trim() || null,
+        githubUrl: githubUrl?.trim() || null,
       },
     })
 

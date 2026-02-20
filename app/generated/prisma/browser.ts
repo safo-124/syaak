@@ -148,6 +148,21 @@ export type LearningStreak = Prisma.LearningStreakModel
  */
 export type Achievement = Prisma.AchievementModel
 /**
+ * Model CourseRating
+ * 
+ */
+export type CourseRating = Prisma.CourseRatingModel
+/**
+ * Model LessonComment
+ * 
+ */
+export type LessonComment = Prisma.LessonCommentModel
+/**
+ * Model Testimonial
+ * 
+ */
+export type Testimonial = Prisma.TestimonialModel
+/**
  * Model TechSolution
  * 
  */
