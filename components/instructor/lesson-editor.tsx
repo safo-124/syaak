@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { useState, useTransition, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -28,15 +28,6 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import {
   Save,
   Loader2,
   Video,
@@ -52,6 +43,8 @@ import {
   Trash2,
   Image,
   Youtube,
+  X,
+  CheckCircle2,
 } from "lucide-react"
 import { toast } from "sonner"
 import Link from "next/link"
@@ -112,6 +105,12 @@ export function LessonEditor({
   const [isPreview, setIsPreview] = useState(lesson?.isPreview || false)
   const [contentType, setContentType] = useState<"video" | "text" | "mixed">("mixed")
   const [resources, setResources] = useState<Resource[]>([])
+
+  // Video upload state
+  const [isUploading, setIsUploading] = useState(false)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [uploadedFileName, setUploadedFileName] = useState<string | null>(null)
+  const videoFileRef = useRef<HTMLInputElement>(null)
   
   // Auto-generate slug from title
   const generateSlug = (text: string) => {
@@ -184,6 +183,54 @@ export function LessonEditor({
         router.push(`/instructor/courses/${courseSlug}/curriculum`)
       }
     })
+  }
+
+  const handleVideoFileUpload = (file: File) => {
+    const allowedTypes = ["video/mp4", "video/webm", "video/quicktime", "video/x-msvideo", "video/avi"]
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Invalid file type. Allowed: MP4, WebM, MOV, AVI.")
+      return
+    }
+    const maxSize = 500 * 1024 * 1024
+    if (file.size > maxSize) {
+      toast.error("File too large. Max 500 MB.")
+      return
+    }
+
+    const xhr = new XMLHttpRequest()
+    const formData = new FormData()
+    formData.append("file", file)
+
+    xhr.upload.addEventListener("progress", (e) => {
+      if (e.lengthComputable) {
+        setUploadProgress(Math.round((e.loaded / e.total) * 100))
+      }
+    })
+
+    xhr.addEventListener("load", () => {
+      if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText)
+        setVideoUrl(data.url)
+        setUploadedFileName(file.name)
+        toast.success("Video uploaded successfully!")
+      } else {
+        const data = JSON.parse(xhr.responseText)
+        toast.error(data.error || "Upload failed")
+      }
+      setIsUploading(false)
+      setUploadProgress(0)
+    })
+
+    xhr.addEventListener("error", () => {
+      toast.error("Upload failed. Please try again.")
+      setIsUploading(false)
+      setUploadProgress(0)
+    })
+
+    setIsUploading(true)
+    setUploadProgress(0)
+    xhr.open("POST", "/api/upload/video")
+    xhr.send(formData)
   }
 
   const extractYouTubeId = (url: string) => {
@@ -400,58 +447,96 @@ You can include:
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* Hidden file input */}
+                <input
+                  ref={videoFileRef}
+                  type="file"
+                  accept="video/mp4,video/webm,video/quicktime,video/x-msvideo"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0]
+                    if (file) handleVideoFileUpload(file)
+                    e.target.value = ""
+                  }}
+                />
+
+                {/* Upload area */}
+                <div className="space-y-3">
+                  <Label>Upload Video File</Label>
+                  {uploadedFileName && !isUploading ? (
+                    <div className="flex items-center gap-3 rounded-lg border border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20 p-4">
+                      <CheckCircle2 className="size-5 text-green-600 shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-green-800 dark:text-green-200 truncate">{uploadedFileName}</p>
+                        <p className="text-xs text-green-600 dark:text-green-400">Uploaded successfully</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="shrink-0 text-green-700"
+                        onClick={() => {
+                          setVideoUrl("")
+                          setUploadedFileName(null)
+                        }}
+                      >
+                        <X className="size-4" />
+                      </Button>
+                    </div>
+                  ) : isUploading ? (
+                    <div className="rounded-lg border p-6 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <Loader2 className="size-5 animate-spin text-primary shrink-0" />
+                        <p className="text-sm font-medium">Uploading video...</p>
+                        <span className="ml-auto text-sm font-mono text-muted-foreground">{uploadProgress}%</span>
+                      </div>
+                      <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+                        <div
+                          className="h-2 bg-primary rounded-full transition-all duration-200"
+                          style={{ width: `${uploadProgress}%` }}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => videoFileRef.current?.click()}
+                      className="w-full border-2 border-dashed rounded-lg p-8 text-center hover:border-primary hover:bg-muted/30 transition-colors cursor-pointer"
+                    >
+                      <Video className="mx-auto size-10 text-muted-foreground mb-3" />
+                      <p className="text-sm font-medium">Click to choose a video file</p>
+                      <p className="text-xs text-muted-foreground mt-1">MP4, WebM, MOV or AVI · Max 500 MB</p>
+                    </button>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <div className="h-px flex-1 bg-border" />
+                  <span className="text-xs text-muted-foreground">or paste a URL</span>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="videoUrl">Video URL</Label>
-                  <div className="flex gap-2">
-                    <Input
-                      id="videoUrl"
-                      placeholder="https://www.youtube.com/watch?v=..."
-                      value={videoUrl}
-                      onChange={(e) => setVideoUrl(e.target.value)}
-                    />
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline">
-                          <Upload className="mr-2 size-4" />
-                          Upload
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>Upload Video</DialogTitle>
-                          <DialogDescription>
-                            Upload a video file for this lesson
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="border-2 border-dashed rounded-lg p-8 text-center">
-                          <Video className="mx-auto size-12 text-muted-foreground mb-4" />
-                          <p className="text-sm text-muted-foreground mb-2">
-                            Drag and drop your video here, or click to browse
-                          </p>
-                          <Button variant="outline" size="sm">
-                            Choose File
-                          </Button>
-                          <p className="mt-2 text-xs text-muted-foreground">
-                            MP4, WebM or MOV. Max 500MB.
-                          </p>
-                        </div>
-                        <DialogFooter>
-                          <Button variant="outline">Cancel</Button>
-                          <Button disabled>Upload</Button>
-                        </DialogFooter>
-                      </DialogContent>
-                    </Dialog>
-                  </div>
+                  <Input
+                    id="videoUrl"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                    value={videoUrl}
+                    onChange={(e) => {
+                      setVideoUrl(e.target.value)
+                      setUploadedFileName(null)
+                    }}
+                    disabled={isUploading}
+                  />
                   <p className="text-xs text-muted-foreground">
                     Paste a YouTube, Vimeo, or direct video URL
                   </p>
                 </div>
 
                 {/* Video Preview */}
-                {videoUrl && (
+                {videoUrl && !isUploading && (
                   <div className="space-y-2">
                     <Label>Preview</Label>
-                    <div className="aspect-video overflow-hidden rounded-lg bg-muted">
+                    <div className="aspect-video overflow-hidden rounded-lg bg-black">
                       {extractYouTubeId(videoUrl) ? (
                         <iframe
                           src={`https://www.youtube.com/embed/${extractYouTubeId(videoUrl)}`}
@@ -459,9 +544,11 @@ You can include:
                           allowFullScreen
                         />
                       ) : (
-                        <div className="flex h-full items-center justify-center">
-                          <Video className="size-12 text-muted-foreground" />
-                        </div>
+                        <video
+                          src={videoUrl}
+                          controls
+                          className="h-full w-full"
+                        />
                       )}
                     </div>
                   </div>
