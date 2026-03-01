@@ -1,7 +1,16 @@
 "use client"
 
 import Link from "next/link"
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react"
+import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram } from "lucide-react"
+
+// X (formerly Twitter) brand icon
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" className={className}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  )
+}
 import { NewsletterForm } from "@/components/newsletter-form"
 
 export function SiteFooter() {
@@ -47,9 +56,10 @@ export function SiteFooter() {
               </a>
               <a 
                 href="#" 
+                aria-label="X (formerly Twitter)"
                 className="flex size-9 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
               >
-                <Twitter className="size-4" />
+                <XIcon className="size-4" />
               </a>
               <a 
                 href="#" 
