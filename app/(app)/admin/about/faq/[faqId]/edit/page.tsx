@@ -2,8 +2,9 @@ import { notFound } from "next/navigation"
 import prisma from "@/lib/prisma"
 import { FaqForm } from "@/components/admin/faq-form"
 
-export default async function EditFaqPage({ params }: { params: { faqId: string } }) {
-  const faq = await prisma.faqItem.findUnique({ where: { id: params.faqId } })
+export default async function EditFaqPage({ params }: { params: Promise<{ faqId: string }> }) {
+  const { faqId } = await params
+  const faq = await prisma.faqItem.findUnique({ where: { id: faqId } })
   if (!faq) notFound()
 
   return (

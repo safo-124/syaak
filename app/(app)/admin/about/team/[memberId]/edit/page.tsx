@@ -2,8 +2,9 @@ import { notFound } from "next/navigation"
 import prisma from "@/lib/prisma"
 import { TeamMemberForm } from "@/components/admin/team-member-form"
 
-export default async function EditTeamMemberPage({ params }: { params: { memberId: string } }) {
-  const member = await prisma.teamMember.findUnique({ where: { id: params.memberId } })
+export default async function EditTeamMemberPage({ params }: { params: Promise<{ memberId: string }> }) {
+  const { memberId } = await params
+  const member = await prisma.teamMember.findUnique({ where: { id: memberId } })
   if (!member) notFound()
 
   return (
