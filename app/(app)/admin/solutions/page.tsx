@@ -2,10 +2,11 @@ import { getAllSolutionsAdmin } from "@/lib/solutions"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Pencil, Globe, Star, Eye, EyeOff, Layers } from "lucide-react"
+import { Plus, Pencil, Globe, Star, Eye, EyeOff, Layers, Hammer } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { SolutionTogglePublished } from "@/components/admin/solution-toggle-published"
+import { SolutionToggleOngoing } from "@/components/admin/solution-toggle-ongoing"
 import { SolutionDeleteButton } from "@/components/admin/solution-delete-button"
 
 export default async function AdminSolutionsPage() {
@@ -13,6 +14,7 @@ export default async function AdminSolutionsPage() {
 
   const publishedCount = solutions.filter((s) => s.isPublished).length
   const featuredCount = solutions.filter((s) => s.isFeatured).length
+  const ongoingCount = solutions.filter((s) => s.isOngoing).length
 
   return (
     <div className="space-y-8">
@@ -33,7 +35,7 @@ export default async function AdminSolutionsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-4">
         <Card className="border-none bg-white/60 shadow-sm dark:bg-black/20">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Solutions</CardTitle>
@@ -59,6 +61,15 @@ export default async function AdminSolutionsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-yellow-600">{featuredCount}</div>
+          </CardContent>
+        </Card>
+        <Card className="border-none bg-white/60 shadow-sm dark:bg-black/20">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Ongoing</CardTitle>
+            <Hammer className="size-4 text-orange-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-orange-500">{ongoingCount}</div>
           </CardContent>
         </Card>
       </div>
@@ -115,6 +126,12 @@ export default async function AdminSolutionsPage() {
                           Featured
                         </Badge>
                       )}
+                      {solution.isOngoing && (
+                        <Badge variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50 dark:bg-orange-950/20">
+                          <Hammer className="mr-1 size-3" />
+                          Ongoing
+                        </Badge>
+                      )}
                     </div>
                     <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                       <span className="font-medium text-primary">{solution.category}</span>
@@ -134,10 +151,20 @@ export default async function AdminSolutionsPage() {
 
                   {/* Actions */}
                   <div className="flex shrink-0 items-center gap-2">
-                    <SolutionTogglePublished
-                      id={solution.id}
-                      isPublished={solution.isPublished}
-                    />
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-[9px] uppercase tracking-wide text-muted-foreground">Live</span>
+                      <SolutionTogglePublished
+                        id={solution.id}
+                        isPublished={solution.isPublished}
+                      />
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-[9px] uppercase tracking-wide text-muted-foreground">Ongoing</span>
+                      <SolutionToggleOngoing
+                        id={solution.id}
+                        isOngoing={solution.isOngoing}
+                      />
+                    </div>
                     <Button size="sm" variant="outline" asChild>
                       <Link href={`/admin/solutions/${solution.id}/edit`}>
                         <Pencil className="size-4" />

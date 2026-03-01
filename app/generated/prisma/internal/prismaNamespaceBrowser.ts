@@ -578,6 +578,7 @@ export const TechSolutionScalarFieldEnum = {
   liveUrl: 'liveUrl',
   isFeatured: 'isFeatured',
   isPublished: 'isPublished',
+  isOngoing: 'isOngoing',
   order: 'order'
 } as const
 

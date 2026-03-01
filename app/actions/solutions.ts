@@ -146,6 +146,21 @@ export async function toggleSolutionPublishedAction(id: string, isPublished: boo
     })
     revalidatePath("/admin/solutions")
     revalidatePath("/")
+    revalidatePath("/solutions")
+    return { success: true }
+  } catch (error) {
+    return { success: false, error: "Failed to update solution" }
+  }
+}
+
+export async function toggleSolutionOngoingAction(id: string, isOngoing: boolean) {
+  try {
+    await prisma.techSolution.update({
+      where: { id },
+      data: { isOngoing },
+    })
+    revalidatePath("/admin/solutions")
+    revalidatePath("/solutions")
     return { success: true }
   } catch (error) {
     return { success: false, error: "Failed to update solution" }

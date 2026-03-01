@@ -49,6 +49,7 @@ export type TechSolutionMinAggregateOutputType = {
   liveUrl: string | null
   isFeatured: boolean | null
   isPublished: boolean | null
+  isOngoing: boolean | null
   order: number | null
 }
 
@@ -67,6 +68,7 @@ export type TechSolutionMaxAggregateOutputType = {
   liveUrl: string | null
   isFeatured: boolean | null
   isPublished: boolean | null
+  isOngoing: boolean | null
   order: number | null
 }
 
@@ -88,6 +90,7 @@ export type TechSolutionCountAggregateOutputType = {
   liveUrl: number
   isFeatured: number
   isPublished: number
+  isOngoing: number
   order: number
   _all: number
 }
@@ -116,6 +119,7 @@ export type TechSolutionMinAggregateInputType = {
   liveUrl?: true
   isFeatured?: true
   isPublished?: true
+  isOngoing?: true
   order?: true
 }
 
@@ -134,6 +138,7 @@ export type TechSolutionMaxAggregateInputType = {
   liveUrl?: true
   isFeatured?: true
   isPublished?: true
+  isOngoing?: true
   order?: true
 }
 
@@ -155,6 +160,7 @@ export type TechSolutionCountAggregateInputType = {
   liveUrl?: true
   isFeatured?: true
   isPublished?: true
+  isOngoing?: true
   order?: true
   _all?: true
 }
@@ -263,6 +269,7 @@ export type TechSolutionGroupByOutputType = {
   liveUrl: string | null
   isFeatured: boolean
   isPublished: boolean
+  isOngoing: boolean
   order: number
   _count: TechSolutionCountAggregateOutputType | null
   _avg: TechSolutionAvgAggregateOutputType | null
@@ -307,6 +314,7 @@ export type TechSolutionWhereInput = {
   liveUrl?: Prisma.StringNullableFilter<"TechSolution"> | string | null
   isFeatured?: Prisma.BoolFilter<"TechSolution"> | boolean
   isPublished?: Prisma.BoolFilter<"TechSolution"> | boolean
+  isOngoing?: Prisma.BoolFilter<"TechSolution"> | boolean
   order?: Prisma.IntFilter<"TechSolution"> | number
 }
 
@@ -328,6 +336,7 @@ export type TechSolutionOrderByWithRelationInput = {
   liveUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isOngoing?: Prisma.SortOrder
   order?: Prisma.SortOrder
 }
 
@@ -352,6 +361,7 @@ export type TechSolutionWhereUniqueInput = Prisma.AtLeast<{
   liveUrl?: Prisma.StringNullableFilter<"TechSolution"> | string | null
   isFeatured?: Prisma.BoolFilter<"TechSolution"> | boolean
   isPublished?: Prisma.BoolFilter<"TechSolution"> | boolean
+  isOngoing?: Prisma.BoolFilter<"TechSolution"> | boolean
   order?: Prisma.IntFilter<"TechSolution"> | number
 }, "id" | "slug">
 
@@ -373,6 +383,7 @@ export type TechSolutionOrderByWithAggregationInput = {
   liveUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isOngoing?: Prisma.SortOrder
   order?: Prisma.SortOrder
   _count?: Prisma.TechSolutionCountOrderByAggregateInput
   _avg?: Prisma.TechSolutionAvgOrderByAggregateInput
@@ -402,6 +413,7 @@ export type TechSolutionScalarWhereWithAggregatesInput = {
   liveUrl?: Prisma.StringNullableWithAggregatesFilter<"TechSolution"> | string | null
   isFeatured?: Prisma.BoolWithAggregatesFilter<"TechSolution"> | boolean
   isPublished?: Prisma.BoolWithAggregatesFilter<"TechSolution"> | boolean
+  isOngoing?: Prisma.BoolWithAggregatesFilter<"TechSolution"> | boolean
   order?: Prisma.IntWithAggregatesFilter<"TechSolution"> | number
 }
 
@@ -423,6 +435,7 @@ export type TechSolutionCreateInput = {
   liveUrl?: string | null
   isFeatured?: boolean
   isPublished?: boolean
+  isOngoing?: boolean
   order?: number
 }
 
@@ -444,6 +457,7 @@ export type TechSolutionUncheckedCreateInput = {
   liveUrl?: string | null
   isFeatured?: boolean
   isPublished?: boolean
+  isOngoing?: boolean
   order?: number
 }
 
@@ -465,6 +479,7 @@ export type TechSolutionUpdateInput = {
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOngoing?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -486,6 +501,7 @@ export type TechSolutionUncheckedUpdateInput = {
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOngoing?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -507,6 +523,7 @@ export type TechSolutionCreateManyInput = {
   liveUrl?: string | null
   isFeatured?: boolean
   isPublished?: boolean
+  isOngoing?: boolean
   order?: number
 }
 
@@ -528,6 +545,7 @@ export type TechSolutionUpdateManyMutationInput = {
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOngoing?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -549,6 +567,7 @@ export type TechSolutionUncheckedUpdateManyInput = {
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOngoing?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -570,6 +589,7 @@ export type TechSolutionCountOrderByAggregateInput = {
   liveUrl?: Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isOngoing?: Prisma.SortOrder
   order?: Prisma.SortOrder
 }
 
@@ -592,6 +612,7 @@ export type TechSolutionMaxOrderByAggregateInput = {
   liveUrl?: Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isOngoing?: Prisma.SortOrder
   order?: Prisma.SortOrder
 }
 
@@ -610,6 +631,7 @@ export type TechSolutionMinOrderByAggregateInput = {
   liveUrl?: Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isOngoing?: Prisma.SortOrder
   order?: Prisma.SortOrder
 }
 
@@ -664,6 +686,7 @@ export type TechSolutionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   liveUrl?: boolean
   isFeatured?: boolean
   isPublished?: boolean
+  isOngoing?: boolean
   order?: boolean
 }, ExtArgs["result"]["techSolution"]>
 
@@ -685,6 +708,7 @@ export type TechSolutionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   liveUrl?: boolean
   isFeatured?: boolean
   isPublished?: boolean
+  isOngoing?: boolean
   order?: boolean
 }, ExtArgs["result"]["techSolution"]>
 
@@ -706,6 +730,7 @@ export type TechSolutionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   liveUrl?: boolean
   isFeatured?: boolean
   isPublished?: boolean
+  isOngoing?: boolean
   order?: boolean
 }, ExtArgs["result"]["techSolution"]>
 
@@ -727,10 +752,11 @@ export type TechSolutionSelectScalar = {
   liveUrl?: boolean
   isFeatured?: boolean
   isPublished?: boolean
+  isOngoing?: boolean
   order?: boolean
 }
 
-export type TechSolutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "slug" | "shortSummary" | "description" | "category" | "imageUrl" | "galleryImages" | "techStack" | "tags" | "clientName" | "clientLogo" | "liveUrl" | "isFeatured" | "isPublished" | "order", ExtArgs["result"]["techSolution"]>
+export type TechSolutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "slug" | "shortSummary" | "description" | "category" | "imageUrl" | "galleryImages" | "techStack" | "tags" | "clientName" | "clientLogo" | "liveUrl" | "isFeatured" | "isPublished" | "isOngoing" | "order", ExtArgs["result"]["techSolution"]>
 
 export type $TechSolutionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TechSolution"
@@ -753,6 +779,7 @@ export type $TechSolutionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     liveUrl: string | null
     isFeatured: boolean
     isPublished: boolean
+    isOngoing: boolean
     order: number
   }, ExtArgs["result"]["techSolution"]>
   composites: {}
@@ -1194,6 +1221,7 @@ export interface TechSolutionFieldRefs {
   readonly liveUrl: Prisma.FieldRef<"TechSolution", 'String'>
   readonly isFeatured: Prisma.FieldRef<"TechSolution", 'Boolean'>
   readonly isPublished: Prisma.FieldRef<"TechSolution", 'Boolean'>
+  readonly isOngoing: Prisma.FieldRef<"TechSolution", 'Boolean'>
   readonly order: Prisma.FieldRef<"TechSolution", 'Int'>
 }
     

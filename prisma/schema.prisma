@@ -724,6 +724,7 @@ model TechSolution {
 
   isFeatured     Boolean  @default(false)  // Show in hero/spotlight
   isPublished    Boolean  @default(false)  // Controls visibility on site
+  isOngoing      Boolean  @default(false)  // Mark as an ongoing/in-progress project
   order          Int      @default(0)       // Manual ordering
 
   @@map("tech_solutions")

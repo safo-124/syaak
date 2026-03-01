@@ -14,7 +14,7 @@ import {
   Users,
   Mail,
   GraduationCap,
-  Sparkles,
+  Layers,
   ArrowRight,
   ChevronRight,
   AlignJustify,
@@ -23,7 +23,7 @@ import {
 const navLinks = [
   { href: "/", label: "Home", icon: Home },
   { href: "/courses", label: "Courses", icon: BookOpen },
-  { href: "/instructors", label: "Instructors", icon: GraduationCap },
+  { href: "/solutions", label: "Solutions", icon: Layers },
   { href: "/blog", label: "Blog", icon: FileText },
   { href: "/about", label: "About", icon: Users },
   { href: "/contact", label: "Contact", icon: Mail },
@@ -117,7 +117,6 @@ export function SiteHeader() {
             </Button>
             <Button size="sm" className="h-8 gap-1.5 bg-primary text-sm shadow hover:bg-primary/90 group" asChild>
               <Link href="/learn/register">
-                <Sparkles className="size-3.5 transition-transform group-hover:rotate-12" />
                 Get Started
                 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
@@ -235,7 +234,6 @@ export function SiteHeader() {
               asChild
             >
               <Link href="/learn/register" onClick={() => setIsOpen(false)}>
-                <Sparkles className="size-4 transition-transform group-hover:rotate-12" />
                 Get Started Free
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
