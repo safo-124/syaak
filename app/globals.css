@@ -515,3 +515,45 @@
 .card-shine:hover::before {
   left: 100%;
 }
+/* ─── Marquee (infinite horizontal scroll) ─── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee         { animation: marquee 42s linear infinite; }
+.animate-marquee-reverse { animation: marquee-reverse 48s linear infinite; }
+.animate-marquee-fast    { animation: marquee 22s linear infinite; }
+
+/* Pause marquee on hover */
+.group\/marquee:hover .animate-marquee,
+.group\/marquee:hover .animate-marquee-reverse,
+.group\/marquee:hover .animate-marquee-fast {
+  animation-play-state: paused;
+}
+
+/* Dot-grid background pattern */
+.bg-dot-grid {
+  background-image: radial-gradient(circle, oklch(0.7 0 0 / 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Gradient border glow on card hover */
+@keyframes border-rotate {
+  from { --border-angle: 0turn; }
+  to   { --border-angle: 1turn; }
+}
+
+/* Extra animation delays */
+.animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-800 { animation-delay: 800ms; }
+
+/* Clip-path reveal animation */
+@keyframes reveal-clip {
+  from { clip-path: inset(0 100% 0 0); opacity: 0; }
+  to   { clip-path: inset(0 0% 0 0);   opacity: 1; }
+}
+.animate-reveal { animation: reveal-clip 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
