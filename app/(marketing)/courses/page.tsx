@@ -1,11 +1,11 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import { getPublishedCourses } from "@/lib/courses"
 import { Badge } from "@/components/ui/badge"
 import { CoursesCatalog } from "@/components/courses-catalog"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Course Catalog - Tech4GH",
+  title: "Course Catalog - TechForUGH",
   description: "Explore our range of data science and analytics courses. Learn Python, R, Excel, and more.",
 }
 

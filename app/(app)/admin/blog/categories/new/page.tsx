@@ -1,9 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+﻿import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { CategoryForm } from "@/components/admin/category-form"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "New Category - Tech4GH Admin",
+  title: "New Category - TechForUGH Admin",
   description: "Create a new blog category",
 }
 

@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma"
+﻿import prisma from "@/lib/prisma"
 
 // Achievement types - matching Prisma schema enum
 type AchievementType = 
@@ -19,12 +19,12 @@ export async function generateCertificateNumber(): Promise<string> {
   const count = await prisma.certificate.count({
     where: {
       certificateNumber: {
-        startsWith: `TECH4GH-${year}`,
+        startsWith: `TechForUGH-${year}`,
       },
     },
   })
   const number = String(count + 1).padStart(4, "0")
-  return `TECH4GH-${year}-${number}`
+  return `TechForUGH-${year}-${number}`
 }
 
 export async function createCertificate(enrollmentId: string) {
@@ -54,7 +54,7 @@ export async function createCertificate(enrollmentId: string) {
   if (existing) return existing
 
   const certificateNumber = await generateCertificateNumber()
-  const instructorName = enrollment.course.instructors[0]?.instructor.name || "Tech4GH Team"
+  const instructorName = enrollment.course.instructors[0]?.instructor.name || "TechForUGH Team"
 
   return prisma.certificate.create({
     data: {

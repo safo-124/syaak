@@ -1,4 +1,4 @@
-import { getAllSolutionsAdmin } from "@/lib/solutions"
+﻿import { getAllSolutionsAdmin } from "@/lib/solutions"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -23,7 +23,7 @@ export default async function AdminSolutionsPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Technology Solutions</h1>
           <p className="text-muted-foreground">
-            Showcase the work and services Tech4GH delivers to clients.
+            Showcase the work and services TechForUGH delivers to clients.
           </p>
         </div>
         <Button asChild>

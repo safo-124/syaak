@@ -1,6 +1,6 @@
-# Tech4GH Learning Web App – v1 Plan
+﻿# TechForUGH Learning Web App – v1 Plan
 
-Build a clear marketing + light learning/enrollment site for Tech4GH using the existing Next.js + Prisma Postgres + Tailwind + shadcn setup. The app will model courses and leads in Prisma, scaffold marketing pages and course views, add simple enrollment/lead capture, and leave room for a future learner/admin portal.
+Build a clear marketing + light learning/enrollment site for TechForUGH using the existing Next.js + Prisma Postgres + Tailwind + shadcn setup. The app will model courses and leads in Prisma, scaffold marketing pages and course views, add simple enrollment/lead capture, and leave room for a future learner/admin portal.
 
 ## Steps
 
@@ -18,7 +18,7 @@ Build a clear marketing + light learning/enrollment site for Tech4GH using the e
 2. **Add Data Helpers & Seed Script**
    - Create `lib/courses.ts` with helpers:
      - `getPublishedCourses()`, `getCourseBySlug(slug)`, `getLeads()`, `createLead(input)`.
-   - Create `scripts/seed.ts` to insert sample Tech4GH courses:
+   - Create `scripts/seed.ts` to insert sample TechForUGH courses:
      - “Data Science with Python”
      - “Data Analysis with Excel”
      - “R for Data Science”
@@ -31,7 +31,7 @@ Build a clear marketing + light learning/enrollment site for Tech4GH using the e
      - `app/(marketing)/layout.tsx`: shared header/footer, container, using shadcn (`Button`, nav, etc.) and `cn` from `lib/utils`.
    - Pages under `(marketing)`:
      - `app/(marketing)/page.tsx`: new home with hero, featured courses, CTA.
-     - `app/(marketing)/about/page.tsx`: mission, who Tech4GH serves.
+     - `app/(marketing)/about/page.tsx`: mission, who TechForUGH serves.
      - `app/(marketing)/courses/page.tsx`: list of courses (grid, filter by Python/R/Excel/MS tools).
      - `app/(marketing)/courses/[slug]/page.tsx`: single course details + syllabus + “Apply/Enroll” form.
      - `app/(marketing)/contact/page.tsx`: general inquiry form.
@@ -42,13 +42,13 @@ Build a clear marketing + light learning/enrollment site for Tech4GH using the e
    - Use / generate shadcn primitives in `components/ui/`:
      - `button`, `input`, `textarea`, `card`, `badge`, `alert`, `dialog`, `navigation-menu`.
    - Create marketing components in `components/marketing/`:
-     - `hero-tech4gh.tsx` (hero with key tagline and primary CTA).
+     - `hero-TechForUGH.tsx` (hero with key tagline and primary CTA).
      - `course-card.tsx` (used on catalog and home).
      - `feature-grid.tsx` (highlights Python, R, Excel, Word, PowerPoint).
      - `testimonials.tsx`.
      - `cta-section.tsx` (strong call-to-action block).
    - Shared layout components in `components/layout/`:
-     - `site-header.tsx` (logo “Tech4GH”, nav links).
+     - `site-header.tsx` (logo “TechForUGH”, nav links).
      - `site-footer.tsx`.
 
 5. **Wire Enrollment / Lead Capture**
@@ -67,10 +67,10 @@ Build a clear marketing + light learning/enrollment site for Tech4GH using the e
    - Gate admin routes very simply at first (e.g., check `process.env.ADMIN_EMAILS` and a hard-coded email until real auth is added).
 
 7. **Branding, Content & Polish**
-   - Adjust `app/globals.css` and Tailwind config (if needed) for Tech4GH brand colors and typography.
+   - Adjust `app/globals.css` and Tailwind config (if needed) for TechForUGH brand colors and typography.
    - Make sure hero, course cards, and CTAs are mobile-friendly and accessible (labels, aria, focus states).
    - Add metadata (`export const metadata`) to key routes for SEO: home, courses, each course `[slug]`, about, contact.
-   - Replace placeholders with real Tech4GH copy for:
+   - Replace placeholders with real TechForUGH copy for:
      - Course descriptions and outcomes.
      - Hero and CTA texts.
      - About page narrative.

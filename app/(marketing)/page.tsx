@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import { getPublishedCourses } from "@/lib/courses"
 import { getRecentPosts } from "@/lib/blog"
 import { getPublishedSolutions } from "@/lib/solutions"
@@ -15,7 +15,7 @@ import { TechMarquee } from "@/components/marketing/tech-marquee"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Tech4GH - Technology Solutions & Training",
+  title: "TechForUGH - Technology Solutions & Training",
   description: "Tech solutions, software development, data analytics, and hands-on technology training for individuals and businesses in Ghana and beyond.",
 }
 
@@ -695,7 +695,7 @@ export default async function HomePage() {
               What Our Students Say
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Hear from analysts and developers who transformed their careers with Tech4GH.
+              Hear from analysts and developers who transformed their careers with TechForUGH.
             </p>
           </div>
 
@@ -712,7 +712,7 @@ export default async function HomePage() {
                 ))}
               </div>
               <blockquote className="text-xl font-medium leading-relaxed text-foreground md:text-2xl">
-                &ldquo;The Python course at Tech4GH completely changed my career. I went from basic
+                &ldquo;The Python course at TechForUGH completely changed my career. I went from basic
                 spreadsheets to automating reports for my entire department. The instructors
                 understand the local context while teaching global standards.&rdquo;
               </blockquote>
@@ -874,7 +874,7 @@ export default async function HomePage() {
                 Our Team
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Meet the <span className="gradient-text-animated">People</span> Behind Tech4GH
+                Meet the <span className="gradient-text-animated">People</span> Behind TechForUGH
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
                 Experts passionate about technology, training, and building impactful solutions.
@@ -946,7 +946,7 @@ export default async function HomePage() {
                 What Our Students Say
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Real experiences from people who have learned and grown with Tech4GH.
+                Real experiences from people who have learned and grown with TechForUGH.
               </p>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -1008,7 +1008,7 @@ export default async function HomePage() {
             style={{ animationFillMode: "forwards" }}
           >
             Whether you need a software solution for your business or want to master tech skills —
-            Tech4GH is your partner in Ghana and beyond.
+            TechForUGH is your partner in Ghana and beyond.
           </p>
 
           <div

@@ -1,11 +1,11 @@
-import { Badge } from "@/components/ui/badge"
+﻿import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { ContactForm } from "@/components/contact-form"
 import { Mail, MapPin, Phone, Clock } from "lucide-react"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contact Us - Tech4GH",
+  title: "Contact Us - TechForUGH",
   description: "Get in touch with our team for inquiries about courses, corporate training, or consulting.",
 }
 
@@ -53,8 +53,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold">Email Us</h3>
-                    <a href="mailto:hello@tech4gh.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                      hello@tech4gh.com
+                    <a href="mailto:hello@techforugh.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      hello@techforugh.com
                     </a>
                   </div>
                 </CardContent>

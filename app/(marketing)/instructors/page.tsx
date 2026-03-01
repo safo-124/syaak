@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import Image from "next/image"
 import { getPublicInstructors, ensureInstructorSlug } from "@/lib/instructors"
 import { Badge } from "@/components/ui/badge"
@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button"
 import { BookOpen, Users, GraduationCap, Linkedin, Twitter, Github } from "lucide-react"
 
 export const metadata = {
-  title: "Our Instructors | Tech4GH",
-  description: "Meet the expert instructors teaching on Tech4GH.",
+  title: "Our Instructors | TechForUGH",
+  description: "Meet the expert instructors teaching on TechForUGH.",
 }
 
 export default async function InstructorsPage() {

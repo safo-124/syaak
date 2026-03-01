@@ -1,4 +1,4 @@
-import { getAllContactSubmissions, getContactStats } from "@/lib/contact"
+﻿import { getAllContactSubmissions, getContactStats } from "@/lib/contact"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -16,7 +16,7 @@ import { ContactActions } from "@/components/admin/contact-actions"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contact Submissions - Tech4GH Admin",
+  title: "Contact Submissions - TechForUGH Admin",
   description: "View and manage contact form submissions",
 }
 

@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
@@ -78,7 +78,7 @@ function UnsubscribeForm() {
             </div>
             <p className="text-muted-foreground">{message}</p>
             <p className="text-sm text-muted-foreground">
-              You will no longer receive newsletters from Tech4GH.
+              You will no longer receive newsletters from TechForUGH.
             </p>
             <Button asChild variant="outline" className="mt-4">
               <Link href="/">Return to Homepage</Link>

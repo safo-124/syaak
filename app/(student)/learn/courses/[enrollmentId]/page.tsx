@@ -1,4 +1,4 @@
-import { cookies } from "next/headers"
+﻿import { cookies } from "next/headers"
 import { notFound, redirect } from "next/navigation"
 import { getEnrollmentById } from "@/lib/students"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -102,7 +102,7 @@ export default async function CourseDetailPage({ params }: Props) {
           <h1 className="text-3xl font-bold tracking-tight">{course.title}</h1>
           <div className="flex items-center gap-2 mt-2 text-muted-foreground">
             <User className="size-4" />
-            <span>{course.instructors[0]?.instructor.name || "Tech4GH"}</span>
+            <span>{course.instructors[0]?.instructor.name || "TechForUGH"}</span>
           </div>
         </div>
       </div>

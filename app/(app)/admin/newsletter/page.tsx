@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import { getAllNewsletters, getNewsletterStats } from "@/lib/newsletter"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -16,7 +16,7 @@ import { NewsletterActions } from "@/components/admin/newsletter-actions"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Newsletter Management - Tech4GH Admin",
+  title: "Newsletter Management - TechForUGH Admin",
   description: "Manage newsletter subscribers and campaigns",
 }
 

@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories, getBlogStats, getAllComments } from "@/lib/blog"
+﻿import { getAllPosts, getAllCategories, getBlogStats, getAllComments } from "@/lib/blog"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -24,7 +24,7 @@ import { CommentActions } from "@/components/admin/comment-actions"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Blog Management - Tech4GH Admin",
+  title: "Blog Management - TechForUGH Admin",
   description: "Manage blog posts, categories, and comments",
 }
 

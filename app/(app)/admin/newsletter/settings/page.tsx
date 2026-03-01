@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
@@ -233,7 +233,7 @@ SMTP_PORT="587"
 SMTP_SECURE="false"
 SMTP_USER="your-email@gmail.com"
 SMTP_PASS="your-app-password"
-SMTP_FROM="Tech4GH <hello@tech4gh.com>"
+SMTP_FROM="TechForUGH <hello@techforugh.com>"
 
 # App URL (for email links)
 NEXT_PUBLIC_APP_URL="http://localhost:3000"`}

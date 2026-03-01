@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
@@ -44,7 +44,7 @@ export default function InstructorRegisterPage() {
         </div>
         <CardTitle className="text-2xl">Become an Instructor</CardTitle>
         <CardDescription>
-          Create an account to start teaching on Tech4GH
+          Create an account to start teaching on TechForUGH
         </CardDescription>
       </CardHeader>
       <CardContent>

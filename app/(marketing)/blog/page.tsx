@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { getPublishedPosts, getFeaturedPosts, getAllCategories } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -6,7 +6,7 @@ import { Calendar, Clock, ArrowRight, Sparkles, MessageCircle, Eye, Filter } fro
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog - Tech4GH",
+  title: "Blog - TechForUGH",
   description: "Discover tutorials, tips, and insights to help you excel in your tech journey.",
 };
 

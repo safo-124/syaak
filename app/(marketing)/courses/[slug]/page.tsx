@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+﻿import { notFound } from "next/navigation"
 import { getCourseBySlug, getRelatedCourses } from "@/lib/courses"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -23,13 +23,13 @@ export async function generateMetadata({ params }: CoursePageProps): Promise<Met
 
   if (!course) {
     return {
-      title: "Course Not Found - Tech4GH",
+      title: "Course Not Found - TechForUGH",
     }
   }
 
   return {
-    title: `${course.title} - Tech4GH`,
-    description: course.shortSummary || `Learn ${course.title} with Tech4GH.`,
+    title: `${course.title} - TechForUGH`,
+    description: course.shortSummary || `Learn ${course.title} with TechForUGH.`,
   }
 }
 

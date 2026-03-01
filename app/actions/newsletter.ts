@@ -1,4 +1,4 @@
-"use server"
+﻿"use server"
 
 import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
@@ -61,7 +61,7 @@ export async function subscribeAction(formData: FormData) {
     
     sendEmail({
       to: result.data.email,
-      subject: "Welcome to Tech4GH Newsletter! 🎉",
+      subject: "Welcome to TechForUGH Newsletter! 🎉",
       html: welcomeHtml,
       text: createPlainTextFromHtml(welcomeHtml),
     }).catch(console.error) // Don't block on welcome email

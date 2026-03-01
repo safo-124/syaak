@@ -1,4 +1,4 @@
-import { getPublishedSolutions } from "@/lib/solutions"
+﻿import { getPublishedSolutions } from "@/lib/solutions"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Hammer, ExternalLink, Layers, ArrowRight } from "lucide-react"
@@ -6,8 +6,8 @@ import Link from "next/link"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Our Work — Tech4GH",
-  description: "From web platforms to data dashboards — see the technology solutions Tech4GH builds for clients across Ghana and beyond.",
+  title: "Our Work — TechForUGH",
+  description: "From web platforms to data dashboards — see the technology solutions TechForUGH builds for clients across Ghana and beyond.",
 }
 
 export default async function SolutionsPage() {

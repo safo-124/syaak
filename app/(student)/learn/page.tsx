@@ -1,4 +1,4 @@
-import { cookies } from "next/headers"
+﻿import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { getStudentById, getStudentStats, getStudentEnrollments } from "@/lib/students"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -208,7 +208,7 @@ export default async function StudentDashboard() {
                           <div>
                             <h4 className="font-semibold">{enrollment.course.title}</h4>
                             <p className="text-sm text-muted-foreground">
-                              {enrollment.course.instructors[0]?.instructor.name || "Tech4GH"}
+                              {enrollment.course.instructors[0]?.instructor.name || "TechForUGH"}
                             </p>
                           </div>
                           <Badge variant="outline">{enrollment.course.level}</Badge>

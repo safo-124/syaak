@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer"
+﻿import { Document, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer"
 
 const styles = StyleSheet.create({
   page: {
@@ -210,7 +210,7 @@ export function CertificatePDF({
 
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.logo}>Tech4GH</Text>
+          <Text style={styles.logo}>TechForUGH</Text>
           <Text style={styles.subtitle}>DATA SCIENCE ACADEMY</Text>
         </View>
 
@@ -249,7 +249,7 @@ export function CertificatePDF({
           </View>
           <View style={styles.signatureBlock}>
             <View style={styles.signatureLine} />
-            <Text style={styles.signatureName}>Tech4GH</Text>
+            <Text style={styles.signatureName}>TechForUGH</Text>
             <Text style={styles.signatureLabel}>Academy Director</Text>
           </View>
         </View>

@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
@@ -46,7 +46,7 @@ export default function StudentLoginPage() {
           <div className="flex size-20 items-center justify-center rounded-2xl bg-linear-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 shadow-lg shadow-primary/20 animate-float overflow-hidden">
             <Image 
               src="/T4u_logo.jpg" 
-              alt="Tech4GH Logo" 
+              alt="TechForUGH Logo" 
               width={80} 
               height={80}
               className="object-cover"
@@ -103,7 +103,7 @@ export default function StudentLoginPage() {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="student@tech4gh.com"
+                  placeholder="student@techforugh.com"
                   className="h-11 pl-4 pr-4 transition-all group-focus-within:ring-2 group-focus-within:ring-primary/20"
                   required
                 />
@@ -171,7 +171,7 @@ export default function StudentLoginPage() {
                 <div className="w-full border-t border-border"></div>
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">New to Tech4GH?</span>
+                <span className="bg-background px-2 text-muted-foreground">New to TechForUGH?</span>
               </div>
             </div>
 

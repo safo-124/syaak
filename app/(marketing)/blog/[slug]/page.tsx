@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+﻿import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPostBySlug, getPublishedPosts, getRelatedPosts, incrementPostViews } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 
   return {
-    title: `${post.title} - Tech4GH Blog`,
+    title: `${post.title} - TechForUGH Blog`,
     description: post.excerpt || post.title,
     openGraph: {
       title: post.title,
@@ -157,7 +157,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {/* Actions */}
             <div className="mt-8">
               <BlogPostActions 
-                url={`https://tech4gh.com/blog/${post.slug}`}
+                url={`https://techforugh.com/blog/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt || undefined}
               />

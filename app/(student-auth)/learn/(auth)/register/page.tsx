@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useTransition } from "react"
 import Link from "next/link"
@@ -158,7 +158,7 @@ export default function StudentRegisterPage() {
           <div className="flex size-20 items-center justify-center rounded-2xl bg-linear-to-br from-primary/20 to-primary/5 shadow-lg animate-float overflow-hidden">
             <Image 
               src="/T4u_logo.jpg" 
-              alt="Tech4GH Logo" 
+              alt="TechForUGH Logo" 
               width={80} 
               height={80}
               className="object-cover"

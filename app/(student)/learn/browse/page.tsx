@@ -1,4 +1,4 @@
-import { cookies } from "next/headers"
+﻿import { cookies } from "next/headers"
 import { getAvailableCourses } from "@/lib/students"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -139,7 +139,7 @@ export default async function BrowseCoursesPage({
                     </CardTitle>
                   </div>
                   <CardDescription className="text-xs">
-                    {course.instructors[0]?.instructor.name || "Tech4GH"}
+                    {course.instructors[0]?.instructor.name || "TechForUGH"}
                   </CardDescription>
                 </CardHeader>
 

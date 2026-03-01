@@ -1,4 +1,4 @@
-"use server"
+﻿"use server"
 
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
@@ -58,7 +58,7 @@ export async function submitContactAction(formData: FormData) {
     // Send confirmation email to user (non-blocking)
     sendEmail({
       to: result.data.email,
-      subject: "We received your message - Tech4GH",
+      subject: "We received your message - TechForUGH",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #3b82f6;">Thank you for contacting us!</h2>
@@ -69,10 +69,10 @@ export async function submitContactAction(formData: FormData) {
             <p><strong>Your message:</strong></p>
             <p style="white-space: pre-wrap;">${result.data.message}</p>
           </div>
-          <p>Best regards,<br><strong>The Tech4GH Team</strong></p>
+          <p>Best regards,<br><strong>The TechForUGH Team</strong></p>
         </div>
       `,
-      text: `Thank you for contacting us!\n\nHi ${result.data.name},\n\nWe've received your message and will get back to you within 24 hours.\n\nSubject: ${result.data.subject}\nYour message:\n${result.data.message}\n\nBest regards,\nThe Tech4GH Team`,
+      text: `Thank you for contacting us!\n\nHi ${result.data.name},\n\nWe've received your message and will get back to you within 24 hours.\n\nSubject: ${result.data.subject}\nYour message:\n${result.data.message}\n\nBest regards,\nThe TechForUGH Team`,
     }).catch(console.error)
 
     revalidatePath("/admin/contacts")

@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getNewsletterById } from "@/lib/newsletter"
 import { Button } from "@/components/ui/button"
@@ -14,7 +14,7 @@ interface EditNewsletterPageProps {
 }
 
 export const metadata: Metadata = {
-  title: "Edit Newsletter - Tech4GH Admin",
+  title: "Edit Newsletter - TechForUGH Admin",
   description: "Edit newsletter campaign",
 }
 

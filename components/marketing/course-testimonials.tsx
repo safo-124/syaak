@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -32,7 +32,7 @@ const testimonials: Testimonial[] = [
     name: "Abena Osei",
     role: "Business Intelligence Lead",
     company: "Ecobank",
-    content: "I've taken many online courses, but Tech4GH stands out. The practical approach to learning and real-world case studies made all the difference. Highly recommended!",
+    content: "I've taken many online courses, but TechForUGH stands out. The practical approach to learning and real-world case studies made all the difference. Highly recommended!",
     rating: 5,
   },
   {

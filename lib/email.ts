@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer"
+﻿import nodemailer from "nodemailer"
 
 // Email configuration types
 interface EmailConfig {
@@ -41,12 +41,12 @@ function createTransporter() {
 }
 
 // Default sender
-const DEFAULT_FROM = process.env.SMTP_FROM || "Tech4GH <hello@tech4gh.com>"
+const DEFAULT_FROM = process.env.SMTP_FROM || "TechForUGH <hello@techforugh.com>"
 
 // Email templates
 export const emailTemplates = {
   studentApproved: (studentName: string, loginUrl: string) => ({
-    subject: "Welcome to Tech4GH! Your Account is Approved 🎉",
+    subject: "Welcome to TechForUGH! Your Account is Approved 🎉",
     html: `
       <!DOCTYPE html>
       <html>
@@ -58,14 +58,14 @@ export const emailTemplates = {
           <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
             <tr>
               <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 30px; text-align: center;">
-                <h1 style="color: #ffffff; margin: 0; font-size: 28px;">Tech4GH Learning</h1>
+                <h1 style="color: #ffffff; margin: 0; font-size: 28px;">TechForUGH Learning</h1>
               </td>
             </tr>
             <tr>
               <td style="padding: 40px 30px;">
                 <h2 style="color: #333333; margin-top: 0;">Welcome, ${studentName}! 🎉</h2>
                 <p style="color: #666666;">
-                  Great news! Your Tech4GH account has been approved. You now have full access to our learning platform.
+                  Great news! Your TechForUGH account has been approved. You now have full access to our learning platform.
                 </p>
                 <ul style="color: #666666; padding-left: 20px;">
                   <li>Browse and enroll in courses</li>
@@ -77,19 +77,19 @@ export const emailTemplates = {
                     Start Learning Now
                   </a>
                 </div>
-                <p style="color: #666666;">Happy learning!<br>The Tech4GH Team</p>
+                <p style="color: #666666;">Happy learning!<br>The TechForUGH Team</p>
               </td>
             </tr>
             <tr>
               <td style="background-color: #f8f8f8; padding: 20px 30px; text-align: center;">
-                <p style="color: #999999; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} Tech4GH</p>
+                <p style="color: #999999; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} TechForUGH</p>
               </td>
             </tr>
           </table>
         </body>
       </html>
     `,
-    text: `Welcome, ${studentName}! Your Tech4GH account has been approved. Login at: ${loginUrl}`,
+    text: `Welcome, ${studentName}! Your TechForUGH account has been approved. Login at: ${loginUrl}`,
   }),
 
   courseEnrollment: (studentName: string, courseName: string, courseUrl: string) => ({
@@ -105,7 +105,7 @@ export const emailTemplates = {
           <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
             <tr>
               <td style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); padding: 40px 30px; text-align: center;">
-                <h1 style="color: #ffffff; margin: 0; font-size: 28px;">Tech4GH Learning</h1>
+                <h1 style="color: #ffffff; margin: 0; font-size: 28px;">TechForUGH Learning</h1>
               </td>
             </tr>
             <tr>
@@ -118,12 +118,12 @@ export const emailTemplates = {
                     Go to Course
                   </a>
                 </div>
-                <p style="color: #666666;">The Tech4GH Team</p>
+                <p style="color: #666666;">The TechForUGH Team</p>
               </td>
             </tr>
             <tr>
               <td style="background-color: #f8f8f8; padding: 20px 30px; text-align: center;">
-                <p style="color: #999999; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} Tech4GH</p>
+                <p style="color: #999999; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} TechForUGH</p>
               </td>
             </tr>
           </table>
@@ -162,12 +162,12 @@ export const emailTemplates = {
                     Download Certificate
                   </a>
                 </div>
-                <p style="color: #666666;">The Tech4GH Team</p>
+                <p style="color: #666666;">The TechForUGH Team</p>
               </td>
             </tr>
             <tr>
               <td style="background-color: #f8f8f8; padding: 20px 30px; text-align: center;">
-                <p style="color: #999999; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} Tech4GH</p>
+                <p style="color: #999999; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} TechForUGH</p>
               </td>
             </tr>
           </table>

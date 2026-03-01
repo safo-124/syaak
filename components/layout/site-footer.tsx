@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Link from "next/link"
 import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram } from "lucide-react"
@@ -41,7 +41,7 @@ export function SiteFooter() {
               <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
                 T4
               </span>
-              <span className="text-lg text-primary">Tech4GH</span>
+              <span className="text-lg text-primary">TechForUGH</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Empowering Ghana's digital future with practical data science and analytics training.
@@ -136,7 +136,7 @@ export function SiteFooter() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-                <span className="text-muted-foreground">hello@tech4gh.com</span>
+                <span className="text-muted-foreground">hello@techforugh.com</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
@@ -152,7 +152,7 @@ export function SiteFooter() {
 
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-sm text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} Tech4GH. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} TechForUGH. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="transition-colors hover:text-primary">
               Privacy Policy

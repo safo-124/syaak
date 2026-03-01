@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+﻿import { notFound } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { CategoryForm } from "@/components/admin/category-form"
 import { getCategoryById } from "@/lib/blog"
@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
   const category = await getCategoryById(id)
   return {
-    title: category ? `Edit ${category.name} - Tech4GH Admin` : "Edit Category",
+    title: category ? `Edit ${category.name} - TechForUGH Admin` : "Edit Category",
   }
 }
 

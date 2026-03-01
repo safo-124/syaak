@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft } from "lucide-react"
@@ -6,7 +6,7 @@ import { NewsletterForm } from "@/components/admin/newsletter-form"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Create Newsletter - Tech4GH Admin",
+  title: "Create Newsletter - TechForUGH Admin",
   description: "Create a new newsletter campaign",
 }
 

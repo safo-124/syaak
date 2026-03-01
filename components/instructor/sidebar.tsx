@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Link from "next/link"
 import Image from "next/image"
@@ -45,14 +45,14 @@ export function InstructorSidebar({ instructor }: InstructorSidebarProps) {
         <div className="flex size-8 items-center justify-center rounded-lg overflow-hidden">
           <Image 
             src="/T4u_logo.jpg" 
-            alt="Tech4GH Logo" 
+            alt="TechForUGH Logo" 
             width={32} 
             height={32}
             className="object-cover"
           />
         </div>
         <div>
-          <span className="font-bold text-lg">Tech4GH</span>
+          <span className="font-bold text-lg">TechForUGH</span>
           <span className="text-xs text-muted-foreground block">Instructor Portal</span>
         </div>
       </div>

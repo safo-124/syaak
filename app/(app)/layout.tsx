@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import Image from "next/image"
 import "@/app/globals.css"
 import { Button } from "@/components/ui/button"
@@ -34,13 +34,13 @@ export default function AppLayout({
           <div className="flex size-8 items-center justify-center rounded-lg overflow-hidden">
             <Image 
               src="/T4u_logo.jpg" 
-              alt="Tech4GH Logo" 
+              alt="TechForUGH Logo" 
               width={32} 
               height={32}
               className="object-cover"
             />
           </div>
-          <span className="font-semibold">Tech4GH</span>
+          <span className="font-semibold">TechForUGH</span>
           <Badge variant="secondary" className="ml-auto text-[10px]">
             Admin
           </Badge>
@@ -153,7 +153,7 @@ export default function AppLayout({
             <div className="flex size-8 items-center justify-center rounded-lg overflow-hidden">
               <Image 
                 src="/T4u_logo.jpg" 
-                alt="Tech4GH Logo" 
+                alt="TechForUGH Logo" 
                 width={32} 
                 height={32}
                 className="object-cover"

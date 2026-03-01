@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getNewsletterById } from "@/lib/newsletter"
 import { getActiveSubscribers } from "@/lib/newsletter"
@@ -170,8 +170,8 @@ export default async function NewsletterDetailPage({ params }: NewsletterDetailP
                   T4
                 </div>
                 <div>
-                  <p className="font-semibold">Tech4GH</p>
-                  <p className="text-sm text-muted-foreground">hello@tech4gh.com</p>
+                  <p className="font-semibold">TechForUGH</p>
+                  <p className="text-sm text-muted-foreground">hello@techforugh.com</p>
                 </div>
               </div>
               <h2 className="text-xl font-bold">{newsletter.subject}</h2>
@@ -185,7 +185,7 @@ export default async function NewsletterDetailPage({ params }: NewsletterDetailP
             {/* Footer */}
             <Separator className="my-6" />
             <div className="text-center text-sm text-muted-foreground">
-              <p>© {new Date().getFullYear()} Tech4GH. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} TechForUGH. All rights reserved.</p>
               <p className="mt-2">
                 You're receiving this because you subscribed to our newsletter.
               </p>

@@ -1,4 +1,4 @@
-import { cookies } from "next/headers"
+﻿import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { getStudentEnrollments } from "@/lib/students"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -171,7 +171,7 @@ function CourseList({ enrollments, emptyMessage }: { enrollments: Enrollment[]; 
                   </div>
                   <CardTitle className="line-clamp-1">{enrollment.course.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
-                    {enrollment.course.instructors[0]?.instructor.name || "Tech4GH"}
+                    {enrollment.course.instructors[0]?.instructor.name || "TechForUGH"}
                   </p>
                 </div>
               </div>

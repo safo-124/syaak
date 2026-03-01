@@ -1,4 +1,4 @@
-interface NewsletterEmailProps {
+﻿interface NewsletterEmailProps {
   previewText?: string
   content: string
   unsubscribeUrl?: string
@@ -25,7 +25,7 @@ export function createNewsletterTemplate({
     </xml>
   </noscript>
   <![endif]-->
-  <title>Tech4GH Newsletter</title>
+  <title>TechForUGH Newsletter</title>
   ${previewText ? `<span style="display: none; max-height: 0; overflow: hidden;">${previewText}</span>` : ""}
 </head>
 <body style="margin: 0; padding: 0; background-color: #f4f4f5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
@@ -38,7 +38,7 @@ export function createNewsletterTemplate({
           <tr>
             <td style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 32px 40px; text-align: center;">
               <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">
-                Tech4GH
+                TechForUGH
               </h1>
               <p style="margin: 8px 0 0 0; color: rgba(255, 255, 255, 0.9); font-size: 14px;">
                 Your Gateway to Tech Education
@@ -59,7 +59,7 @@ export function createNewsletterTemplate({
           <tr>
             <td style="background-color: #f9fafb; padding: 24px 40px; text-align: center; border-top: 1px solid #e5e7eb;">
               <p style="margin: 0 0 12px 0; color: #6b7280; font-size: 14px;">
-                You're receiving this email because you subscribed to Tech4GH newsletter.
+                You're receiving this email because you subscribed to TechForUGH newsletter.
               </p>
               ${
                 unsubscribeUrl
@@ -67,7 +67,7 @@ export function createNewsletterTemplate({
                   : ""
               }
               <p style="margin: 16px 0 0 0; color: #9ca3af; font-size: 12px;">
-                © ${new Date().getFullYear()} Tech4GH. All rights reserved.
+                © ${new Date().getFullYear()} TechForUGH. All rights reserved.
               </p>
             </td>
           </tr>
@@ -93,13 +93,13 @@ export function createWelcomeTemplate({
   const greeting = subscriberName ? `Hi ${subscriberName}!` : "Hello!"
   
   return createNewsletterTemplate({
-    previewText: "Welcome to Tech4GH! Thank you for subscribing to our newsletter.",
+    previewText: "Welcome to TechForUGH! Thank you for subscribing to our newsletter.",
     content: `
       <h2 style="margin: 0 0 16px 0; color: #111827; font-size: 22px; font-weight: 600;">
         ${greeting}
       </h2>
       <p style="margin: 0 0 16px 0;">
-        Thank you for subscribing to the <strong>Tech4GH Newsletter</strong>! We're thrilled to have you join our community of learners and tech enthusiasts.
+        Thank you for subscribing to the <strong>TechForUGH Newsletter</strong>! We're thrilled to have you join our community of learners and tech enthusiasts.
       </p>
       <p style="margin: 0 0 16px 0;">
         Here's what you can expect from us:
@@ -116,7 +116,7 @@ export function createWelcomeTemplate({
       <table role="presentation" cellspacing="0" cellpadding="0" border="0">
         <tr>
           <td style="border-radius: 8px; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);">
-            <a href="https://tech4gh.com" style="display: inline-block; padding: 14px 28px; color: #ffffff; font-size: 16px; font-weight: 600; text-decoration: none;">
+            <a href="https://techforugh.com" style="display: inline-block; padding: 14px 28px; color: #ffffff; font-size: 16px; font-weight: 600; text-decoration: none;">
               Explore Our Courses →
             </a>
           </td>
@@ -124,7 +124,7 @@ export function createWelcomeTemplate({
       </table>
       <p style="margin: 24px 0 0 0;">
         Best regards,<br>
-        <strong>The Tech4GH Team</strong>
+        <strong>The TechForUGH Team</strong>
       </p>
     `,
     unsubscribeUrl,

@@ -1,4 +1,4 @@
-// This is your Prisma schema file,
+﻿// This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
@@ -579,7 +579,7 @@ model Certificate {
   enrollmentId  String     @unique
   enrollment    Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
   
-  certificateNumber String  @unique  // e.g. "TECH4GH-2024-0001"
+  certificateNumber String  @unique  // e.g. "TechForUGH-2024-0001"
   issuedAt      DateTime   @default(now())
   
   courseName    String     // Snapshot of course name at completion
@@ -738,7 +738,7 @@ model AboutPage {
   updatedAt     DateTime @updatedAt
 
   // Hero
-  heroTagline   String?  // Badge text, e.g. "About Tech4GH"
+  heroTagline   String?  // Badge text, e.g. "About TechForUGH"
   heroTitle     String?  // Big headline
   heroSubtitle  String?  // Paragraph below headline
   heroImageUrl  String?  // Optional hero image

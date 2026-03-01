@@ -1,8 +1,8 @@
-import "dotenv/config"
+﻿import "dotenv/config"
 import prisma from "../lib/prisma"
 
 async function main() {
-  console.log("🌱 Seeding Tech4GH courses...\n")
+  console.log("🌱 Seeding TechForUGH courses...\n")
 
   const courses = [
     {
@@ -183,7 +183,7 @@ Start with a simple project:
 
 Check out our Data Science with Python course to accelerate your learning journey!`,
       category: "Tutorials",
-      author: "Tech4GH Team",
+      author: "TechForUGH Team",
       readTime: 5,
       tags: ["data-science", "python", "beginners", "career"],
       isPublished: true,
@@ -243,7 +243,7 @@ Benefits:
 
 Try these tips on your next project and watch your productivity soar!`,
       category: "Tips & Tricks",
-      author: "Tech4GH Team",
+      author: "TechForUGH Team",
       readTime: 4,
       tags: ["excel", "tips", "productivity", "data-analysis"],
       isPublished: true,
@@ -293,7 +293,7 @@ Consider R when:
 
 R and Python aren't competitors—they're complementary tools in your data science toolkit.`,
       category: "Career Tips",
-      author: "Tech4GH Team",
+      author: "TechForUGH Team",
       readTime: 3,
       tags: ["r", "programming", "data-science", "career"],
       isPublished: true,
@@ -340,18 +340,18 @@ Visit our Courses page to see available dates and register. Space is limited to 
 
 We can't wait to meet you in person!`,
       category: "Announcements",
-      author: "Tech4GH Team",
+      author: "TechForUGH Team",
       readTime: 2,
       tags: ["bootcamp", "training", "excel", "announcement"],
       isPublished: true,
     },
     {
-      title: "How Tech4GH Helped 100+ Professionals Upskill",
-      slug: "tech4gh-success-stories",
+      title: "How TechForUGH Helped 100+ Professionals Upskill",
+      slug: "TechForUGH-success-stories",
       excerpt: "Real stories from our graduates who transformed their careers through data skills.",
-      content: `# How Tech4GH Helped 100+ Professionals Upskill
+      content: `# How TechForUGH Helped 100+ Professionals Upskill
 
-Since launching Tech4GH, we've had the privilege of helping over 100 professionals develop data skills. Here are some of their stories.
+Since launching TechForUGH, we've had the privilege of helping over 100 professionals develop data skills. Here are some of their stories.
 
 ## Kofi's Story: From Accountant to Data Analyst
 
@@ -360,7 +360,7 @@ Kofi worked as an accountant for 5 years. After completing our Data Science with
 - Reduced monthly reporting time by 80%
 - Promoted to Senior Financial Analyst
 
-> "Tech4GH gave me the confidence to go beyond Excel. Now I'm the go-to person for data analysis in my department."
+> "TechForUGH gave me the confidence to go beyond Excel. Now I'm the go-to person for data analysis in my department."
 
 ## Ama's Story: Marketing Manager Turned Insights Lead
 
@@ -371,7 +371,7 @@ Ama wanted to make data-driven marketing decisions. After our Excel and PowerPoi
 
 > "The courses were practical and immediately applicable. I started using what I learned the very next day."
 
-## What Makes Tech4GH Different
+## What Makes TechForUGH Different
 
 ### Practical Focus
 Every lesson includes real-world applications you can use immediately.
@@ -386,7 +386,7 @@ Access to instructors and fellow learners for ongoing support.
 
 Ready to write your own success story? Browse our courses and take the first step today.`,
       category: "Case Studies",
-      author: "Tech4GH Team",
+      author: "TechForUGH Team",
       readTime: 4,
       tags: ["success-stories", "careers", "testimonials"],
       isPublished: true,

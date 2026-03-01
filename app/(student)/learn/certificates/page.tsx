@@ -1,4 +1,4 @@
-import { cookies } from "next/headers"
+﻿import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import prisma from "@/lib/prisma"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -161,7 +161,7 @@ export default async function CertificatesPage() {
                   id: cert.certificate?.id || cert.id,
                   studentName: studentName,
                   courseName: cert.courseTitle,
-                  instructorName: cert.instructors[0] || "Tech4GH Team",
+                  instructorName: cert.instructors[0] || "TechForUGH Team",
                   certificateNumber: cert.certificate?.certificateNumber || `TEMP-${cert.id.slice(0, 8).toUpperCase()}`,
                   issuedAt: cert.certificate?.issuedAt || cert.completedAt || new Date(),
                 }

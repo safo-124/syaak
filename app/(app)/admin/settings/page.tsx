@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+﻿import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -48,7 +48,7 @@ export default function SettingsPage() {
                   <Label htmlFor="siteName">Site Name</Label>
                   <Input 
                     id="siteName" 
-                    defaultValue="Tech4GH" 
+                    defaultValue="TechForUGH" 
                     className="bg-background"
                   />
                 </div>
@@ -91,7 +91,7 @@ export default function SettingsPage() {
                   <Input 
                     id="email" 
                     type="email"
-                    placeholder="contact@tech4gh.com" 
+                    placeholder="contact@techforugh.com" 
                     className="bg-background"
                   />
                 </div>

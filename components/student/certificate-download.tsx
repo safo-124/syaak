@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -29,7 +29,7 @@ export function CertificateDownload({ certificate, level }: CertificateDownloadP
         <CertificatePDF
           studentName={certificate.studentName}
           courseName={certificate.courseName}
-          instructorName={certificate.instructorName || "Tech4GH Team"}
+          instructorName={certificate.instructorName || "TechForUGH Team"}
           certificateNumber={certificate.certificateNumber}
           issuedAt={new Date(certificate.issuedAt)}
           level={level}

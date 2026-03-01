@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Link from "next/link"
 import Image from "next/image"
@@ -66,7 +66,7 @@ export function SiteHeader() {
               <div className="inline-flex size-9 overflow-hidden rounded-xl shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-primary/30">
                 <Image
                   src="/T4u_logo.jpg"
-                  alt="Tech4GH"
+                  alt="TechForUGH"
                   width={36}
                   height={36}
                   className="object-cover"
@@ -75,7 +75,7 @@ export function SiteHeader() {
               <span className="absolute -right-0.5 -top-0.5 size-2.5 animate-pulse rounded-full border-2 border-background bg-emerald-500" />
             </div>
             <div className="hidden flex-col leading-none sm:flex">
-              <span className="text-sm font-extrabold tracking-tight">Tech4GH</span>
+              <span className="text-sm font-extrabold tracking-tight">TechForUGH</span>
               <span className="text-[9px] uppercase tracking-widest text-muted-foreground">
                 Data Science Academy
               </span>

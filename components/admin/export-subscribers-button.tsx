@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
@@ -36,7 +36,7 @@ export function ExportSubscribersButton({ subscribers }: ExportSubscribersButton
     const url = URL.createObjectURL(blob)
     const link = document.createElement("a")
     link.href = url
-    link.download = `tech4gh-subscribers-${new Date().toISOString().split("T")[0]}.csv`
+    link.download = `TechForUGH-subscribers-${new Date().toISOString().split("T")[0]}.csv`
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)

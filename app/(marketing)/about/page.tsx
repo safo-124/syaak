@@ -13,11 +13,11 @@ import Link from "next/link"
 import { getAboutPage, getTeamMembers, getFaqItems } from "@/lib/about"
 
 export const metadata: Metadata = {
-  title: "About Us - Tech4GH",
+  title: "About Us - TechForUGH",
   description: "Learn about our mission to democratize data science education in Ghana and Africa.",
 }
 
-// â”€â”€ Defaults (used when DB has no record yet) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Defaults (used when DB has no record yet) ──────────────
 const DEFAULT_HERO = {
   heroTagline: "Technology Training & Solutions",
   heroTitle: "Empowering Ghana's Digital Future",
@@ -27,7 +27,7 @@ const DEFAULT_HERO = {
 const DEFAULT_MISSION = {
   missionTitle: "Our Mission",
   missionBody:
-    "At Tech4GH, we believe that data literacy is the new literacy. Our mission is to democratize access to high-quality data science and analytics training across Ghana and Africa.\n\nWe focus on the tools that matter most in the workplaceâ€”Python, R, Excel, and Power BIâ€”ensuring our graduates are ready to make an immediate impact in their organizations.",
+    "At TechForUGH, we believe that data literacy is the new literacy. Our mission is to democratize access to high-quality data science and analytics training across Ghana and Africa.\n\nWe focus on the tools that matter most in the workplace—Python, R, Excel, and Power BI—ensuring our graduates are ready to make an immediate impact in their organizations.",
 }
 const DEFAULT_VISION = {
   visionTitle: "Our Vision",
@@ -35,7 +35,7 @@ const DEFAULT_VISION = {
     "To become Africa's premier hub for technology education and digital solutions, where talent is nurtured, companies are transformed, and communities thrive through the power of data.",
 }
 const DEFAULT_STORY = {
-  storyTitle: "Why Tech4GH?",
+  storyTitle: "Why TechForUGH?",
   storyBody:
     "The demand for data skills is exploding, but traditional education often lags behind. We saw a need for a training provider that understands the local context while delivering global-standard education.",
 }
@@ -47,7 +47,7 @@ const DEFAULT_STATS = [
 ]
 const DEFAULT_FAQS = [
   { id: "f1", question: "Do I need prior programming experience?", answer: "Not at all! Our beginner courses are designed for complete beginners with no coding experience." },
-  { id: "f2", question: "How long do the courses take?", answer: "Course durations vary from 1 week to 6 weeks for online courses. Bootcamps run 1â€“2 intensive days." },
+  { id: "f2", question: "How long do the courses take?", answer: "Course durations vary from 1 week to 6 weeks for online courses. Bootcamps run 1–2 intensive days." },
   { id: "f3", question: "Do you offer certificates?", answer: "Yes! You receive a digital certificate upon successful completion, shareable on LinkedIn." },
   { id: "f4", question: "Are courses online or in-person?", answer: "Both! Online courses let you learn at your own pace; in-person bootcamps are held in Accra." },
   { id: "f5", question: "Do you offer corporate training?", answer: "Absolutely! We customize training for organizations of all sizes, on-site or virtually." },

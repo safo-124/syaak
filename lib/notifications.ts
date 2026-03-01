@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma"
+﻿import prisma from "@/lib/prisma"
 
 // Notification types - matching Prisma schema enum
 type NotificationType = 
@@ -77,7 +77,7 @@ export async function notifyAccountApproved(studentId: string, studentName: stri
     studentId,
     type: "ACCOUNT_APPROVED",
     title: "Account Approved! 🎉",
-    message: `Welcome to Tech4GH, ${studentName}! Your account has been approved. Start exploring courses now.`,
+    message: `Welcome to TechForUGH, ${studentName}! Your account has been approved. Start exploring courses now.`,
     link: "/learn/browse",
   })
 }
