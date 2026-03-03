@@ -74,12 +74,7 @@ export function SiteHeader() {
               </div>
               <span className="absolute -right-0.5 -top-0.5 size-2.5 animate-pulse rounded-full border-2 border-background bg-emerald-500" />
             </div>
-            <div className="hidden flex-col leading-none sm:flex">
-              <span className="text-sm font-extrabold tracking-tight">TechForUGH</span>
-              <span className="text-[9px] uppercase tracking-widest text-muted-foreground">
-                Data Science Academy
-              </span>
-            </div>
+            <span className="hidden text-sm font-extrabold tracking-tight sm:inline">TechForUGH</span>
           </Link>
 
           {/* ── DESKTOP NAV — segmented pill ── */}
