@@ -4,7 +4,6 @@ import { getRecentPosts } from "@/lib/blog"
 import { getPublishedSolutions } from "@/lib/solutions"
 import { getHomepageTeamMembers } from "@/lib/about"
 import { getHomepageTestimonials } from "@/lib/testimonials"
-import { SolutionPreview } from "@/components/solution-preview"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -12,6 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Github } from "lucide-react"
 import { ArrowRight, BarChart3, BookOpen, CheckCircle2, Code2, Laptop, Users, Quote, Star, FileText, Clock, TrendingUp, Award, GraduationCap, Target, Rocket, Database, PieChart, LineChart, Activity, Brain, Binary, Table2, Sheet, Calculator, FileSpreadsheet, ChartBar, ChartLine, ChartPie, GitBranch, Workflow, Sigma, Layers, Hammer, Zap, Sparkles, Play, Globe, CheckCheck } from "lucide-react"
 import { TechMarquee } from "@/components/marketing/tech-marquee"
+import { PortfolioCardMedia } from "@/components/marketing/portfolio-card-media"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -28,8 +28,12 @@ export default async function HomePage() {
     getHomepageTestimonials(),
   ])
   const featuredCourses = courses.slice(0, 3)
-  const featuredSolutions = solutions.filter((s) => s.isFeatured).slice(0, 6)
-  const allSolutions = solutions.slice(0, 6)
+  const featuredSolutions = solutions.filter((s) => s.isFeatured)
+  const displaySolutions = (featuredSolutions.length > 0 ? featuredSolutions : solutions).slice(0, 8)
+
+  // Category counts for services strip
+  const catCount = (keyword: string) =>
+    solutions.filter((s) => s.category?.toLowerCase().includes(keyword)).length
 
   return (
     <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
@@ -581,100 +585,249 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Technology Solutions Section */}
-      {(featuredSolutions.length > 0 || allSolutions.length > 0) && (
-        <section className="w-full px-4 py-20 sm:px-6 lg:px-8 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
-          <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-pulse-glow animation-delay-2000" />
+      {/* ── Portfolio / Solutions Section ────────────────────────────── */}
+      {displaySolutions.length > 0 && (
+        <section className="relative w-full overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+          {/* Subtle gradient wash */}
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-muted/20 to-transparent" />
+          <div className="absolute -right-32 top-20 size-96 rounded-full bg-primary/5 blur-[100px]" />
+          <div className="absolute -left-32 bottom-20 size-96 rounded-full bg-blue-500/5 blur-[100px]" />
 
-          <div className="mx-auto max-w-7xl relative z-10 space-y-12">
-            <div className="text-center animate-slide-up">
-              <Badge variant="outline" className="mb-4">
-                <Layers className="mr-1 size-3" />
-                Our Work
-              </Badge>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Technology <span className="gradient-text-animated">Solutions</span> We Deliver
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                From web platforms to data dashboards and mobile apps — see what we build for our clients.
-              </p>
+          <div className="mx-auto max-w-7xl space-y-14">
+
+            {/* ── Header row ── */}
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between animate-slide-up">
+              <div>
+                <Badge variant="outline" className="mb-3">
+                  <Layers className="mr-1 size-3" />
+                  Our Portfolio
+                </Badge>
+                <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+                  Work We&rsquo;re{" "}
+                  <span className="gradient-text-animated">Proud Of</span>
+                </h2>
+                <p className="mt-4 max-w-lg text-muted-foreground">
+                  Real solutions shipped for real clients — web apps, data dashboards,
+                  AI automation and more, built right here in Ghana.
+                </p>
+              </div>
+              <div className="flex shrink-0 flex-wrap gap-3">
+                <Button variant="outline" className="group" asChild>
+                  <Link href="/solutions">
+                    View All Work
+                    <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+                <Button asChild>
+                  <Link href="/contact">Work With Us</Link>
+                </Button>
+              </div>
             </div>
 
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {(featuredSolutions.length > 0 ? featuredSolutions : allSolutions).map((solution, index) => (
-                <div
-                  key={solution.id}
-                  className={`group relative overflow-hidden rounded-2xl border bg-white/50 dark:bg-black/20 hover-lift card-shine animate-scale-in animation-delay-${(index + 1) * 100} opacity-0 transition-all`}
-                  style={{ animationFillMode: "forwards" }}
-                >
-                  {/* Preview: live iframe or image fallback */}
-                  <SolutionPreview
-                    liveUrl={solution.liveUrl}
-                    imageUrl={solution.imageUrl}
-                    title={solution.title}
-                  />
+            {/* ── Services we build strip ── */}
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 animate-slide-up animation-delay-200 opacity-0" style={{ animationFillMode: "forwards" }}>
+              {[
+                {
+                  icon: Code2,
+                  label: "Web Platforms",
+                  description: "Custom web apps, dashboards & portals",
+                  color: "text-blue-500",
+                  bg: "bg-blue-500/10",
+                  border: "hover:border-blue-500/30",
+                  keyword: "web",
+                },
+                {
+                  icon: BarChart3,
+                  label: "Data Analytics",
+                  description: "BI tools, reports & data pipelines",
+                  color: "text-emerald-500",
+                  bg: "bg-emerald-500/10",
+                  border: "hover:border-emerald-500/30",
+                  keyword: "data",
+                },
+                {
+                  icon: Laptop,
+                  label: "Mobile Apps",
+                  description: "Cross-platform iOS & Android apps",
+                  color: "text-orange-500",
+                  bg: "bg-orange-500/10",
+                  border: "hover:border-orange-500/30",
+                  keyword: "mobile",
+                },
+                {
+                  icon: Brain,
+                  label: "AI & Automation",
+                  description: "Smart workflows & ML-powered tools",
+                  color: "text-purple-500",
+                  bg: "bg-purple-500/10",
+                  border: "hover:border-purple-500/30",
+                  keyword: "ai",
+                },
+              ].map((svc) => {
+                const count = catCount(svc.keyword)
+                return (
+                  <div
+                    key={svc.label}
+                    className={`group flex flex-col gap-3 rounded-2xl border bg-card/80 p-5 transition-all duration-300 hover:shadow-md ${svc.border}`}
+                  >
+                    <div className={`inline-flex size-11 items-center justify-center rounded-xl ${svc.bg} group-hover:scale-110 transition-transform duration-300`}>
+                      <svc.icon className={`size-5 ${svc.color}`} />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-sm font-semibold">{svc.label}</h3>
+                        {count > 0 && (
+                          <span className={`text-[11px] font-bold ${svc.color}`}>
+                            {count}+
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                        {svc.description}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
 
-                  {/* Content */}
-                  <div className="p-5 space-y-3">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <Badge variant="secondary" className="mb-2 text-xs">
+            {/* ── Bento portfolio grid ── */}
+            <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {displaySolutions.map((solution, index) => {
+                const isWide = index === 0 || index === 5
+                return (
+                  <div
+                    key={solution.id}
+                    className={`group relative overflow-hidden rounded-2xl border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl card-shine animate-scale-in animation-delay-${Math.min((index + 1) * 100, 500)} opacity-0 ${isWide ? "sm:col-span-2 lg:col-span-2" : ""}`}
+                    style={{ animationFillMode: "forwards" }}
+                  >
+                    {/* ─ Image / iframe / placeholder area ─ */}
+                    <div className="relative overflow-hidden aspect-video">
+                      <PortfolioCardMedia
+                        imageUrl={solution.imageUrl}
+                        liveUrl={solution.liveUrl}
+                        title={solution.title}
+                        category={solution.category}
+                      />
+
+                      {/* Always-visible gradient overlay at bottom */}
+                      <div className="absolute inset-0 z-25 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                      {/* Top badges */}
+                      <div className="absolute left-3 top-3 z-30 flex gap-2">
+                        <span className="rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm">
                           {solution.category}
-                        </Badge>
-                        <h3 className="font-bold text-lg group-hover:text-primary transition-colors line-clamp-2">
+                        </span>
+                        {solution.isOngoing && (
+                          <span className="flex items-center gap-1 rounded-full border border-orange-400/30 bg-orange-500/70 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm">
+                            <span className="inline-flex size-1.5 animate-ping rounded-full bg-white opacity-75" />
+                            In Progress
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Live URL badge top-right */}
+                      {solution.liveUrl && (
+                        <div className="absolute right-3 top-3 z-30">
+                          <span className="flex items-center gap-1 rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[10px] text-white/70 backdrop-blur-sm">
+                            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            Live
+                          </span>
+                        </div>
+                      )}
+
+                      {/* ─ Full hover overlay ─ */}
+                      <div className="absolute inset-0 z-40 flex flex-col justify-end bg-black/80 p-5 opacity-0 transition-all duration-300 group-hover:opacity-100 backdrop-blur-[2px]">
+                        <h3 className="mb-1.5 text-lg font-bold text-white leading-tight">
                           {solution.title}
                         </h3>
+                        {solution.shortSummary && (
+                          <p className="mb-3 text-xs leading-relaxed text-white/60 line-clamp-2">
+                            {solution.shortSummary}
+                          </p>
+                        )}
+                        <div className="mb-4 flex flex-wrap gap-1.5">
+                          {solution.techStack.slice(0, 6).map((t) => (
+                            <span
+                              key={t}
+                              className="rounded-full bg-white/15 px-2.5 py-0.5 text-[11px] font-medium text-white/90"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex gap-2">
+                          {solution.liveUrl ? (
+                            <Link
+                              href={solution.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-semibold text-black transition-colors hover:bg-white/90"
+                            >
+                              <Globe className="size-3" />
+                              View Live
+                            </Link>
+                          ) : null}
+                          <Link
+                            href="/contact"
+                            className="flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-white/20"
+                          >
+                            Build Similar
+                          </Link>
+                        </div>
                       </div>
                     </div>
 
-                    {solution.shortSummary && (
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {solution.shortSummary}
-                      </p>
-                    )}
-
-                    {solution.techStack.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {solution.techStack.slice(0, 4).map((tech) => (
-                          <Badge key={tech} variant="outline" className="text-[10px] py-0">
-                            {tech}
+                    {/* ─ Always-visible bottom strip ─ */}
+                    <div className="flex items-center justify-between px-4 py-3">
+                      <div className="min-w-0">
+                        <h3 className="truncate text-sm font-semibold group-hover:text-primary transition-colors">
+                          {solution.title}
+                        </h3>
+                        {solution.clientName && (
+                          <p className="truncate text-[11px] text-muted-foreground">
+                            {solution.clientName}
+                          </p>
+                        )}
+                      </div>
+                      <div className="ml-3 flex shrink-0 gap-1.5">
+                        {solution.techStack.slice(0, isWide ? 3 : 2).map((t) => (
+                          <Badge key={t} variant="secondary" className="text-[10px] py-0 px-1.5">
+                            {t}
                           </Badge>
                         ))}
                       </div>
-                    )}
-
-                    <div className="flex items-center justify-between pt-1">
-                      {solution.clientName && (
-                        <span className="text-xs text-muted-foreground">
-                          Client: {solution.clientName}
-                        </span>
-                      )}
-                      {solution.liveUrl && (
-                        <Button size="sm" variant="ghost" className="ml-auto gap-1 text-xs" asChild>
-                          <Link href={solution.liveUrl} target="_blank" rel="noopener noreferrer">
-                            View Live
-                            <ArrowRight className="size-3" />
-                          </Link>
-                        </Button>
-                      )}
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
-            <div className="flex justify-center animate-slide-up animation-delay-500">
-              <Button variant="outline" size="lg" className="h-12 px-8 hover:scale-105 transition-transform group" asChild>
-                <Link href="/contact">
-                  Work With Us
-                  <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
+            {/* ── Bottom CTA strip ── */}
+            <div className="flex flex-col items-center gap-4 rounded-2xl border bg-card/60 p-8 text-center sm:flex-row sm:text-left animate-slide-up animation-delay-500 opacity-0" style={{ animationFillMode: "forwards" }}>
+              <div className="flex-1">
+                <p className="text-lg font-bold">Have a project in mind?</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  We build custom software, data tools, and AI automations. Let&rsquo;s bring your idea to life.
+                </p>
+              </div>
+              <div className="flex gap-3 shrink-0">
+                <Button variant="outline" asChild>
+                  <Link href="/solutions">See All Projects</Link>
+                </Button>
+                <Button asChild>
+                  <Link href="/contact">
+                    Start a Project
+                    <ArrowRight className="ml-2 size-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
+
           </div>
         </section>
       )}
+
 
       {/* Testimonials — featured magazine layout */}
       <section className="w-full px-4 py-20 sm:px-6 lg:px-8 relative overflow-hidden">
