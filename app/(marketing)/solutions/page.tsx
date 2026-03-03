@@ -21,30 +21,28 @@ export default async function SolutionsPage() {
   return (
     <div className="min-h-screen">
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden border-b bg-linear-to-br from-background via-primary/3 to-background py-20">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute right-0 top-0 size-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
-          <div className="absolute bottom-0 left-0 size-96 translate-y-1/2 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border bg-background/80 px-4 py-1.5 text-sm backdrop-blur-sm">
-            <Layers className="size-4 text-primary" />
-            Our Work
+      <section className="relative border-b overflow-hidden">
+        <div className="pointer-events-none absolute -right-16 top-0 h-32 w-64 rounded-full bg-primary/5 blur-3xl" />
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 pb-8 pt-12 sm:flex-row sm:items-end sm:gap-8 sm:px-6 sm:pt-16 lg:px-8">
+          <div className="flex-1 space-y-3">
+            <p className="animate-fade-in-up text-xs font-semibold uppercase tracking-[0.2em] text-primary">Our Work</p>
+            <h1 className="animate-fade-in-up animation-delay-100 text-2xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
+              Technology Solutions <span className="text-primary">We Deliver</span>
+            </h1>
+            <p className="animate-fade-in-up animation-delay-200 max-w-xl text-sm text-muted-foreground sm:text-base">
+              From web platforms to data dashboards and mobile apps — see what we build for our clients across Ghana and beyond.
+            </p>
+            <div className="flex flex-wrap gap-2 pt-1 animate-fade-in-up animation-delay-300">
+              {categories.map((cat) => (
+                <Badge key={cat} variant="secondary" className="px-2.5 py-0.5 text-xs font-medium">
+                  {cat}
+                </Badge>
+              ))}
+            </div>
+            <div className="h-0.5 w-16 rounded-full bg-primary/40 animate-line-grow animation-delay-500" />
           </div>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-            Technology Solutions
-            <br />
-            <span className="text-primary">We Deliver</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            From web platforms to data dashboards and mobile apps — see what we build for our clients across Ghana and beyond.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            {categories.map((cat) => (
-              <Badge key={cat} variant="secondary" className="px-3 py-1 text-sm font-medium">
-                {cat}
-              </Badge>
-            ))}
+          <div className="hidden text-right text-5xl font-black text-muted-foreground/5 sm:block lg:text-8xl animate-count-pop animation-delay-300">
+            {solutions.length}
           </div>
         </div>
       </section>
@@ -97,7 +95,7 @@ export default async function SolutionsPage() {
         )}
 
         {/* ── CTA ── */}
-        <section className="rounded-2xl border bg-primary/5 px-8 py-12 text-center">
+        <section className="rounded-2xl border bg-primary/5 px-8 py-12 text-center hover-lift">
           <h2 className="text-2xl font-bold sm:text-3xl">Have a project in mind?</h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
             We build tailored tech solutions for businesses and organisations. Let&apos;s talk about what we can build together.
@@ -139,7 +137,7 @@ function SolutionCard({
   ongoing?: boolean
 }) {
   return (
-    <div className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-background transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${ongoing ? "border-orange-200 dark:border-orange-800/50" : ""}`}>
+    <div className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-background transition-all duration-300 hover:-translate-y-1 hover:shadow-xl card-shine ${ongoing ? "border-orange-200 dark:border-orange-800/50" : ""}`}>
       {/* Image */}
       <div className="relative aspect-[16/9] overflow-hidden bg-muted">
         {solution.imageUrl ? (

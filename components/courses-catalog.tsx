@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { BookOpen, CheckCircle2, Filter, Search, X } from "lucide-react"
+import { BookOpen, CheckCircle2, Filter, Search, SlidersHorizontal, X } from "lucide-react"
 
 interface Course {
   id: string
@@ -74,90 +74,91 @@ export function CoursesCatalog({ courses }: CoursesCatalogProps) {
   }
 
   return (
-    <div className="w-full space-y-8">
+    <div className="w-full space-y-5 sm:space-y-8">
       {/* Filters & Search Bar */}
-      <div className="glass sticky top-20 z-30 mx-auto flex w-full max-w-7xl flex-col gap-4 rounded-2xl p-4">
-        {/* Category filters */}
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-2 rounded-lg bg-muted/50 px-3 py-2 text-sm font-medium text-muted-foreground">
-            <Filter className="size-4" />
-            <span>Category:</span>
-          </div>
-          {CATEGORY_FILTERS.map((category) => (
-            <Badge 
-              key={category.value}
-              variant={selectedCategory === category.value ? "default" : "outline"}
-              className={`cursor-pointer rounded-lg px-4 py-2 text-sm transition-colors ${
-                selectedCategory === category.value 
-                  ? "hover:opacity-90" 
-                  : "border-primary/20 bg-background/50 hover:bg-primary/10"
-              }`}
-              onClick={() => setSelectedCategory(category.value)}
-            >
-              {category.label}
-            </Badge>
-          ))}
-        </div>
-
-        {/* Level filters and search */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-sm font-medium text-muted-foreground">Level:</span>
-            {LEVEL_FILTERS.map((level) => (
-              <Badge 
-                key={level}
-                variant={selectedLevel === level ? "default" : "outline"}
-                className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs transition-colors ${
-                  selectedLevel === level 
-                    ? "hover:opacity-90" 
-                    : "border-primary/20 bg-background/50 hover:bg-primary/10"
-                }`}
-                onClick={() => setSelectedLevel(level)}
+      <div className="sticky top-16 z-30 mx-auto w-full max-w-7xl sm:top-20">
+        <div className="rounded-xl border bg-card/80 shadow-sm backdrop-blur-xl sm:rounded-2xl">
+          {/* Search row */}
+          <div className="flex items-center gap-2 border-b px-3 py-2.5 sm:gap-3 sm:px-5 sm:py-3">
+            <SlidersHorizontal className="size-4 shrink-0 text-muted-foreground" />
+            <div className="relative flex-1">
+              <Search className="absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground/60 sm:left-3 sm:size-4" />
+              <Input
+                type="text"
+                placeholder="Search courses..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-8 w-full rounded-lg border-0 bg-muted/50 pl-8 pr-3 text-sm placeholder:text-muted-foreground/50 focus-visible:ring-1 sm:h-9 sm:pl-9 sm:pr-4"
+              />
+            </div>
+            {hasActiveFilters && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={clearFilters}
+                className="h-7 shrink-0 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground sm:h-8 sm:gap-1.5 sm:px-3"
               >
-                {level === "All" ? "All Levels" : level.charAt(0) + level.slice(1).toLowerCase()}
-              </Badge>
-            ))}
+                <X className="size-3" />
+                <span className="hidden sm:inline">Clear</span>
+              </Button>
+            )}
           </div>
-          
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type="text" 
-              placeholder="Search courses..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-10 w-full rounded-xl bg-background/50 pl-9 pr-4"
-            />
+
+          {/* Filter rows */}
+          <div className="space-y-1 px-3 py-2.5 sm:flex sm:items-center sm:justify-between sm:gap-4 sm:space-y-0 sm:px-5 sm:py-3">
+            {/* Category pills — horizontal scroll on mobile */}
+            <div className="flex items-center gap-1 overflow-x-auto pb-1 sm:gap-1.5 sm:overflow-visible sm:pb-0">
+              <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/50 sm:mr-1 sm:text-xs">Category</span>
+              {CATEGORY_FILTERS.map((category) => (
+                <button
+                  key={category.value}
+                  onClick={() => setSelectedCategory(category.value)}
+                  className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition-all sm:px-3 sm:text-xs ${
+                    selectedCategory === category.value
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Separator on larger screens */}
+            <div className="hidden h-5 w-px bg-border sm:block" />
+
+            {/* Level pills — horizontal scroll on mobile */}
+            <div className="flex items-center gap-1 overflow-x-auto pb-1 sm:gap-1.5 sm:overflow-visible sm:pb-0">
+              <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/50 sm:mr-1 sm:text-xs">Level</span>
+              {LEVEL_FILTERS.map((level) => (
+                <button
+                  key={level}
+                  onClick={() => setSelectedLevel(level)}
+                  className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition-all sm:px-3 sm:text-xs ${
+                    selectedLevel === level
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {level === "All" ? "All" : level.charAt(0) + level.slice(1).toLowerCase()}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Active filters indicator */}
-        {hasActiveFilters && (
-          <div className="flex items-center justify-between border-t border-border/50 pt-3">
-            <p className="text-sm text-muted-foreground">
-              {filteredCourses.length} of {courses.length} courses
-            </p>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={clearFilters}
-              className="h-8 text-xs"
-            >
-              <X className="mr-1 size-3" />
-              Clear filters
-            </Button>
-          </div>
-        )}
-      </div>
-
-      {/* Course count */}
-      {!hasActiveFilters && (
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-2">
-          <p className="text-sm font-medium text-muted-foreground">
-            Showing <span className="text-foreground">{courses.length}</span> courses
+        {/* Results count */}
+        <div className="mt-2 flex items-center px-1 sm:mt-3">
+          <p className="text-[11px] text-muted-foreground sm:text-xs">
+            {hasActiveFilters
+              ? <>{filteredCourses.length} of {courses.length} courses</>
+              : <>Showing <span className="font-semibold text-foreground">{courses.length}</span> courses</>
+            }
           </p>
         </div>
-      )}
+      </div>
+
+
 
       {/* No results message */}
       {filteredCourses.length === 0 && (
@@ -177,9 +178,9 @@ export function CoursesCatalog({ courses }: CoursesCatalogProps) {
 
       {/* Catalog grid */}
       {filteredCourses.length > 0 && (
-        <div className="mx-auto grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredCourses.map((course) => (
-            <Card key={course.id} className="group flex flex-col overflow-hidden border-none bg-white/40 transition-all hover:-translate-y-1 hover:shadow-xl dark:bg-black/20">
+        <div className="mx-auto grid max-w-7xl gap-3 grid-cols-1 min-[480px]:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+          {filteredCourses.map((course, index) => (
+            <Card key={course.id} className={`group flex flex-col overflow-hidden border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl card-shine animate-fade-in-up animation-delay-${Math.min(index * 100, 500)}`}>
               <CardHeader className="space-y-3 pb-4">
                 <div className="flex items-start justify-between gap-2">
                   <Badge variant="outline" className="bg-background/50 backdrop-blur">
@@ -192,7 +193,7 @@ export function CoursesCatalog({ courses }: CoursesCatalogProps) {
                     </span>
                   )}
                 </div>
-                <CardTitle className="line-clamp-2 text-lg leading-tight group-hover:text-primary">
+                <CardTitle className="line-clamp-2 text-lg leading-tight transition-colors duration-200 group-hover:text-primary">
                   {course.title}
                 </CardTitle>
                 {course.shortSummary && (

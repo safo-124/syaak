@@ -92,24 +92,25 @@ export default async function AboutPage() {
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      {/* Hero Section */}
-      <section className="relative flex w-full flex-col items-center justify-center overflow-hidden px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-24">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,var(--primary)/0.1,transparent_60%)]" />
-        <div className="mx-auto max-w-3xl space-y-6">
-          <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm font-medium backdrop-blur-md">
-            {hero.heroTagline}
-          </Badge>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            {hero.heroTitle.includes("Digital Future") ? (
-              <>
-                Empowering Ghana&apos;s{" "}
-                <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">Digital Future</span>
-              </>
-            ) : hero.heroTitle}
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            {hero.heroSubtitle}
-          </p>
+      {/* Hero */}
+      <section className="relative border-b overflow-hidden">
+        <div className="pointer-events-none absolute -right-16 top-0 h-32 w-64 rounded-full bg-primary/5 blur-3xl" />
+        <div className="mx-auto flex max-w-7xl items-end gap-8 px-4 pb-8 pt-12 sm:px-6 sm:pt-16 lg:px-8">
+          <div className="flex-1 space-y-3">
+            <p className="animate-fade-in-up text-xs font-semibold uppercase tracking-[0.2em] text-primary">{hero.heroTagline}</p>
+            <h1 className="animate-fade-in-up animation-delay-100 text-2xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
+              {hero.heroTitle.includes("Digital Future") ? (
+                <>
+                  Empowering Ghana&apos;s{" "}
+                  <span className="text-primary">Digital Future</span>
+                </>
+              ) : hero.heroTitle}
+            </h1>
+            <p className="animate-fade-in-up animation-delay-200 max-w-xl text-sm text-muted-foreground sm:text-base">
+              {hero.heroSubtitle}
+            </p>
+            <div className="h-0.5 w-16 rounded-full bg-primary/40 animate-line-grow animation-delay-400" />
+          </div>
         </div>
       </section>
 
@@ -117,7 +118,7 @@ export default async function AboutPage() {
       <section className="w-full border-y bg-muted/30 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
           {stats.map((stat, i) => (
-            <div key={i}>
+            <div key={i} className={`animate-count-pop animation-delay-${(i + 1) * 100}`}>
               <p className="text-3xl font-extrabold text-primary">{stat.value}</p>
               <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
             </div>
@@ -128,13 +129,13 @@ export default async function AboutPage() {
       {/* Mission & Vision */}
       <section className="w-full px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
-          <div className="space-y-4">
+          <div className="animate-fade-in-up animation-delay-100 space-y-4">
             <h2 className="text-3xl font-bold tracking-tight">{mission.title}</h2>
             {mission.body.split("\n\n").map((para, i) => (
               <p key={i} className="text-lg text-muted-foreground leading-relaxed">{para}</p>
             ))}
           </div>
-          <div className="space-y-4">
+          <div className="animate-fade-in-up animation-delay-300 space-y-4">
             <h2 className="text-3xl font-bold tracking-tight">{vision.title}</h2>
             {vision.body.split("\n\n").map((para, i) => (
               <p key={i} className="text-lg text-muted-foreground leading-relaxed">{para}</p>
@@ -203,7 +204,7 @@ export default async function AboutPage() {
             </div>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {teamMembers.map((member) => (
-                <Card key={member.id} className="glass border-none overflow-hidden group">
+                <Card key={member.id} className="glass border-none overflow-hidden group hover-lift card-shine">
                   <CardContent className="p-6 text-center space-y-4">
                     <Avatar className="h-24 w-24 mx-auto ring-4 ring-primary/20 transition-transform group-hover:scale-105">
                       <AvatarImage src={member.imageUrl || ""} alt={member.name} />
@@ -259,7 +260,7 @@ export default async function AboutPage() {
           </div>
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, i) => (
-              <AccordionItem key={faq.id || i} value={`item-${i}`} className="glass rounded-xl border-none px-6">
+              <AccordionItem key={faq.id || i} value={`item-${i}`} className="glass rounded-xl border-none px-6 transition-shadow hover:shadow-md">
                 <AccordionTrigger className="text-left font-medium hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>

@@ -204,80 +204,69 @@ export default async function HomePage() {
       {/* Stats Section */}
       <section className="w-full px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          {/* Main stats card */}
-          <div className="relative overflow-hidden rounded-3xl bg-foreground text-background">
-            {/* Decorative background blobs */}
-            <div className="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full bg-primary/20 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-20 -left-20 size-64 rounded-full bg-primary/10 blur-3xl" />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 size-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/3 blur-3xl" />
+          {/* Top label */}
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/60">By the numbers</p>
 
-            <div className="relative">
-              {/* Top label */}
-              <div className="border-b border-white/10 px-8 py-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">By the numbers</p>
-              </div>
-
-              {/* Stats grid */}
-              <div className="grid grid-cols-2 divide-x divide-y divide-white/10 lg:grid-cols-5 lg:divide-y-0">
-                {[
-                  {
-                    number: "500+",
-                    label: "Students Trained",
-                    sublabel: "Across Ghana & beyond",
-                    icon: Users,
-                    color: "text-blue-400",
-                  },
-                  {
-                    number: `${courses.length}+`,
-                    label: "Courses Available",
-                    sublabel: "From beginner to advanced",
-                    icon: BookOpen,
-                    color: "text-emerald-400",
-                  },
-                  {
-                    number: `${solutions.length}+`,
-                    label: "Projects Shipped",
-                    sublabel: "Live solutions for clients",
-                    icon: Hammer,
-                    color: "text-orange-400",
-                  },
-                  {
-                    number: "95%",
-                    label: "Job Placement",
-                    sublabel: "Of graduates employed",
-                    icon: TrendingUp,
-                    color: "text-purple-400",
-                  },
-                  {
-                    number: "1000+",
-                    label: "Skills Taught",
-                    sublabel: "Excel, Python, BI & more",
-                    icon: Calculator,
-                    color: "text-pink-400",
-                  },
-                ].map((stat, i) => (
-                  <div key={stat.label} className="group flex flex-col gap-3 px-6 py-8 transition-colors duration-300 hover:bg-white/5">
-                    <div className={`flex size-10 items-center justify-center rounded-xl bg-white/10 ${stat.color} group-hover:scale-110 transition-transform duration-300`}>
-                      <stat.icon className="size-5" />
-                    </div>
-                    <div>
-                      <div className={`text-3xl font-black tracking-tight lg:text-4xl ${stat.color}`}>
-                        {stat.number}
-                      </div>
-                      <div className="mt-1 text-sm font-semibold text-white/90">{stat.label}</div>
-                      <div className="mt-0.5 text-[11px] text-white/40">{stat.sublabel}</div>
-                    </div>
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+            {[
+              {
+                number: "500+",
+                label: "Students Trained",
+                sublabel: "Across Ghana & beyond",
+                icon: Users,
+                accent: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+                numColor: "text-blue-600 dark:text-blue-400",
+              },
+              {
+                number: `${courses.length}+`,
+                label: "Courses Available",
+                sublabel: "From beginner to advanced",
+                icon: BookOpen,
+                accent: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+                numColor: "text-emerald-600 dark:text-emerald-400",
+              },
+              {
+                number: `${solutions.length}+`,
+                label: "Projects Shipped",
+                sublabel: "Live solutions for clients",
+                icon: Hammer,
+                accent: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
+                numColor: "text-orange-600 dark:text-orange-400",
+              },
+              {
+                number: "95%",
+                label: "Job Placement",
+                sublabel: "Of graduates employed",
+                icon: TrendingUp,
+                accent: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
+                numColor: "text-purple-600 dark:text-purple-400",
+              },
+              {
+                number: "1000+",
+                label: "Skills Taught",
+                sublabel: "Excel, Python, BI & more",
+                icon: Calculator,
+                accent: "bg-pink-500/10 text-pink-600 dark:text-pink-400",
+                numColor: "text-pink-600 dark:text-pink-400",
+              },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="group flex flex-col gap-3 rounded-2xl border bg-card p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+              >
+                <div className={`flex size-10 items-center justify-center rounded-xl ${stat.accent} transition-transform duration-300 group-hover:scale-110`}>
+                  <stat.icon className="size-5" />
+                </div>
+                <div>
+                  <div className={`text-3xl font-black tracking-tight lg:text-4xl ${stat.numColor}`}>
+                    {stat.number}
                   </div>
-                ))}
+                  <div className="mt-1 text-sm font-semibold text-foreground">{stat.label}</div>
+                  <div className="mt-0.5 text-[11px] text-muted-foreground">{stat.sublabel}</div>
+                </div>
               </div>
-
-              {/* Bottom accent bar */}
-              <div className="flex h-1">
-                {["bg-blue-400", "bg-emerald-400", "bg-orange-400", "bg-purple-400", "bg-pink-400"].map((c) => (
-                  <div key={c} className={`flex-1 ${c} opacity-60`} />
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1134,30 +1123,25 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* CTA Section — dark, bold, full-bleed */}
-      <section className="relative w-full overflow-hidden bg-foreground text-background">
-        {/* Dot grid overlay */}
-        <div className="bg-dot-grid absolute inset-0 text-white opacity-100" />
-
-        {/* Gradient blobs */}
-        <div className="absolute right-1/4 top-0 size-[32rem] rounded-full bg-primary/25 blur-[120px]" />
-        <div className="absolute bottom-0 left-1/4 size-80 rounded-full bg-blue-500/20 blur-3xl" />
-        <div className="absolute left-0 top-1/2 size-64 rounded-full bg-purple-500/15 blur-3xl" />
+      {/* CTA Section — clean, bold */}
+      <section className="relative w-full overflow-hidden">
+        {/* Soft gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-purple-500/5" />
 
         <div className="relative z-10 mx-auto max-w-5xl px-6 py-28 text-center sm:px-12 lg:px-16">
           {/* Icon ring */}
-          <div className="mx-auto mb-8 flex size-20 animate-bounce-subtle items-center justify-center rounded-full border border-white/20 bg-white/10">
-            <GraduationCap className="size-10 text-white" />
+          <div className="mx-auto mb-8 flex size-20 animate-bounce-subtle items-center justify-center rounded-full border bg-card shadow-sm">
+            <GraduationCap className="size-10 text-primary" />
           </div>
 
           {/* Headline */}
-          <h2 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl animate-slide-up">
+          <h2 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl animate-slide-up">
             Ready to Build<br />
             <span className="gradient-text-animated">Something Great?</span>
           </h2>
 
           <p
-            className="mx-auto mt-6 max-w-2xl text-lg text-white/55 animate-slide-up animation-delay-200 opacity-0"
+            className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground animate-slide-up animation-delay-200 opacity-0"
             style={{ animationFillMode: "forwards" }}
           >
             Whether you need a software solution for your business or want to master tech skills —
@@ -1170,7 +1154,7 @@ export default async function HomePage() {
           >
             <Button
               size="lg"
-              className="h-12 w-full bg-white text-black hover:bg-white/90 hover:scale-105 transition-all sm:w-auto group"
+              className="h-12 w-full hover:scale-105 transition-all sm:w-auto group"
               asChild
             >
               <Link href="/learn/register">
@@ -1181,7 +1165,7 @@ export default async function HomePage() {
             <Button
               variant="outline"
               size="lg"
-              className="h-12 w-full border-white/20 text-white hover:bg-white/10 hover:border-white/40 hover:scale-105 transition-all sm:w-auto"
+              className="h-12 w-full hover:scale-105 transition-all sm:w-auto"
               asChild
             >
               <Link href="/contact">Get a Solution Built</Link>
@@ -1199,8 +1183,8 @@ export default async function HomePage() {
               { icon: Hammer,      label: "50+ Projects Shipped" },
               { icon: Globe,       label: "Ghana & Beyond" },
             ].map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2 text-sm font-medium text-white/40">
-                <Icon className="size-3.5 text-white/30" />
+              <div key={label} className="flex items-center gap-2 text-sm font-medium text-muted-foreground/60">
+                <Icon className="size-3.5 text-muted-foreground/40" />
                 {label}
               </div>
             ))}

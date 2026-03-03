@@ -55,22 +55,23 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-b from-blue-500/5 to-transparent" />
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-3xl mx-auto">
-            <Badge className="glass border-blue-500/30 text-blue-400 mb-6">
-              <Sparkles className="h-3 w-3 mr-1" />
-              Our Blog
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+      {/* Hero */}
+      <section className="relative border-b overflow-hidden">
+        <div className="pointer-events-none absolute -right-16 top-0 h-32 w-64 rounded-full bg-primary/5 blur-3xl" />
+        <div className="mx-auto flex max-w-7xl items-end gap-8 px-4 pb-8 pt-12 sm:px-6 sm:pt-16 lg:px-8">
+          <div className="flex-1 space-y-3">
+            <p className="animate-fade-in-up text-xs font-semibold uppercase tracking-[0.2em] text-primary">Blog</p>
+            <h1 className="animate-fade-in-up animation-delay-100 text-2xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
               {selectedCategory ? selectedCategory.name : "Insights & Resources"}
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              {selectedCategory?.description || 
+            <p className="animate-fade-in-up animation-delay-200 max-w-xl text-sm text-muted-foreground sm:text-base">
+              {selectedCategory?.description ||
                 "Discover tutorials, tips, and insights to help you excel in your tech journey. Stay updated with the latest in web development, data science, and more."}
             </p>
+            <div className="h-0.5 w-16 rounded-full bg-primary/40 animate-line-grow animation-delay-400" />
+          </div>
+          <div className="hidden text-right text-5xl font-black text-muted-foreground/5 sm:block lg:text-8xl animate-count-pop animation-delay-300">
+            {allPosts.length}
           </div>
         </div>
       </section>
