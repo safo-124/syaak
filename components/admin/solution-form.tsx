@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { toast } from "sonner"
-import { Loader2, Save, Image as ImageIcon, Globe, Star } from "lucide-react"
+import { Loader2, Save, Image as ImageIcon, Globe, Star, Upload, X, Plus } from "lucide-react"
 import { createSolutionAction, updateSolutionAction } from "@/app/actions/solutions"
 
 const CATEGORIES = [
@@ -57,10 +57,61 @@ interface SolutionFormProps {
 export function SolutionForm({ solution }: SolutionFormProps) {
   const router = useRouter()
   const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const [uploadingGallery, setUploadingGallery] = useState(false)
   const [isPublished, setIsPublished] = useState(solution?.isPublished ?? false)
   const [isFeatured, setIsFeatured] = useState(solution?.isFeatured ?? false)
   const [category, setCategory] = useState(solution?.category ?? "")
   const [imagePreview, setImagePreview] = useState(solution?.imageUrl ?? "")
+  const [imageUrlValue, setImageUrlValue] = useState(solution?.imageUrl ?? "")
+  const [galleryImages, setGalleryImages] = useState<string[]>(solution?.galleryImages ?? [])
+  const mainImageInputRef = useRef<HTMLInputElement>(null)
+  const galleryInputRef = useRef<HTMLInputElement>(null)
+
+  async function uploadFile(file: File): Promise<string | null> {
+    const formData = new FormData()
+    formData.set("file", file)
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: formData })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Upload failed")
+      return data.url
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Upload failed")
+      return null
+    }
+  }
+
+  async function handleMainImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setUploading(true)
+    const url = await uploadFile(file)
+    if (url) {
+      setImageUrlValue(url)
+      setImagePreview(url)
+    }
+    setUploading(false)
+    e.target.value = ""
+  }
+
+  async function handleGalleryUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files
+    if (!files?.length) return
+    setUploadingGallery(true)
+    const newUrls: string[] = []
+    for (const file of Array.from(files)) {
+      const url = await uploadFile(file)
+      if (url) newUrls.push(url)
+    }
+    setGalleryImages((prev) => [...prev, ...newUrls])
+    setUploadingGallery(false)
+    e.target.value = ""
+  }
+
+  function removeGalleryImage(index: number) {
+    setGalleryImages((prev) => prev.filter((_, i) => i !== index))
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -281,33 +332,121 @@ export function SolutionForm({ solution }: SolutionFormProps) {
                 <Input
                   id="imageUrl"
                   name="imageUrl"
-                  defaultValue={solution?.imageUrl ?? ""}
+                  value={imageUrlValue}
                   placeholder="https://..."
                   className="bg-background"
-                  onChange={(e) => setImagePreview(e.target.value)}
+                  onChange={(e) => {
+                    setImageUrlValue(e.target.value)
+                    setImagePreview(e.target.value)
+                  }}
                 />
               </div>
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-white px-2 text-muted-foreground dark:bg-black/20">or</span>
+                </div>
+              </div>
+
+              <input
+                ref={mainImageInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleMainImageUpload}
+              />
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full"
+                disabled={uploading}
+                onClick={() => mainImageInputRef.current?.click()}
+              >
+                {uploading ? (
+                  <><Loader2 className="mr-2 size-4 animate-spin" /> Uploading...</>
+                ) : (
+                  <><Upload className="mr-2 size-4" /> Upload from device</>
+                )}
+              </Button>
+
               {imagePreview && (
-                <div className="overflow-hidden rounded-lg border aspect-video">
+                <div className="relative overflow-hidden rounded-lg border aspect-video">
                   <img
                     src={imagePreview}
                     alt="Preview"
                     className="h-full w-full object-cover"
                     onError={() => setImagePreview("")}
                   />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setImagePreview("")
+                      setImageUrlValue("")
+                    }}
+                    className="absolute right-1.5 top-1.5 rounded-full bg-black/60 p-1 text-white transition-colors hover:bg-black/80"
+                  >
+                    <X className="size-3.5" />
+                  </button>
                 </div>
               )}
-              <div className="space-y-2">
-                <Label htmlFor="galleryImages">Gallery Images (optional)</Label>
+
+              {/* Gallery */}
+              <div className="space-y-2 pt-2 border-t">
+                <Label>Gallery Images (optional)</Label>
+
+                {galleryImages.length > 0 && (
+                  <div className="grid grid-cols-2 gap-2">
+                    {galleryImages.map((url, i) => (
+                      <div key={i} className="group relative overflow-hidden rounded-lg border aspect-video">
+                        <img src={url} alt={`Gallery ${i + 1}`} className="h-full w-full object-cover" />
+                        <button
+                          type="button"
+                          onClick={() => removeGalleryImage(i)}
+                          className="absolute right-1 top-1 rounded-full bg-black/60 p-0.5 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                        >
+                          <X className="size-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <input
+                  ref={galleryInputRef}
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className="hidden"
+                  onChange={handleGalleryUpload}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  disabled={uploadingGallery}
+                  onClick={() => galleryInputRef.current?.click()}
+                >
+                  {uploadingGallery ? (
+                    <><Loader2 className="mr-2 size-3.5 animate-spin" /> Uploading...</>
+                  ) : (
+                    <><Plus className="mr-2 size-3.5" /> Add gallery images</>
+                  )}
+                </Button>
+
                 <Textarea
                   id="galleryImages"
                   name="galleryImages"
-                  defaultValue={solution?.galleryImages.join("\n") ?? ""}
-                  rows={4}
-                  placeholder={"https://img1.png\nhttps://img2.png"}
+                  value={galleryImages.join("\n")}
+                  onChange={(e) => setGalleryImages(e.target.value.split("\n").filter(Boolean))}
+                  rows={3}
+                  placeholder={"Paste URLs here, one per line"}
                   className="bg-background font-mono text-xs"
                 />
-                <p className="text-xs text-muted-foreground">One URL per line</p>
+                <p className="text-xs text-muted-foreground">Upload files or paste URLs (one per line)</p>
               </div>
             </CardContent>
           </Card>

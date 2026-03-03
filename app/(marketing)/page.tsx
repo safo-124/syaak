@@ -38,81 +38,99 @@ export default async function HomePage() {
   return (
     <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative flex w-full flex-col items-center justify-center overflow-hidden px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">
+      <section className="relative flex w-full flex-col items-center justify-center overflow-hidden px-3 py-16 text-center sm:px-6 sm:py-24 lg:px-8 lg:py-32">
         {/* Animated Background Orbs */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           {/* Primary gradient background */}
           <div className="absolute inset-0 bg-[radial-gradient(45%_40%_at_50%_60%,var(--primary)/0.12,transparent)]" />
           
           {/* Floating orbs - Data themed */}
-          <div className="floating-orb animate-blob bg-primary/30 w-72 h-72 top-10 -left-20" />
-          <div className="floating-orb animate-blob animation-delay-2000 bg-green-500/20 w-96 h-96 top-40 -right-32" />
-          <div className="floating-orb animate-blob animation-delay-4000 bg-blue-500/20 w-64 h-64 bottom-20 left-1/4" />
+          <div className="floating-orb animate-blob bg-primary/30 w-72 h-72 top-10 -left-20 hidden sm:block" />
+          <div className="floating-orb animate-blob animation-delay-2000 bg-green-500/20 w-96 h-96 top-40 -right-32 hidden sm:block" />
+          <div className="floating-orb animate-blob animation-delay-4000 bg-blue-500/20 w-64 h-64 bottom-20 left-1/4 hidden sm:block" />
           
-          {/* Floating data science icons */}
-          <div className="absolute top-20 left-[10%] animate-float opacity-20">
+          {/* Floating data science icons — hidden on mobile */}
+          <div className="absolute top-20 left-[10%] animate-float opacity-20 hidden md:block">
             <Code2 className="size-12 text-primary" />
           </div>
-          <div className="absolute top-32 right-[15%] animate-float-reverse animation-delay-500 opacity-20">
+          <div className="absolute top-32 right-[15%] animate-float-reverse animation-delay-500 opacity-20 hidden md:block">
             <BarChart3 className="size-10 text-green-600" />
           </div>
-          <div className="absolute bottom-32 left-[20%] animate-float animation-delay-1000 opacity-20">
+          <div className="absolute bottom-32 left-[20%] animate-float animation-delay-1000 opacity-20 hidden md:block">
             <FileSpreadsheet className="size-14 text-green-700" />
           </div>
-          <div className="absolute bottom-20 right-[25%] animate-float-slow opacity-20">
+          <div className="absolute bottom-20 right-[25%] animate-float-slow opacity-20 hidden md:block">
             <TrendingUp className="size-10 text-blue-600" />
           </div>
-          <div className="absolute top-1/2 left-[5%] animate-bounce-subtle animation-delay-700 opacity-15">
+          <div className="absolute top-1/2 left-[5%] animate-bounce-subtle animation-delay-700 opacity-15 hidden lg:block">
             <Database className="size-8 text-purple-600" />
           </div>
-          <div className="absolute top-1/3 right-[8%] animate-wiggle opacity-15">
+          <div className="absolute top-1/3 right-[8%] animate-wiggle opacity-15 hidden lg:block">
             <PieChart className="size-10 text-orange-600" />
           </div>
-          <div className="absolute top-1/4 left-[30%] animate-float-reverse animation-delay-1000 opacity-15">
+          <div className="absolute top-1/4 left-[30%] animate-float-reverse animation-delay-1000 opacity-15 hidden lg:block">
             <ChartLine className="size-8 text-blue-500" />
           </div>
-          <div className="absolute bottom-1/4 right-[35%] animate-float animation-delay-2000 opacity-15">
+          <div className="absolute bottom-1/4 right-[35%] animate-float animation-delay-2000 opacity-15 hidden lg:block">
             <Brain className="size-7 text-purple-500" />
           </div>
-          <div className="absolute top-2/3 left-[15%] animate-bounce-subtle animation-delay-300 opacity-15">
+          <div className="absolute top-2/3 left-[15%] animate-bounce-subtle animation-delay-300 opacity-15 hidden lg:block">
             <Table2 className="size-9 text-green-600" />
           </div>
-          <div className="absolute bottom-1/3 right-[12%] animate-float-slow animation-delay-1000 opacity-15">
+          <div className="absolute bottom-1/3 right-[12%] animate-float-slow animation-delay-1000 opacity-15 hidden lg:block">
             <Binary className="size-6 text-primary" />
           </div>
         </div>
         
-        <div className="glass mx-auto max-w-4xl rounded-3xl p-8 sm:p-12 lg:p-16 animate-scale-in hover-lift">
-          <Badge variant="secondary" className="mb-6 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-700 dark:text-emerald-400 animate-bounce-subtle">
-            <span className="relative mr-2.5 flex size-2">
+        <div className="glass mx-auto max-w-4xl rounded-2xl p-5 sm:rounded-3xl sm:p-12 lg:p-16 animate-scale-in hover-lift">
+          <Badge variant="secondary" className="mb-4 sm:mb-6 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-sm font-medium text-emerald-700 dark:text-emerald-400 animate-bounce-subtle">
+            <span className="relative mr-2 flex size-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
             </span>
-            Now enrolling &mdash; Technology Solutions &amp; Training
+            Now enrolling &mdash; Tech Solutions &amp; Training
           </Badge>
           
-          <h1 className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="animate-slide-up inline-block">Tech Solutions</span> <br className="hidden sm:block" />
+          <h1 className="mb-4 text-3xl font-extrabold tracking-tight sm:mb-6 sm:text-5xl md:text-6xl lg:text-7xl">
+            <span className="animate-slide-up inline-block">Tech Solutions</span> <br />
             <span className="gradient-text-animated inline-block animation-delay-200">
               Built for Ghana
             </span>
           </h1>
           
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl animate-slide-up animation-delay-300 opacity-0" style={{animationFillMode: 'forwards'}}>
+          <p className="mx-auto mb-6 max-w-2xl text-sm text-muted-foreground sm:mb-8 sm:text-lg md:text-xl animate-slide-up animation-delay-300 opacity-0" style={{animationFillMode: 'forwards'}}>
             We build software, automate workflows, and deliver world-class technology
             training — empowering individuals and businesses across Ghana and beyond.
           </p>
           
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row animate-slide-up animation-delay-500 opacity-0" style={{animationFillMode: 'forwards'}}>
-            <Button size="lg" className="h-12 w-full px-8 text-base sm:w-auto group hover:scale-105 transition-transform" asChild>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 animate-slide-up animation-delay-500 opacity-0" style={{animationFillMode: 'forwards'}}>
+            <Button size="lg" className="h-11 w-full px-6 text-sm sm:h-12 sm:w-auto sm:px-8 sm:text-base group hover:scale-105 transition-transform" asChild>
               <Link href="/courses">
                 Explore Courses 
                 <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="h-12 w-full px-8 text-base sm:w-auto hover:scale-105 transition-transform" asChild>
+            <Button variant="outline" size="lg" className="h-11 w-full px-6 text-sm sm:h-12 sm:w-auto sm:px-8 sm:text-base hover:scale-105 transition-transform" asChild>
               <Link href="/contact">Contact Us</Link>
             </Button>
+          </div>
+        </div>
+
+        {/* Mobile social proof strip */}
+        <div className="mt-6 flex w-full max-w-sm items-center justify-center gap-6 sm:hidden">
+          <div className="flex flex-col items-center">
+            <span className="text-lg font-black text-primary">500+</span>
+            <span className="text-[10px] text-muted-foreground">Students</span>
+          </div>
+          <div className="h-6 w-px bg-border" />
+          <div className="flex flex-col items-center">
+            <span className="text-lg font-black text-emerald-500">95%</span>
+            <span className="text-[10px] text-muted-foreground">Job Placement</span>
+          </div>
+          <div className="h-6 w-px bg-border" />
+          <div className="flex flex-col items-center">
+            <span className="text-lg font-black text-orange-500">50+</span>
+            <span className="text-[10px] text-muted-foreground">Projects</span>
           </div>
         </div>
 
@@ -185,8 +203,8 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-subtle">
+        {/* Scroll indicator — desktop only */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-subtle hidden sm:block">
           <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
             <div className="w-1.5 h-3 bg-muted-foreground/50 rounded-full mt-2 animate-pulse" />
           </div>
